@@ -1,2 +1,5 @@
-Ceci est un test.
-Bah visiblement il a réussi.
+﻿Ceci est un test. Je teste diverses choses.
+Visiblement il a réussi.
+OH YEAH :D
+
+(j'ai supprimé le Bah)
