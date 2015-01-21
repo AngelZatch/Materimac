@@ -1,15 +1,10 @@
 <?php
-
-$con = mysql_connect('localhost', 'root', '') or die(mysql_error());
-
-if(!$con){
-    echo "Impossible de se connecter : " . mysql_error();
-    exit;
+try
+{
+    $bdd = new PDO('mysql:host=localhost;dbname=Materimac', 'root', '');
 }
-
-if(!mysql_select_db('Materimac')){
-    echo "Base non existante : " . mysql_error();
-    exit;
+catch(Exception $e)
+{
+    die('Erreur de connection : ' . $e->getMessage());
 }
-
 ?>
