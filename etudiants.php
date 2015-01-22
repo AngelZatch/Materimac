@@ -1,6 +1,9 @@
 <?php
 require_once 'lib/config.php';
 
+function editEtudiant(){
+    
+}
 
 $prenom = $_POST['prenom'];
 $nom = $_POST['nom'];

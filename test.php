@@ -12,7 +12,7 @@ while($data = $result->fetch())
 ?>
     <p> Modifier <?php echo $prenom . " " . $nom . " (" . $id . ")";?> </p>
     <fieldset>
-        <form action="etudiant_post_edit.php" method="post">
+        <form action="etudiants.php" method="post">
            <ul>
                <li>
                     <label for="identifiant">Identifiant : </label>
