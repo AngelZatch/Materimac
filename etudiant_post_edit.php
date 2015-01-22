@@ -1,8 +1,16 @@
 <?php
 require_once 'lib/config.php';
 
-$req = $bdd->prepare('INSERT INTO etudiant (prenom, nom, numero_etudiant), VALUES(?, ?, ?)');
-$req->execute(array($_POST['prenom'], $_POST['nom'], $_POST['numero_etudiant']));
+$prenom = $_POST['prenom'];
+$nom = $_POST['nom'];
+$num = $_POST['numero_etudiant'];
+$id = $_POST['identifiant'];
 
-header('test.php');
+$req = $bdd->prepare("UPDATE etudiant SET prenom = '.$prenom.', nom='.$nom.', numero_etudiant='.$num' WHERE identifiant = '.$id.'");
+$req->execute(array(
+    'prenom' => $prenom,
+    'nom' => $nom,
+    'numero_etudiant' => $num));
+
+header('Location: test.php');
 ?>
