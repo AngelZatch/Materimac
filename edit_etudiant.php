@@ -2,7 +2,8 @@
 require_once 'settings/connection.php';
 include 'functions/etudiants.php';
 
-$row = mysqli_fetch_assoc(fetchEtudiant());
+$data = $_GET['nom'];
+$row = mysqli_fetch_assoc(fetchEtudiant($data));
 ?>
 
 
@@ -16,6 +17,9 @@ $row = mysqli_fetch_assoc(fetchEtudiant());
     <fieldset>
         <form action="edit_etudiant.php" method="post">
             <ul>
+               <li>
+                   <input type="hidden" name="identifiant" value="<?php echo $row['identifiant'];?>">
+               </li>
                 <li>
                     <label for="prenom">Prénom</label>
                     <input type="text" name ="prenom" value="<?php echo $row['prenom'];?>">
