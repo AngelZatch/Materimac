@@ -47,7 +47,7 @@
              <li>
                  <a href>
                      Réservations
-                     <span class="badge">3</span>
+                     <span class="badge">4</span>
                  </a>
              </li>
          </ul>  
@@ -66,5 +66,8 @@
        </div>
    </div>
     
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
