@@ -16,8 +16,20 @@ include 'functions/etudiants.php';
         <div class="row">
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-               <h1 class="page-header">Promotion 2016</h1>
-                   <?php afficherEtudiants() ?>
+               <h1 class="page-header">Promotion IMAC 2016</h1>
+               <div class="table-responsive">
+                   <table class="table table-stripped">
+                       <thead>
+                           <tr>
+                               <th>Prénom</th>
+                               <th>Nom</th>
+                               <th>Numéro d'étudiant</th>
+                               <th>Actions</th>
+                           </tr>
+                       </thead>
+                           <?php afficherEtudiants() ?>    
+                   </table>
+               </div>
            </div>
         </div>
     </div>

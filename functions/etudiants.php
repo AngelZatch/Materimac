@@ -10,12 +10,19 @@ function afficherEtudiants() {
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
+        echo "<tbody>";
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
             echo "<form action='edit_etudiant.php' method='post'>
-            <br>Nom : " . $row["prenom"]. " " . $row["nom"]. " - N° Etudiant : " . $row["numero_etudiant"]. " <a href='edit_etudiant.php?nom=".$row["identifiant"]."'>Modifier</a><br>
-            </form>";
+                    <tr>
+                        <td>" . $row["prenom"]. "</td>
+                        <td>" . $row["nom"]. "</td>
+                        <td>" . $row["numero_etudiant"]. "</td>
+                        <td><a href='edit_etudiant.php?nom=".$row["identifiant"]."'>Modifier</a></td>
+                    </tr>
+                </form>";
         }
+        echo "</tbody>";
     } else {
         echo "Aucun résultat";
     } 
