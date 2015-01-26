@@ -13,6 +13,7 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
     <title>Modifier un étudiant</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin-student.css">
 </head>
 <body>
        <?php include 'nav.php'; ?>
@@ -20,13 +21,20 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
         <div class="row">
             <?php include 'side-menu.php'; ?>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header">Modifier <?php echo $row['prenom'] . " " . $row['nom']?></h1>
+               <div class="page-header">
+                   <h1><?php echo $row['prenom'] . " " . $row['nom']?></h1>
+                   <div class="information">
+                       <?php
+                            if($row['valide'] == '1') echo '<span class="status online"></span> valide';
+                            else echo '<span class="status offline"></span> en attente de validation';
+                        ?>
+                   </div>
+               </div>
+               <h2>Informations</h2>
                 <fieldset>
                     <form action="edit_etudiant.php" method="post">
                         <ul>
-                           <li>
-                               <input type="hidden" name="identifiant" value="<?php echo $row['identifiant'];?>">
-                           </li>
+                           <input type="hidden" name="identifiant" value="<?php echo $row['identifiant'];?>">
                             <li>
                                 <label for="prenom">Prénom</label>
                                 <input type="text" name ="prenom" value="<?php echo $row['prenom'];?>">
@@ -45,6 +53,60 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
                     </form>
                 </fieldset>
                 <h2>Activité</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Référence</th>
+                            <th>Projet</th>
+                            <th>Promotion</th>
+                            <th>Retrait</th>
+                            <th>Dépôt</th>
+                            <th>Retard</th>
+                        </tr>
+                    </thead>
+                </table>
+                <h3>Demandes en attente</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <td>9KL85H7A9B</td>
+                        <td>Normal</td>
+                        <td>IMAC 2016</td>
+                        <td>26/01/2015</td>
+                        <td>28/01/2015</td>
+                        <td>Aucun</td>
+                    </tr>
+                </table>
+                <h3>Demandes validées</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <td>9KL85H7A9B</td>
+                        <td>Normal</td>
+                        <td>IMAC 2016</td>
+                        <td>26/01/2015</td>
+                        <td>28/01/2015</td>
+                        <td>Aucun</td>
+                    </tr>
+                </table>
+                <h3>Emprunts en cours</h3>
+                <h3>Emprunts terminés</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <td>8LK544LH3</td>
+                        <td>Projet enseignant</td>
+                        <td>IMAC 2016</td>
+                        <td>26/01/2015</td>
+                        <td>28/01/2015</td>
+                        <td>Aucun</td>
+                    </tr>
+                    <tr>
+                        <td>43PQ7RA0M9</td>
+                        <td>Projet enseignant</td>
+                        <td>IMAC 2016</td>
+                        <td>26/01/2015</td>
+                        <td>28/01/2015</td>
+                        <td>2 jours</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

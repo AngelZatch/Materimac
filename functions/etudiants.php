@@ -32,7 +32,7 @@ function afficherEtudiants() {
 /* AFFICHER UN SINGLETON */
 function fetchEtudiant($data){
     global $conn;
-    $sql = "SELECT prenom, nom, numero_etudiant, identifiant FROM etudiant WHERE identifiant = '$data'";
+    $sql = "SELECT prenom, nom, numero_etudiant, identifiant, valide FROM etudiant WHERE identifiant = '$data'";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
