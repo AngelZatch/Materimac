@@ -16,27 +16,47 @@ $etudiantsNonVerifies = $dataGNVN['COUNT(*)'];
 <div class="col-sm-3 col-md-2 sidebar">
  <ul class="nav nav-sidebar">
      <li>
-         <a href>Rendez-vous du jour <span class="badge">3</span></a>
+         <a href="meetings.php">Rendez-vous du jour <span class="badge">3</span></a>
      </li>
      <li>
          <a href>Planning</a>
      </li>
- </ul>  
- <ul class="nav nav-sidebar">
      <li>
-         <a href>Réservations <span class="badge">4</span></a>
+        <a href>Réservations <span class="badge">4</span></a>
+        <ul>
+             <li>En attente</li>
+             <li>Validées</li>
+             <li>En cours</li>
+             <li>En retard</li>
+             <li>Passées</li>
+             <li>Annulées</li>
+         </ul>
      </li>
- </ul>  
- <ul class="nav nav-sidebar">
-     <li><a href>Inventaire</a></li>
- </ul>
- <ul class="nav nav-sidebar">
-     <li><a href="liste_etudiants.php">Gestion des étudiants <span class="badge"><?php echo $etudiantsNonVerifies;?></span></a></li>
- </ul>
- <ul class="nav nav-sidebar">
-     <li><a href>Gestion des projets</a></li>
- </ul>
- <ul class="nav nav-sidebar">
-     <li><a href>Administration Générale</a></li>
+     <li><a href="liste-materiel.php">Inventaire</a>
+         <ul>
+             <li>Liste</li>
+             <li>Ajout de matériel</li>
+             <li>Ajout de set</li>
+         </ul>
+     </li>
+     <li><a href="liste_etudiants.php">Gestion des étudiants <span class="badge"><?php echo $etudiantsNonVerifies;?></span></a>
+         <ul>
+             <li>Liste par formation
+                 <ul>
+                     <li>IMAC 2015</li>
+                     <li>IMAC 2016</li>
+                     <li>IMAC 2017</li>
+                 </ul>
+             </li>
+             <li>Validation d'étudiants</li>
+         </ul>
+     </li>
+     <li><a href>Gestion des projets</a>
+        <ul>
+             <li>Liste des Enseignants</li>
+             <li>Ajout des Projets</li>
+        </ul>
+     </li>
+     <li><a href="general-admin.php">Administration Générale</a></li>
  </ul>  
 </div>

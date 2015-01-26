@@ -47,13 +47,26 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
                                 <label for="numero_etudiant">Numéro étudiant</label>
                                 <input type="text" name="numero_etudiant" value="<?php echo $row['numero_etudiant'];?>">
                             </li>
+                            <li>
+                                <label for="promotion">Promotion</label>
+                                <select name="formation" id="">
+                                    <option value="1">IMAC</option>
+                                    <option value="2">IR</option>
+                                </select>
+                                <select name="promotion" id="">
+                                    <option value="1">2015</option>
+                                    <option value="2">2016</option>
+                                    <option value="3">2017</option>
+                                </select>
+                            </li>
                         </ul>
                         <input type="submit" value="Valider les changements" name="submitChange">
                         <!--<input type="submit" value="Annuler les changements" name="cancelChange">-->
                     </form>
                 </fieldset>
                 <h2>Activité</h2>
-                <table class="table">
+                <div class="table-responsive">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Référence</th>
@@ -107,6 +120,7 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
                         <td>2 jours</td>
                     </tr>
                 </table>
+                </div>
             </div>
         </div>
     </div>
