@@ -1,6 +1,6 @@
 <?php
 require_once 'settings/connection.php';
-include 'functions/etudiants.php';
+require_once 'functions/etudiants.php';
 
 $data = $_GET['nom'];
 $row = mysqli_fetch_assoc(fetchEtudiant($data));

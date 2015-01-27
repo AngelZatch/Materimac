@@ -1,6 +1,6 @@
 <?php
 require_once 'settings/connection.php';
-include 'functions/etudiants.php';
+require_once 'functions/etudiants.php';
 
 ?>
 <html>

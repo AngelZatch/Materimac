@@ -1,5 +1,6 @@
 <?php
 require_once 'settings/connection.php';
+require_once 'functions/etudiants.php';
 
 function getNotValidNumber(){
     global $conn;
