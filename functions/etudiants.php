@@ -22,7 +22,7 @@ function afficherPromotion(){
 /* AFFICHER TOUS LES ETUDIANTS */
 function afficherEtudiants($data) {
     global $conn;
-    $sql = "SELECT prenom, nom, numero_etudiant, identifiant FROM etudiant WHERE promotion_id = '$data'";
+    $sql = "SELECT prenom, nom, numero_etudiant, identifiant FROM etudiant WHERE promotion_id = '$data' AND user_type_id='2'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
@@ -48,7 +48,7 @@ function afficherEtudiants($data) {
 /* AFFICHER UN SINGLETON */
 function fetchEtudiant($data){
     global $conn;
-    $sql = "SELECT prenom, nom, numero_etudiant, identifiant, valide, promotion_id FROM etudiant WHERE identifiant = '$data'";
+    $sql = "SELECT prenom, nom, numero_etudiant, identifiant, valide, promotion_id FROM etudiant WHERE identifiant = '$data' AND user_type_id='2'";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
