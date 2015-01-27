@@ -3,10 +3,25 @@ if(isset($_POST['submitChange'])){
     editEtudiant();
 }
 
-/* AFFICHER TOUS LES ETUDIANTS */
-function afficherEtudiants() {
+/* AFFICHER LES PROMOTIONS */
+function afficherPromotion(){
     global $conn;
-    $sql = "SELECT prenom, nom, numero_etudiant, identifiant FROM etudiant";
+    $sql = "SELECT * FROM promotion";
+    $result = mysqli_query($conn, $sql);
+    
+    if(mysqli_num_rows($result) > 0){
+        echo "<ul>";
+        while($row = mysqli_fetch_assoc($result)){
+            echo "<li><a href='liste_etudiants.php?annee=".$row["annee"]."'>IMAC " . $row["annee"] ."</a></li>";
+        }
+        echo "</ul>";
+    }
+}
+
+/* AFFICHER TOUS LES ETUDIANTS */
+function afficherEtudiants($data) {
+    global $conn;
+    $sql = "SELECT prenom, nom, numero_etudiant, identifiant FROM etudiant WHERE promotion_id = '$data'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {

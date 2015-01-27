@@ -2,6 +2,7 @@
 require_once 'settings/connection.php';
 include 'functions/etudiants.php';
 
+$data = $_GET['annee'];
 ?>
 <html>
 <head>
@@ -16,7 +17,7 @@ include 'functions/etudiants.php';
         <div class="row">
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-               <h1 class="page-header">Promotion IMAC 2016</h1>
+               <h1 class="page-header">Promotion IMAC <?php echo $data;?></h1>
                <div class="table-responsive">
                    <table class="table table-striped table-hover">
                        <thead>
@@ -27,7 +28,7 @@ include 'functions/etudiants.php';
                                <th>Actions</th>
                            </tr>
                        </thead>
-                           <?php afficherEtudiants() ?>    
+                           <?php afficherEtudiants($data) ?>    
                    </table>
                </div>
            </div>

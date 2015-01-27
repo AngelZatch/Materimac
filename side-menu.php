@@ -42,11 +42,7 @@ $etudiantsNonVerifies = $dataGNVN['COUNT(*)'];
      <li><a>Gestion des étudiants <span class="badge"><?php echo $etudiantsNonVerifies;?></span></a>
          <ul>
              <li>Liste par formation
-                 <ul>
-                     <li>IMAC 2015</li>
-                     <li><a href="liste_etudiants.php">IMAC 2016</a></li>
-                     <li>IMAC 2017</li>
-                 </ul>
+                 <?php afficherPromotion(); ?>
              </li>
              <li>Validation d'étudiants</li>
          </ul>
