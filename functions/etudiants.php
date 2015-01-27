@@ -45,6 +45,30 @@ function afficherEtudiants($data) {
 }
 /*afficherEtudiants();*/
 
+/* AFFICHER ETUDIANTS NON VALIDES */
+function afficherNonValides(){
+    global $conn;
+    $sql = "SELECT prenom, nom, numero_etudiant FROM etudiant WHERE valide='0'";
+    $result = mysqli_query($conn, $sql);
+    
+    if(mysqli_num_rows($result) > 0){
+        echo "<tbody>";
+        while($row = mysqli_fetch_assoc($result)){
+            echo "<tr>
+                    <td>" . $row["prenom"] . "</td>
+                    <td>" . $row["nom"] . "</td>
+                    <td>" . $row["numero_etudiant"] . "</td>
+                    <td></td>
+                    <td>
+                        <button class='btn btn-success'>Valider</button>
+                        <button class='btn btn-default'>Consulter</button>
+                    </td>";
+        }
+        echo "</tbody>";    
+    }
+}
+/*afficherNonValides();*/
+
 /* AFFICHER UN SINGLETON */
 function fetchEtudiant($data){
     global $conn;
@@ -83,10 +107,8 @@ function editEtudiant(){
     if(mysqli_query($conn, $sql)){
         header('Location: liste_etudiants.php?annee='.$annee.'');
     } else {
-        echo "Error updating record : " . mysqli_error($conn);
+        echo "Erreur dans l'édition des données : " . mysqli_error($conn);
     }
-    
-
 }
 /*editEtudiant()*/
 
