@@ -4,6 +4,7 @@ include 'functions/etudiants.php';
 
 $data = $_GET['nom'];
 $row = mysqli_fetch_assoc(fetchEtudiant($data));
+$annee = $row['promotion_id'];
 ?>
 
 
@@ -53,11 +54,7 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
                                     <option value="1">IMAC</option>
                                     <option value="2">IR</option>
                                 </select>
-                                <select name="promotion" id="">
-                                    <option value="1">2015</option>
-                                    <option value="2">2016</option>
-                                    <option value="3">2017</option>
-                                </select>
+                                <?php fetchPromotion($annee); ?>
                             </li>
                         </ul>
                         <input class="btn btn-success" type="submit" value="Valider les changements" name="submitChange">

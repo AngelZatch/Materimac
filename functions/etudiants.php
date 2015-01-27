@@ -17,6 +17,7 @@ function afficherPromotion(){
         echo "</ul>";
     }
 }
+/*afficherPromotion();*/
 
 /* AFFICHER TOUS LES ETUDIANTS */
 function afficherEtudiants($data) {
@@ -47,22 +48,40 @@ function afficherEtudiants($data) {
 /* AFFICHER UN SINGLETON */
 function fetchEtudiant($data){
     global $conn;
-    $sql = "SELECT prenom, nom, numero_etudiant, identifiant, valide FROM etudiant WHERE identifiant = '$data'";
+    $sql = "SELECT prenom, nom, numero_etudiant, identifiant, valide, promotion_id FROM etudiant WHERE identifiant = '$data'";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
-/*fetchEtudiant();*/
+/*fetchEtudiant($data);*/
+
+/* AFFICHER LES PROMOTIONS PENDANT L'EDITION D'UN ETUDIANT */
+function fetchPromotion($annee){
+    global $conn;
+    $sql = "SELECT * FROM promotion";
+    $result = mysqli_query($conn, $sql);
+    echo "<select name='annee'>";
+    while($row = mysqli_fetch_assoc($result)){
+        if($row["annee"]==$annee){
+            echo "<option selected='selected' value=".$row["annee"].">".$row["annee"]."</option>";
+        } else {
+            echo "<option value=".$row["annee"].">".$row["annee"]."</option>";
+        }
+    }
+    echo "</select>";
+}
+/*fetchPromotion($annee);*/
 
 /*MODIFICATION*/
 function editEtudiant(){
-    global $conn;
+    global $conn, $row;
     $prenom = $_POST['prenom'];
     $nom = $_POST['nom'];
     $num = $_POST['numero_etudiant'];
     $id = $_POST['identifiant'];
-    $sql = "UPDATE etudiant SET prenom = '$prenom', nom = '$nom', numero_etudiant = '$num' WHERE identifiant = '$id'";
+    $annee = $_POST['annee'];
+    $sql = "UPDATE etudiant SET prenom = '$prenom', nom = '$nom', numero_etudiant = '$num', promotion_id = '$annee' WHERE identifiant = '$id'";
     if(mysqli_query($conn, $sql)){
-        header('Location: liste_etudiants.php');
+        header('Location: liste_etudiants.php?annee='.$annee.'');
     } else {
         echo "Error updating record : " . mysqli_error($conn);
     }
