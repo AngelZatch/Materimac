@@ -66,56 +66,60 @@ include 'functions/etudiants.php';
                </div>
                <div class="table-responsive">
                   <h3>Interactivité</h3>
-                   <table class="table table-striped">
+                   <table class="table table-striped table-hover">
                        <thead>
                            <tr>
-                               <th>Nom Produit</th>
-                               <th>Référence</th>
-                               <th>n°CN</th>
-                               <th>Etat</th>
-                               <th>Disponibilité</th>
-                               <th>Notes</th>
-                               <th>Actions</th>
+                               <th class="col-sm-2">Nom Produit</th>
+                               <th class="col-sm-3">Référence</th>
+                               <th class="col-sm-1">n°CN</th>
+                               <th class="col-sm-1">Etat</th>
+                               <th class="col-sm-1">Disponibilité</th>
+                               <th class="col-sm-2">Notes</th>
+                               <th class="col-sm-2">Actions</th>
                            </tr>
                        </thead>
                        <tr>
-                           <td>Leap Motion</td>
-                           <td>Leap Motion</td>
-                           <td></td>
-                           <td>Cassé</td>
-                           <td><img src="icons/materiel-gele.png" alt=""></td>
-                           <td>Problème d'alimentation</td>
-                           <td>Modifier</td>
+                           <td class="col-sm-2">Leap Motion</td>
+                           <td class="col-sm-3">Leap Motion</td>
+                           <td class="col-sm-1"></td>
+                           <td class="col-sm-1">Cassé</td>
+                           <td class="col-sm-1"><img src="icons/materiel-gele.png" alt=""></td>
+                           <td class="col-sm-2">Problème d'alimentation</td>
+                           <td class="col-sm-2">
+                               <button class="btn btn-default">Modifier</button>
+                           </td>
                        </tr>
                        <tr>
-                           <td>Kinect XBOX 360</td>
-                           <td>Microsoft</td>
-                           <td>CN-1528</td>
-                           <td>Très bon état</td>
-                           <td><img src="icons/materiel-disponible.png" alt="Disponible"></td>
-                           <td>Manque cache</td>
-                           <td>Modifier</td>
+                          <td class="col-sm-2">Kinect XBOX 360</td>
+                           <td class="col-sm-3">Microsoft</td>
+                           <td class="col-sm-1">CN-1528</td>
+                           <td class="col-sm-1">Très bon état</td>
+                           <td class="col-sm-1"><img src="icons/materiel-disponible.png" alt=""></td>
+                           <td class="col-sm-2">Manque cache</td>
+                           <td class="col-sm-2">
+                               <button class="btn btn-default">Modifier</button>
+                           </td>
                        </tr>
                        <tr>
-                           <td>Oculus Rift</td>
-                           <td>Oculus</td>
-                           <td>CN-2863</td>
-                           <td>Très bon état</td>
-                           <td><img src="icons/materiel-disponible.png" alt="Disponible"></td>
-                           <td>ESIEE</td>
-                           <td>Modifier</>
+                           <td class="col-sm-2">Oculus Rift</td>
+                           <td class="col-sm-3">Oculus</td>
+                           <td class="col-sm-1">CN-2863</td>
+                           <td class="col-sm-1">Très bon état</td>
+                           <td class="col-sm-1"><img src="icons/materiel-disponible.png" alt="Disponible"></td>
+                           <td class="col-sm-2">ESIEE</td>
+                           <td class="col-sm-2"><button class="btn btn-default">Modifier</button></td>
                        </tr>
                    </table>
                    <h3>Sets Vidéo</h3>
                    <table class="table table-striped">
                        <tr>
-                           <td>Set Vidéo 1</td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td><img src="icons/materiel-disponible.png" alt="Disponible"></td>
-                           <td></td>
-                           <td></td>
+                           <td class="col-sm-2">Set Vidéo 1</td>
+                           <td class="col-sm-3"></td>
+                           <td class="col-sm-1"></td>
+                           <td class="col-sm-1"></td>
+                           <td class="col-sm-1"><img src="icons/materiel-disponible.png" alt="Disponible"></td>
+                           <td class="col-sm-2"></td>
+                           <td class="col-sm-2"><button class="btn btn-default">Modifier</button></td>
                        </tr>
                        <tr>
                            <td>Sacoche</td>

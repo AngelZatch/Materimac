@@ -60,8 +60,8 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
                                 </select>
                             </li>
                         </ul>
-                        <input type="submit" value="Valider les changements" name="submitChange">
-                        <!--<input type="submit" value="Annuler les changements" name="cancelChange">-->
+                        <input class="btn btn-success" type="submit" value="Valider les changements" name="submitChange">
+                        <input class="btn btn-warning" type="submit" value="Annuler les changements" name="cancelChange">
                     </form>
                 </fieldset>
                 <h2>Activité</h2>
@@ -69,55 +69,71 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Référence</th>
-                            <th>Projet</th>
-                            <th>Promotion</th>
-                            <th>Retrait</th>
-                            <th>Dépôt</th>
-                            <th>Retard</th>
+                            <th class="col-sm-2">Référence</th>
+                            <th class="col-sm-2">Projet</th>
+                            <th class="col-sm-2">Promotion</th>
+                            <th class="col-sm-1">Retrait</th>
+                            <th class="col-sm-1">Dépôt</th>
+                            <th class="col-sm-1">Retard</th>
+                            <th class="col-sm-3">Actions</th>
                         </tr>
                     </thead>
                 </table>
                 <h3>Demandes en attente</h3>
                 <table class="table table-striped">
                     <tr>
-                        <td>9KL85H7A9B</td>
-                        <td>Normal</td>
-                        <td>IMAC 2016</td>
-                        <td>26/01/2015</td>
-                        <td>28/01/2015</td>
-                        <td>Aucun</td>
+                        <td class="col-sm-2">9KL85H7A9B</td>
+                        <td class="col-sm-2">Projet Enseignant</td>
+                        <td class="col-sm-2">IMAC 2016</td>
+                        <td class="col-sm-1">26/01/2015</td>
+                        <td class="col-sm-1">28/01/2015</td>
+                        <td class="col-sm-1">Aucun</td>
+                        <td class="col-sm-3">
+                            <button class="btn btn-success">Valider</button>
+                            <button class="btn btn-warning">Consulter</button>
+                            <button class="btn btn-danger">Refuser</button>
+                        </td>
                     </tr>
                 </table>
                 <h3>Demandes validées</h3>
                 <table class="table table-striped">
                     <tr>
-                        <td>9KL85H7A9B</td>
-                        <td>Normal</td>
-                        <td>IMAC 2016</td>
-                        <td>26/01/2015</td>
-                        <td>28/01/2015</td>
-                        <td>Aucun</td>
+                        <td class="col-sm-2">9KL85H7A9B</td>
+                        <td class="col-sm-2">Normal</td>
+                        <td class="col-sm-2">IMAC 2016</td>
+                        <td class="col-sm-1">26/01/2015</td>
+                        <td class="col-sm-1">28/01/2015</td>
+                        <td class="col-sm-1">Aucun</td>
+                        <td class="col-sm-3">
+                            <button class="btn btn-warning">Consulter</button>
+                            <button class="btn btn-danger">Refuser</button>
+                        </td>
                     </tr>
                 </table>
                 <h3>Emprunts en cours</h3>
                 <h3>Emprunts terminés</h3>
                 <table class="table table-striped">
                     <tr>
-                        <td>8LK544LH3</td>
-                        <td>Projet enseignant</td>
-                        <td>IMAC 2016</td>
-                        <td>26/01/2015</td>
-                        <td>28/01/2015</td>
-                        <td>Aucun</td>
+                        <td class="col-sm-2">8LK544LH3</td>
+                        <td class="col-sm-2">Projet enseignant</td>
+                        <td class="col-sm-2">IMAC 2016</td>
+                        <td class="col-sm-1">26/01/2015</td>
+                        <td class="col-sm-1">28/01/2015</td>
+                        <td class="col-sm-1">Aucun</td>
+                        <td class="col-sm-3">
+                            <button class="btn btn-warning">Consulter</button>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>43PQ7RA0M9</td>
-                        <td>Projet enseignant</td>
-                        <td>IMAC 2016</td>
-                        <td>26/01/2015</td>
-                        <td>28/01/2015</td>
-                        <td>2 jours</td>
+                    <tr class="danger">
+                        <td class="col-sm-2">8LK544LH3</td>
+                        <td class="col-sm-2">Projet enseignant</td>
+                        <td class="col-sm-2">IMAC 2016</td>
+                        <td class="col-sm-1">26/01/2015</td>
+                        <td class="col-sm-1">28/01/2015</td>
+                        <td class="col-sm-1">2 jours</td>
+                        <td class="col-sm-3">
+                            <button class="btn btn-warning">Consulter</button>
+                        </td>
                     </tr>
                 </table>
                 </div>

@@ -18,7 +18,7 @@ function afficherEtudiants() {
                         <td>" . $row["prenom"]. "</td>
                         <td>" . $row["nom"]. "</td>
                         <td>" . $row["numero_etudiant"]. "</td>
-                        <td><a href='edit_etudiant.php?nom=".$row["identifiant"]."'>Modifier</a></td>
+                        <td><a class='btn btn-default' href='edit_etudiant.php?nom=".$row["identifiant"]."'>Modifier</a></td>
                     </tr>
                 </form>";
         }
