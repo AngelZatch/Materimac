@@ -17,7 +17,7 @@
                <h3>Date de fin : 04/02/2015</h3>
                <h3>Membres du groupe :<input type="text" class="form-control" placeholder="Rechercher un étudiant..." style="width:50%;"></h3>
                <h3>Raison de l'emprunt : <input type="text"></h3>
-               <button class="btn btn-success">Valider la demande</button>
+               <a href="dashboard-etudiants.php" class="btn btn-success">Valider la demande</a>
                <button class="btn btn-warning">Retourner à la sélection</button>
            </div>
       </div>

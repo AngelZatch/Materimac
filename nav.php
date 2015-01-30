@@ -11,7 +11,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="dashboard.php">Tableau de bord gestionnaire</a></li>
+            <li><a href="meetings.php">Tableau de bord gestionnaire</a></li>
             <li><a href="dashboard-etudiants.php">Tableau de bord étudiant</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mon panier</a>
@@ -23,7 +23,7 @@
                     <li>Matériel 1 <button class="btn btn-default">Retirer</button></li>
                     <li>Matériel 2 <button class="btn btn-default">Retirer</button></li>
                     <li>Matériel 3 <button class="btn btn-default">Retirer</button></li>
-                    <a href="recapitulatif-etudiants.php" class="btn btn-default">Valider la réservation ></a>
+                    <a href="recapitulatif-etudiants.php" class="btn btn-success">Valider la réservation ></a>
                 </ul>
             </li>
             <li><a href="#">Déconnexion</a></li>
