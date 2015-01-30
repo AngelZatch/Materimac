@@ -16,8 +16,9 @@
             <li><a href="#">Mon panier</a></li>
             <li><a href="#">Déconnexion</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Rechercher...">
+          <form class="navbar-form navbar-right" action="recherche_display.php" method="get">
+            <input type="text" class="form-control" placeholder="Rechercher..." name="recherche">
+            <input type="submit" name="searchBar" class="btn btn-default" value="Ok">
           </form>
         </div>
       </div>

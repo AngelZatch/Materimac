@@ -14,10 +14,11 @@ function ajouterMateriel() {
     $description = $_POST['description'];
     $note = $_POST['note'];
     $etat = $_POST['etat'];
+    $set = $_POST['set'];
     $categorie = $_POST['categorie'];
     $dispo = $_POST['dispo'];
     
-    $sql = "INSERT INTO materiel (nom, reference, fiche_technique, numero_cn, numero_proprietaire, description, note, set_id, etat_id, categorie_id, disponibilite_id) VALUES ('$nom', '$reference', '', '$num_cn', '$num_prop', '$description', '$note', '0', '$etat', '$categorie', '$dispo')";
+    $sql = "INSERT INTO materiel (nom, reference, fiche_technique, numero_cn, numero_proprietaire, description, note, set_id, etat_id, categorie_id, disponibilite_id) VALUES ('$nom', '$reference', '', '$num_cn', '$num_prop', '$description', '$note', '$set', '$etat', '$categorie', '$dispo')";
     if (mysqli_query($conn, $sql)) {
         echo "New record created successfully";
         $sql2 = "SELECT id FROM materiel WHERE nom = '$nom'";
@@ -67,7 +68,21 @@ function editMateriel() {
 /* SELECTION DE TOUS LES MATERIELS */
 function getMateriel() {
     global $conn;
-    $sql = "SELECT id, nom, reference, numero_cn, etat_id, disponibilite_id, note FROM materiel";
+    $sql = "SELECT id, nom, reference, numero_cn, etat_id, set_id, categorie_id, disponibilite_id, note FROM materiel";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        return $result;
+    } else {
+        echo "0 results";
+    } 
+}
+
+
+/* SELECTION DE TOUS LES MATERIELS D'UN SET */
+function getSetMateriel($set_id) {
+    global $conn;
+    $sql = "SELECT id, nom, reference, numero_cn, etat_id, disponibilite_id, note FROM materiel WHERE set_id = $set_id";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
@@ -91,6 +106,34 @@ function fetchMateriel($id) {
     }
     
 }
+
+
+if(isset($_POST['removeSetMateriel'])){
+    retirerSetMateriel();
+}
+
+/* RETIRER UN MATERIEL D'UN SET */
+function retirerSetMateriel() {
+    global $conn;
+    $id = $_POST['id'];
+    $sql = "UPDATE materiel SET set_id = '0' WHERE id = $id";
+    mysqli_query($conn, $sql);
+}
+
+
+/* AJOUTER UN MATERIEL A UN SET */
+if(isset($_POST['addSetMateriel'])) {
+    ajouterSetMateriel();
+}
+
+function ajouterSetMateriel() {
+    global $conn;
+    $id = $_POST['id'];
+    $nom = $_POST['recherche'];
+    $sql = "UPDATE materiel SET set_id = '$id' WHERE id = '$nom'";
+    mysqli_query($conn, $sql);
+}
+
 
 if(isset($_POST['deleteMateriel'])){
     supprimerMateriel();
