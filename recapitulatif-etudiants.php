@@ -12,88 +12,13 @@
           <?php include 'side-menu-etudiants.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <h1 class="page-header">Récapitulatif</h1>
-               <h2>Rendez-vous à venir</h2>
-               <div class="table-responsive">
-                   <table class="table table-striped table-hover">
-                       <thead>
-                           <tr>
-                               <th>Date</th>
-                               <th>Réservation</th>
-                               <th>Type</th>
-                               <th>Actions</th>
-                           </tr>
-                      </thead>
-                       <tbody>
-                           <tr>
-                               <td>Lundi 02/02/2015 à 10h30</td>
-                               <td>8C12234QR3</td>
-                               <td>Retrait</td>
-                               <td><button class="btn btn-default">Consulter</button></td>
-                           </tr>
-                           <tr>
-                               <td>Mercredi 04/02/2015 à 15h55</td>
-                               <td>8C12234QR3</td>
-                               <td>Retour</td>
-                               <td><button class="btn btn-default">Consulter</button></td>
-                           </tr>
-                       </tbody>
-                   </table>
-               </div>
-               <h2>Réservations en cours</h2>
-               <table class="table table-striped table-hover">
-                   <thead>
-                       <tr>
-                           <th>Date de demande</th>
-                           <th>Emprunteur</th>
-                           <th>Type de projet</th>
-                           <th>Référence</th>
-                           <th>Début</th>
-                           <th>Fin</th>
-                           <th>Actions</th>
-                       </tr>
-                       <tbody>
-                           <tr>
-                               <td>24/01/2015</td>
-                               <td>Juliette Belin</td>
-                               <td>Projet Audiovisuel</td>
-                               <td>4A72C39F81</td>
-                               <td>29/01/2015</td>
-                               <td>03/02/2015</td>
-                               <td><button class="btn btn-default">Consulter</button></td>
-                           </tr>
-                       </tbody>
-                   </thead>
-               </table>
-               <h2>Réservations validées</h2>
-              <table class="table table-striped table-hover">
-                   <thead>
-                       <tr>
-                           <th>Date de demande</th>
-                           <th>Emprunteur</th>
-                           <th>Type de projet</th>
-                           <th>Référence</th>
-                           <th>Début</th>
-                           <th>Fin</th>
-                           <th>Actions</th>
-                       </tr>
-                       <tbody>
-                           <tr>
-                               <td>28/01/2015</td>
-                               <td>Andréas Pinbouen</td>
-                               <td>Projet Exceptionnel</td>
-                               <td>8C12234QR3</td>
-                               <td>02/02/2015</td>
-                               <td>04/02/2015</td>
-                               <td>
-                                   <button class="btn btn-default">Consulter</button>
-                                   <button class="btn btn-danger">Annuler</button>
-                               </td>
-                           </tr>
-                       </tbody>
-                   </thead>
-               </table>
-               <h2>Réservations en attente</h2>
-               Aucune réservation en attente
+               <h3>Emprunteur : Pauline Bocognano</h3>
+               <h3>Date de début : 02/02/2015</h3>
+               <h3>Date de fin : 04/02/2015</h3>
+               <h3>Membres du groupe :<input type="text" class="form-control" placeholder="Rechercher un étudiant..." style="width:50%;"></h3>
+               <h3>Raison de l'emprunt : <input type="text"></h3>
+               <button class="btn btn-success">Valider la demande</button>
+               <button class="btn btn-warning">Retourner à la sélection</button>
            </div>
       </div>
     </div>
