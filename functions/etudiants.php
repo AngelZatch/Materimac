@@ -48,7 +48,7 @@ function afficherEtudiants($data) {
 /* AFFICHER ETUDIANTS NON VALIDES */
 function afficherNonValides(){
     global $conn;
-    $sql = "SELECT prenom, nom, numero_etudiant FROM etudiant WHERE valide='0'";
+    $sql = "SELECT prenom, nom, numero_etudiant, identifiant FROM etudiant WHERE valide='0'";
     $result = mysqli_query($conn, $sql);
     
     if(mysqli_num_rows($result) > 0){
@@ -61,13 +61,19 @@ function afficherNonValides(){
                     <td></td>
                     <td>
                         <button class='btn btn-success'>Valider</button>
-                        <button class='btn btn-default'>Consulter</button>
+                        <a href='edit_etudiant.php?nom=".$row["identifiant"]."' class='btn btn-default'>Consulter</a>
                     </td>";
         }
         echo "</tbody>";    
     }
 }
 /*afficherNonValides();*/
+
+/* VALIDER ETUDIANT */
+/*function vailderEtudiant(){
+    global $conn;
+    $sql = "UPDATE valide FROM etudiant WHERE id="
+}*/
 
 /* AFFICHER UN SINGLETON */
 function fetchEtudiant($data){
