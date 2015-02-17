@@ -21,11 +21,14 @@
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <h1 class="page-header">Gestion des catégories</h1>
         
-                <form action="categorie_display.php" method="post">            
-                    <label>Nom de la catégorie <span class="mandatory">*</span></label>
-                    <input type="text" name="nom">
-                    <br>
-                    <input type="submit" name="addCategorie" value="Valider"> <input type="reset" value="Annuler">
+                <form action="categorie_display.php" method="post">
+                   <div class="form-group">
+                       <label class="control-label">Nom de la catégorie</label>
+                       <input class="form-control" type="text" name="nom">
+                   </div>       
+                   <br>
+                    <input class="btn btn-primary" type="submit" name="addCategorie" value="Ajouter">
+                    <input class="btn btn-danger" type="reset" value="Annuler">
                 </form>
 
                 <table style="margin-top:50px;">
@@ -43,7 +46,7 @@
                                 <td>
                                     <form method="post" action="categorie_display.php">
                                         <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                        <input type="submit" value="Supprimer" name="deleteCategorie">
+                                        <input class="btn btn-primary" type="submit" value="Supprimer" name="deleteCategorie">
                                     </form>
                                 </td>
                             </tr>
