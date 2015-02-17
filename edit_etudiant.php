@@ -33,21 +33,18 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
                <h2>Informations</h2>
                 <fieldset>
                     <form action="edit_etudiant.php" method="post">
-                        <ul>
                            <input type="hidden" name="identifiant" value="<?php echo $row['identifiant'];?>">
-                            <li>
-                                <label for="prenom">Prénom</label>
-                                <input type="text" name ="prenom" value="<?php echo $row['prenom'];?>">
-                                </li>
-                            <li>
-                                <label for="nom">Nom</label>
-                                <input type="text" name="nom" value="<?php echo $row['nom'];?>">
-                            </li>
-                            <li>
-                                <label for="numero_etudiant">Numéro étudiant</label>
-                                <input type="text" name="numero_etudiant" value="<?php echo $row['numero_etudiant'];?>">
-                            </li>
-                            <li>
+                        
+                              <div class="form-group">
+                                <label class="control-label" for="prenom">Prénom</label>
+                                <input class="form-control" type="text" name ="prenom" value="<?php echo $row['prenom'];?>">
+                                <br>
+                                <label class="control-label" for="nom">Nom</label>
+                                <input class="form-control" type="text" name="nom" value="<?php echo $row['nom'];?>">
+                                <br>
+                                <label class="control-label" for="numero_etudiant">Numéro étudiant</label>
+                                <input class="form-control" type="text" name="numero_etudiant" value="<?php echo $row['numero_etudiant'];?>">
+                                <br>
                                 <label for="promotion">Promotion</label>
                                 <select name="formation" id="">
                                     <option value="1">IMAC</option>
@@ -58,8 +55,8 @@ $row = mysqli_fetch_assoc(fetchEtudiant($data));
                                     <option value="2">2016</option>
                                     <option value="3">2017</option>
                                 </select>
-                            </li>
-                        </ul>
+                              </div>
+
                         <input class="btn btn-success" type="submit" value="Valider les changements" name="submitChange">
                         <input class="btn btn-warning" type="submit" value="Annuler les changements" name="cancelChange">
                     </form>
