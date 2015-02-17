@@ -27,22 +27,22 @@
                    <h1 class="page-header">Ajouter du matériel</h1>
 
                     <form action="materiel_ajout.php" method="post">            
-                        <label>Nom du matériel <span class="mandatory">*</span></label>
-                        <input type="text" name="nom">
+                       <div class="form-group">
+                            <label class="control-label">Nom du matériel <span class="mandatory">*</span></label>
+                            <input class="form-control" type="text" name="nom">   
+                            <br>
+                            <label class="control-label">Référence</label>
+                            <input class="form-control" type="text" name="reference">
+                            <br>
+                            <label class="control-label">Numéro de CN</label>
+                            <input class="form-control" type="text" name="num_cn">
+                            <br>
+                            <label class="control-label">Numéro propriétaire</label>
+                            <input class="form-control" type="text" name="num_prop">
+                            <br>
+                       </div>
+                        
 
-                        <br>
-                        <label>Référence</label>
-                        <input type="text" name="reference">
-
-                        <br>
-                        <label>Numéro de CN</label>
-                        <input type="text" name="num_cn">
-
-                        <br>
-                        <label>Numéro propriétaire</label>
-                        <input type="text" name="num_prop">
-
-                        <br>
                         <label>Set</label>
                         <select name="set">
                            <option value="0">Aucun set</option>
@@ -113,7 +113,8 @@
                         <textarea name="note"></textarea>
 
                         <br>
-                        <input type="submit" name="addMateriel" value="Valider" class="btn btn-default"> <input type="reset" value="Annuler" class="btn btn-default">
+                        <input type="submit" name="addMateriel" value="Ajouter" class="btn btn-primary">
+                        <input type="reset" value="Annuler" class="btn btn-danger">
 
                     </form>
                 </div>

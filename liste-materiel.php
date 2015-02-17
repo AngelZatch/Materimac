@@ -29,8 +29,6 @@ $categories2 = getCategorie();
                <div class="row">
                    <div class="col-md-4">
                        <h2>Catégories</h2>
-                       <a href="categorie_display.php">Gérer les catégories</a>
-                       <br>
                        <?php 
                             while($categorie = mysqli_fetch_assoc($categories1)) {
                                 $cat_nom = $categorie['nom'];
@@ -41,6 +39,7 @@ $categories2 = getCategorie();
                        <?php
                             }
                         ?>
+                        <a class="btn btn-default" href="categorie_display.php">Gérer les catégories</a>
                    </div>
                    <div class="col-md-4">
                        <h2>Disponibilité</h2>

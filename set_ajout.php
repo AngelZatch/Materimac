@@ -24,9 +24,12 @@
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <h1 class="page-header">Ajouter un set</h1>
         
-                <form action="set_ajout.php" method="post">            
-                    <label>Nom du set <span class="mandatory">*</span></label>
-                    <input type="text" name="nom">
+                <form action="set_ajout.php" method="post">
+                   <div class="form-group">
+                        <label class="control-label">Nom du set <span class="mandatory">*</span></label>
+                        <input class="form-control" type="text" name="nom">   
+                   </div>            
+                    
 
                     <br>
                     <label>Disponibilité</label>
@@ -68,7 +71,8 @@
 
 
                     <br>
-                    <input type="submit" name="addSet" value="Valider" class="btn btn-default"> <input type="reset" value="Annuler" class="btn btn-default">
+                    <input type="submit" name="addSet" value="Ajouter" class="btn btn-primary">
+                    <input type="reset" value="Annuler" class="btn btn-danger">
 
                 </form>
             </div>
