@@ -34,26 +34,24 @@ $annee = $row['promotion_id'];
                <h2>Informations</h2>
                 <fieldset>
                     <form action="edit_etudiant.php" method="post">
-                        <ul>
                            <input type="hidden" name="identifiant" value="<?php echo $row['identifiant'];?>">
-                            <li>
-                                <label for="prenom">Prénom</label>
-                                <input type="text" name ="prenom" value="<?php echo $row['prenom'];?>">
-                                </li>
-                            <li>
-                                <label for="nom">Nom</label>
-                                <input type="text" name="nom" value="<?php echo $row['nom'];?>">
-                            </li>
-                            <li>
-                                <label for="numero_etudiant">Numéro étudiant</label>
-                                <input type="text" name="numero_etudiant" value="<?php echo $row['numero_etudiant'];?>">
-                            </li>
-                            <li>
+                        
+                              <div class="form-group">
+                                <label class="control-label" for="prenom">Prénom</label>
+                                <input class="form-control" type="text" name ="prenom" value="<?php echo $row['prenom'];?>">
+                                <br>
+                                <label class="control-label" for="nom">Nom</label>
+                                <input class="form-control" type="text" name="nom" value="<?php echo $row['nom'];?>">
+                                <br>
+                                <label class="control-label" for="numero_etudiant">Numéro étudiant</label>
+                                <input class="form-control" type="text" name="numero_etudiant" value="<?php echo $row['numero_etudiant'];?>">
+                                <br>
                                 <label for="promotion">Promotion</label>
                                 <select name="formation" id="">
                                     <option value="1">IMAC</option>
                                     <option value="2">IR</option>
                                 </select>
+<<<<<<< HEAD
                                 <?php fetchPromotion($annee); ?>
                             </li>
                         </ul>
