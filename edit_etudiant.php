@@ -51,7 +51,6 @@ $annee = $row['promotion_id'];
                                     <option value="1">IMAC</option>
                                     <option value="2">IR</option>
                                 </select>
-<<<<<<< HEAD
                                 <?php fetchPromotion($annee); ?>
                             </li>
                         </ul>
