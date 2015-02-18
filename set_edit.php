@@ -35,67 +35,68 @@
       <div class="row">
           <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <a href="liste-materiel.php">
+                <button class="btn btn-default">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                Retourner à l'inventaire
+                </button>
+            </a>
+              <br><br>
                <h1 class="page-header">Modifier un set</h1>
-        
                 <form action="set_edit.php?id=<?php echo $set['id']; ?>" method="post">      
-                   <input type="hidden" name="id" value="<?php echo $set['id'];?>">
-
-                    <label>Nom du set <span class="mandatory">*</span></label>
-                    <input type="text" name="nom" value="<?php echo $set['nom']; ?>">
-
-                    <br>
-                    <label>Disponibilité</label>
-                    <select name="dispo">
-                        <?php
-                            while($row_dispo = mysqli_fetch_assoc($dispo_array)) {
-                                $id_dispo = $row_dispo['id'];
-                                $nom_dispo = $row_dispo['nom'];
-                                if($id_dispo == $dispo_set['id']) {
-                            ?>
-                                    <option selected="selected" value="<?php echo $id_dispo; ?>"> <?php echo $nom_dispo; ?></option>
+                    <div class="form-group">
+                        <input type="hidden" name="id" value="<?php echo $set['id'];?>">
+                        <label class="control-label">Nom du set <span class="mandatory">*</span></label>
+                        <input class="form-control" type="text" name="nom" value="<?php echo $set['nom']; ?>">
+                        <br>
+                        <label class="control-label">Disponibilité</label>
+                        <select class="form-control" name="dispo">
                             <?php
-                                } else {
-                            ?>
-                                    <option value="<?php echo $id_dispo; ?>"> <?php echo $nom_dispo; ?></option>
-                            <?php
+                                while($row_dispo = mysqli_fetch_assoc($dispo_array)) {
+                                    $id_dispo = $row_dispo['id'];
+                                    $nom_dispo = $row_dispo['nom'];
+                                    if($id_dispo == $dispo_set['id']) {
+                                ?>
+                                        <option selected="selected" value="<?php echo $id_dispo; ?>"> <?php echo $nom_dispo; ?></option>
+                                <?php
+                                    } else {
+                                ?>
+                                        <option value="<?php echo $id_dispo; ?>"> <?php echo $nom_dispo; ?></option>
+                                <?php
+                                    }
                                 }
-                            }
-                        ?>
-                    </select>
-
-                    <br>
-                    <label>Fiche Technique</label>
-                    <input type="text" name="fiche">
-
-                    <br>
-                    <label>Catégorie</label>
-                    <select name="categorie">
-                       <option value="0">Aucune catégorie</option>
-                        <?php
-                            while($row_cat = mysqli_fetch_assoc($cat_array)) {
-                                $id_cat = $row_cat['id'];
-                                $nom_cat = $row_cat['nom'];
-                            if($id_cat == $cat_set['id']) {
                             ?>
-                                    <option selected="selected" value="<?php echo $id_cat; ?>"> <?php echo $nom_cat; ?></option>
+                        </select>
+                        <br>
+                        <label class="control-label">Catégorie</label>
+                        <select class="form-control" name="categorie">
+                           <option value="0">Aucune catégorie</option>
                             <?php
-                                } else {
-                            ?>
-                                    <option value="<?php echo $id_cat; ?>"> <?php echo $nom_cat; ?></option>
-                            <?php
+                                while($row_cat = mysqli_fetch_assoc($cat_array)) {
+                                    $id_cat = $row_cat['id'];
+                                    $nom_cat = $row_cat['nom'];
+                                if($id_cat == $cat_set['id']) {
+                                ?>
+                                        <option selected="selected" value="<?php echo $id_cat; ?>"> <?php echo $nom_cat; ?></option>
+                                <?php
+                                    } else {
+                                ?>
+                                        <option value="<?php echo $id_cat; ?>"> <?php echo $nom_cat; ?></option>
+                                <?php
+                                    }
                                 }
-                            }
-                        ?>
-                    </select>
-
-                    <br>
-                    <label>Description <span class="mandatory">*</span></label>
-                    <textarea name="description"><?php echo $set['description']; ?></textarea>
-
-
-                    <br>
-                    <input type="submit" name="updateSet" value="Valider" class="btn btn-default"> <input type="reset" value="Annuler" class="btn btn-default">
-
+                            ?>
+                        </select>
+                        <br>
+                        <label class="control-label">Fiche Technique</label>
+                        <button class="btn btn-default">Importer...</button>
+                        <br>
+                        <label class="control-label">Description <span class="mandatory">*</span></label>
+                        <textarea class="form-control" name="description"><?php echo $set['description']; ?></textarea>
+                        <br>
+                        <input type="submit" name="updateSet" value="Valider" class="btn btn-primary">
+                        <input type="reset" value="Annuler" class="btn btn-default">
+                    </div>
                 </form>
                 
                 <div class="table-responsive">

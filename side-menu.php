@@ -34,11 +34,10 @@ $etudiantsNonVerifies = $dataGNVN['COUNT(*)'];
          </ul>
      </li>
      <li><a href="liste-materiel.php">Inventaire</a>
-         <ul>
-             <li>Liste</li>
+         <!--<ul>
              <li><a href="materiel_ajout.php">Ajout de matériel</a></li>
              <li><a href="set_ajout.php">Ajout de set</a></li>
-         </ul>
+         </ul>-->
      </li>
      <li><a>Gestion des étudiants <span class="badge"><?php echo $etudiantsNonVerifies;?></span></a>
          <ul>
