@@ -26,11 +26,15 @@ $annee = $row['promotion_id'];
                    <h1><?php echo $row['prenom'] . " " . $row['nom']?></h1>
                    <div class="information">
                        <?php
-                            if($row['valide'] == '1') echo '<span class="status online"></span> valide';
-                            else echo '<span class="status offline"></span> en attente de validation';
+                            if($row['valide'] == '1') echo '<span class="label label-success">Valide</span>';
+                            else echo '<span class="label label-danger">En attente de validation</span>';
                         ?>
                    </div>
                </div>
+               <button class="btn btn-default">
+                   <span class="glyphicon glyphicon-chevron-left"></span>
+                   Retour à la liste des étudiants
+               </button>
                <h2>Informations</h2>
                 <fieldset>
                     <form action="edit_etudiant.php" method="post">
@@ -46,16 +50,17 @@ $annee = $row['promotion_id'];
                                 <label class="control-label" for="numero_etudiant">Numéro étudiant</label>
                                 <input class="form-control" type="text" name="numero_etudiant" value="<?php echo $row['numero_etudiant'];?>">
                                 <br>
-                                <label for="promotion">Promotion</label>
-                                <select name="formation" id="">
+                                <label class="control-label" for="formation">Formation</label>
+                                <select class="form-control" name="formation" id="">
                                     <option value="1">IMAC</option>
                                     <option value="2">IR</option>
                                 </select>
+                                <br>
+                                <label for="promotion" class="control-label">Promotion</label>
                                 <?php fetchPromotion($annee); ?>
-                            </li>
-                        </ul>
-                        <input class="btn btn-success" type="submit" value="Valider les changements" name="submitChange">
-                        <input class="btn btn-warning" type="submit" value="Annuler les changements" name="cancelChange">
+                                <br>
+                                <input class="btn btn-primary" type="submit" value="Valider les changements" name="submitChange">
+                                <!--<input class="btn btn-default" type="submit" value="Annuler les changements" name="cancelChange">-->
                     </form>
                 </fieldset>
                 <h2>Activité</h2>
@@ -83,8 +88,8 @@ $annee = $row['promotion_id'];
                         <td class="col-sm-1">28/01/2015</td>
                         <td class="col-sm-1">Aucun</td>
                         <td class="col-sm-3">
-                            <button class="btn btn-success">Valider</button>
-                            <button class="btn btn-warning">Consulter</button>
+                            <button class="btn btn-primary">Valider</button>
+                            <button class="btn btn-default">Consulter</button>
                             <button class="btn btn-danger">Refuser</button>
                         </td>
                     </tr>
@@ -99,7 +104,7 @@ $annee = $row['promotion_id'];
                         <td class="col-sm-1">28/01/2015</td>
                         <td class="col-sm-1">Aucun</td>
                         <td class="col-sm-3">
-                            <button class="btn btn-warning">Consulter</button>
+                            <button class="btn btn-default">Consulter</button>
                             <button class="btn btn-danger">Refuser</button>
                         </td>
                     </tr>
@@ -115,7 +120,7 @@ $annee = $row['promotion_id'];
                         <td class="col-sm-1">28/01/2015</td>
                         <td class="col-sm-1">Aucun</td>
                         <td class="col-sm-3">
-                            <button class="btn btn-warning">Consulter</button>
+                            <button class="btn btn-default">Consulter</button>
                         </td>
                     </tr>
                     <tr class="danger">
@@ -124,9 +129,9 @@ $annee = $row['promotion_id'];
                         <td class="col-sm-2">IMAC 2016</td>
                         <td class="col-sm-1">26/01/2015</td>
                         <td class="col-sm-1">28/01/2015</td>
-                        <td class="col-sm-1">2 jours</td>
+                        <td class="col-sm-1"><label for="" class="label label-danger">2 jours</label></td>
                         <td class="col-sm-3">
-                            <button class="btn btn-warning">Consulter</button>
+                            <button class="btn btn-default">Consulter</button>
                         </td>
                     </tr>
                 </table>

@@ -26,6 +26,18 @@ $categories2 = getCategorie();
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <h1 class="page-header">Inventaire de Matériel</h1>
+               <a href="materiel_ajout.php">
+                   <button class="btn btn-primary">
+                       <span class="glyphicon glyphicon-plus"></span>
+                       Ajouter du matériel
+                   </button>
+               </a>
+               <a href="set_ajout.php">
+                   <button class="btn btn-primary">
+                   <span class="glyphicon glyphicon-plus"></span>
+                   Ajouter un set
+                   </button>
+               </a>
                <div class="row">
                    <div class="col-md-4">
                        <h2>Catégories</h2>
@@ -107,7 +119,18 @@ $categories2 = getCategorie();
                                            <td class="col-sm-2">
                                                <form method="post" action="liste-materiel.php">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                                <input type="submit" value="Supprimer" name="deleteMateriel" class="btn btn-default">
+                                                <div class="btn-group">
+                                                   <button type="button" class="btn btn-default">
+                                                       <span class="glyphicon glyphicon-pencil"></span>
+                                                       Modifier 
+                                                   </button>
+                                                   <button type="button" class="btn btn-default">
+                                                       <span class="glyphicon glyphicon-trash"></span>
+                                                       Supprimer
+                                                   </button>
+                                                </div>
+                                                <!--<input type="submit" class="btn btn-default" value="Modifier">
+                                                <input type="submit" class="btn btn-default" value="Supprimer" name="deleteMateriel">-->    
                                                 </form>
                                            </td>
                                    </tr>

@@ -34,7 +34,7 @@ function afficherEtudiants($data) {
                         <td>" . $row["prenom"]. "</td>
                         <td>" . $row["nom"]. "</td>
                         <td>" . $row["numero_etudiant"]. "</td>
-                        <td><a class='btn btn-default' href='edit_etudiant.php?nom=".$row["identifiant"]."'>Modifier</a></td>
+                        <td><a class='btn btn-default' href='edit_etudiant.php?nom=".$row["identifiant"]."'><span class='glyphicon glyphicon-pencil'></span> Modifier</a></td>
                     </tr>
                 </form>";
         }
@@ -89,7 +89,7 @@ function fetchPromotion($annee){
     global $conn;
     $sql = "SELECT * FROM promotion";
     $result = mysqli_query($conn, $sql);
-    echo "<select name='annee'>";
+    echo "<select class='form-control' name='annee'>";
     while($row = mysqli_fetch_assoc($result)){
         if($row["annee"]==$annee){
             echo "<option selected='selected' value=".$row["annee"].">".$row["annee"]."</option>";
