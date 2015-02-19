@@ -17,6 +17,11 @@ require_once 'functions/etudiants.php';
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <h1 class="page-header">Vos rendez-vous</h1>
+               <div class="btn btn-group">
+                   <button class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Semaine précédente</button>
+                   <button class="btn btn-default"><span class="glyphicon glyphicon-time"></span> Semaine courante</button>
+                   <button class="btn btn-default">Semaine suivante <span class="glyphicon glyphicon-arrow-right"></span></button>
+               </div><br><br>
                <div class="col-sm-1">
                   <li class="list-group-item"></li>
                    <li class="list-group-item">10h30</li>

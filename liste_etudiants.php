@@ -18,6 +18,18 @@ $data = $_GET['annee'];
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <h1 class="page-header">Promotion IMAC <?php echo $data;?></h1>
+                <a href="materiel_ajout.php">
+                   <button class="btn btn-primary">
+                       <span class="glyphicon glyphicon-plus"></span>
+                       Ajouter un étudiant
+                   </button>
+                </a>
+                <!--<ul class="nav nav-pills" id="promotions">
+                    <li role="presentation" class="active"><a href="#">IMAC 1</a></li>
+                    <li role="presentation"><a href="#">IMAC 2</a></li>
+                    <li role="presentation"><a href="#">IMAC 3</a></li>
+                </ul>-->
+                <br><br>
                <div class="table-responsive">
                    <table class="table table-striped table-hover">
                        <thead>

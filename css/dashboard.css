@@ -38,3 +38,7 @@ body{
     position: absolute;
     right: 0;
 }
+
+#promotions>li>a{
+    border-radius: 35px;
+}

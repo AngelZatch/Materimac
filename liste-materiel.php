@@ -55,10 +55,10 @@ $categories2 = getCategorie();
                    </div>
                    <div class="col-md-4">
                        <h2>Disponibilité</h2>
-                       <input type="checkbox"> <img src="icons/materiel-disponible.png" alt="">Disponible<br>
-                       <input type="checkbox"> <img src="icons/materiel-reserve.png" alt=""> Prévu aujourd'hui<br>
-                       <input type="checkbox"> <img src="icons/materiel-indisponible.png" alt=""> Indisponible<br>
-                       <input type="checkbox"> <img src="icons/materiel-gele.png" alt=""> Gelé<br>
+                       <input type="checkbox"> <span class="label label-success">Disponible</span><br>
+                       <input type="checkbox"> <span class="label label-warning">Prévu aujourd'hui</span><br>
+                       <input type="checkbox"> <span class="label label-danger">Indisponible</span><br>
+                       <input type="checkbox"> <span class="label label-info">Gelé</span>
                    </div>
                    <div class="col-md-4">
                        <h2>Etat du matériel</h2>
@@ -121,7 +121,7 @@ $categories2 = getCategorie();
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <div class="btn-group">
                                                    <button type="button" class="btn btn-default">
-                                                       <span class="glyphicon glyphicon-pencil"></span>
+                                                       <span class="glyphicon glyphicon-edit"></span>
                                                        Modifier 
                                                    </button>
                                                    <button type="button" class="btn btn-default">

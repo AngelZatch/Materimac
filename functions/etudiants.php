@@ -34,7 +34,7 @@ function afficherEtudiants($data) {
                         <td>" . $row["prenom"]. "</td>
                         <td>" . $row["nom"]. "</td>
                         <td>" . $row["numero_etudiant"]. "</td>
-                        <td><a class='btn btn-default' href='edit_etudiant.php?nom=".$row["identifiant"]."'><span class='glyphicon glyphicon-pencil'></span> Modifier</a></td>
+                        <td><a class='btn btn-default' href='edit_etudiant.php?nom=".$row["identifiant"]."'><span class='glyphicon glyphicon-edit'></span> Modifier</a></td>
                     </tr>
                 </form>";
         }
@@ -60,7 +60,7 @@ function afficherNonValides(){
                     <td>" . $row["numero_etudiant"] . "</td>
                     <td></td>
                     <td>
-                        <button class='btn btn-success'>Valider</button>
+                        <button class='btn btn-success'><span class='glyphicon glyphicon-check'></span> Valider</button>
                         <a href='edit_etudiant.php?nom=".$row["identifiant"]."' class='btn btn-default'>Consulter</a>
                     </td>";
         }
