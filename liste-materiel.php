@@ -83,7 +83,8 @@ $categories2 = getCategorie();
                      <?php 
                             if($categorie['nom'] != "Set vidéo") {
                        ?>
-                          <h3><?php echo $categorie['nom']; ?></h3>
+                         <div class="panel panel-default">
+                         <div class="panel-heading"><h3 class="panel-title"><?php echo $categorie['nom']; ?></h3></div>
                            <table class="table table-striped table-hover">
                                <thead>
                                    <tr>
@@ -139,10 +140,12 @@ $categories2 = getCategorie();
                                     }
                                ?>
                            </table>
+                           </div>
                     <?php
                             } else {
                     ?>
-                                <h3><?php echo $categorie['nom']; ?></h3>
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><h3 class="panel-title"><?php echo $categorie['nom']; ?></h3></div>
                                <table class="table table-striped table-hover">
                                    <thead>
                                        <tr>
@@ -197,8 +200,16 @@ $categories2 = getCategorie();
                                                    <td class="col-sm-2"><?php echo $note; ?></td>
                                                    <td class="col-sm-2">
                                                        <form method="post" action="liste-materiel.php">
-                                                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                                        <input type="submit" value="Supprimer" name="deleteMateriel" class="btn btn-default">
+                                                        <div class="btn-group">
+                                                           <button type="button" class="btn btn-default">
+                                                               <span class="glyphicon glyphicon-edit"></span>
+                                                               Modifier 
+                                                           </button>
+                                                           <button type="button" class="btn btn-default">
+                                                               <span class="glyphicon glyphicon-trash"></span>
+                                                               Supprimer
+                                                           </button>
+                                                        </div>
                                                         </form>
                                                    </td>
                                                </tr>
@@ -211,10 +222,12 @@ $categories2 = getCategorie();
                                         }
                                    ?>
                                </table>
+                               </div>
                     <?php
                             }
                         }
                     ?>
+                    
                </div>
            </div>
         </div>
