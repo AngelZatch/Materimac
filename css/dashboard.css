@@ -39,6 +39,12 @@ body{
     right: 0;
 }
 
+#promotions{
+    float: right;
+}
+
 #promotions>li>a{
     border-radius: 35px;
+    line-height: 20px;
+    padding: 0 15px;
 }

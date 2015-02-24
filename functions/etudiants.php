@@ -22,7 +22,7 @@ function afficherPromotion(){
 /* AFFICHER TOUS LES ETUDIANTS */
 function afficherEtudiants($data) {
     global $conn;
-    $sql = "SELECT prenom, nom, numero_etudiant, identifiant FROM etudiant WHERE promotion_id = '$data' AND user_type_id='2'";
+    $sql = "SELECT prenom, nom, numero_etudiant, identifiant, valide FROM etudiant WHERE promotion_id = '$data' AND user_type_id='2'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
@@ -31,12 +31,23 @@ function afficherEtudiants($data) {
         while($row = mysqli_fetch_assoc($result)) {
             echo "<form action='edit_etudiant.php' method='post'>
                     <tr>
-                        <td>" . $row["prenom"]. "</td>
-                        <td>" . $row["nom"]. "</td>
-                        <td>" . $row["numero_etudiant"]. "</td>
-                        <td><a class='btn btn-default' href='edit_etudiant.php?nom=".$row["identifiant"]."'><span class='glyphicon glyphicon-edit'></span> Modifier</a></td>
-                    </tr>
-                </form>";
+                        <td class='col-sm-3'>" . $row["prenom"]. "</td>
+                        <td class='col-sm-2'>" . $row["nom"]. "</td>
+                        <td class='col-sm-2'>" . $row["numero_etudiant"]. "</td>";
+            //Affichage du label de validité
+            if($row["valide"] == '1') echo "<td class='col-sm-2'><span class='label label-success'>Valide</span></td>";
+            else echo "<td class='col-sm-2'><span class='label label-danger'>En attente de validation</span></td>";
+            
+            echo "<div class='btn-group'>
+            <td class='col-sm-3'>
+                    <a href='edit_etudiant.php?nom=".$row["identifiant"]."'><button class='btn btn-default'><span class='glyphicon glyphicon-edit'></span> Modifier</button></a>";
+            //Affichage des boutons de validation
+            if($row["valide"] == "1") echo "<button class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span> Invalider</button>";
+                else echo "<button class='btn btn-default'><span class='glyphicon glyphicon-check'></span> Valider</button>";
+                echo "</div>
+                    </td>
+                </tr>
+            </form>";
         }
         echo "</tbody>";
     } else {

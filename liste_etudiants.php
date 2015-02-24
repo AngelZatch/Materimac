@@ -18,26 +18,31 @@ $data = $_GET['annee'];
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <h1 class="page-header">Promotion IMAC <?php echo $data;?></h1>
-                <a href="materiel_ajout.php">
-                   <button class="btn btn-primary">
-                       <span class="glyphicon glyphicon-plus"></span>
-                       Ajouter un étudiant
-                   </button>
-                </a>
-                <!--<ul class="nav nav-pills" id="promotions">
-                    <li role="presentation" class="active"><a href="#">IMAC 1</a></li>
-                    <li role="presentation"><a href="#">IMAC 2</a></li>
-                    <li role="presentation"><a href="#">IMAC 3</a></li>
-                </ul>-->
+               <div class="menu-bar">
+                    <ul class="nav nav-pills" id="promotions">
+                        <li role="presentation" class="active"><a href="#">Tous</a></li>
+                        <li role="presentation"><a href="#">Valides</a></li>
+                        <li role="presentation"><a href="#">En attente</a></li>
+                    </ul>
+                   <div class="btn-toolbar">
+                        <a href="materiel_ajout.php">
+                           <button class="btn btn-primary">
+                               <span class="glyphicon glyphicon-plus"></span>
+                               Ajouter un étudiant
+                           </button>
+                        </a>
+                    </div>
+                </div>
                 <br><br>
                <div class="table-responsive">
                    <table class="table table-striped table-hover">
                        <thead>
                            <tr>
-                               <th>Prénom</th>
-                               <th>Nom</th>
-                               <th>Numéro d'étudiant</th>
-                               <th>Actions</th>
+                               <th class="col-sm-3">Prénom</th>
+                               <th class="col-sm-2">Nom</th>
+                               <th class="col-sm-2">Numéro d'étudiant</th>
+                               <th class="col-sm-2">Statut</th>
+                               <th class="col-sm-3">Actions</th>
                            </tr>
                        </thead>
                            <?php afficherEtudiants($data) ?>    

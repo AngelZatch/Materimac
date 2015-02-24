@@ -5,6 +5,7 @@ include 'functions/materiel.php';
 include 'functions/categorie.php';
 include 'functions/set.php';
 include 'functions/set_mat_common.php';
+include 'functions/labels.php';
 
 $materiels1 = getMateriel();
 $materiels2 = getMateriel();
@@ -111,16 +112,17 @@ $categories2 = getCategorie();
                                             $note = $materiel['note'];
                                ?>
                                       <tr>
-                                           <td class="col-sm-2"><?php echo "<a href='materiel_edit.php?id=" . $id . "'>" . $nom . "</a>"; ?></td>
+                                           <td class="col-sm-2"><?php echo $nom; ?></td>
                                            <td class="col-sm-3"><?php echo $reference; ?></td>
                                            <td class="col-sm-1"><?php echo $num_cn; ?></td>
                                            <td class="col-sm-1"><?php echo $etat; ?></td>
-                                           <td class="col-sm-1"><?php echo $dispo; ?></td>
+                                           <td class="col-sm-1"><?php labelDispo($dispo) ?></td>
                                            <td class="col-sm-2"><?php echo $note; ?></td>
                                            <td class="col-sm-2">
                                                <form method="post" action="liste-materiel.php">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <div class="btn-group">
+                                                    <a href="materiel_edit.php?id='<?php echo $id?>'"</a>
                                                    <button type="button" class="btn btn-default">
                                                        <span class="glyphicon glyphicon-edit"></span>
                                                        Modifier 
@@ -130,8 +132,6 @@ $categories2 = getCategorie();
                                                        Supprimer
                                                    </button>
                                                 </div>
-                                                <!--<input type="submit" class="btn btn-default" value="Modifier">
-                                                <input type="submit" class="btn btn-default" value="Supprimer" name="deleteMateriel">-->    
                                                 </form>
                                            </td>
                                    </tr>
@@ -171,12 +171,21 @@ $categories2 = getCategorie();
                                                    <td class="col-sm-3"></td>
                                                    <td class="col-sm-1"></td>
                                                    <td class="col-sm-1"></td>
-                                                   <td class="col-sm-1"><?php echo $set_dispo; ?></td>
+                                                   <td class="col-sm-1"><?php labelDispo($set_dispo) ?></td>
                                                    <td class="col-sm-2"></td>
                                                    <td class="col-sm-2">
                                                        <form method="post" action="liste-materiel.php">
                                                         <input type="hidden" name="id" value="<?php echo $set_id; ?>">
-                                                        <input type="submit" value="Supprimer" name="deleteSet" class="btn btn-default">
+                                                        <div class="btn-group">
+                                                           <button type="button" class="btn btn-default">
+                                                               <span class="glyphicon glyphicon-edit"></span>
+                                                               Modifier 
+                                                           </button>
+                                                           <button type="button" class="btn btn-default">
+                                                               <span class="glyphicon glyphicon-trash"></span>
+                                                               Supprimer
+                                                           </button>
+                                                        </div>
                                                         </form>
                                                    </td>
                                                </tr>

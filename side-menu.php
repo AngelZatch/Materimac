@@ -44,15 +44,15 @@ $etudiantsNonVerifies = $dataGNVN['COUNT(*)'];
              <li>Liste par formation
                  <?php afficherPromotion(); ?>
              </li>
-             <li><a href="valider_etudiant.php">Validation d'étudiants</a></li>
+             <!--<li><a href="valider_etudiant.php">Validation d'étudiants</a></li>-->
          </ul>
      </li>
-     <li><a href>Gestion des projets</a>
+     <!--<li><a href>Gestion des projets</a>
         <ul>
              <li>Liste des Enseignants</li>
              <li>Ajout des Projets</li>
         </ul>
-     </li>
+     </li>-->
      <li><a href="general-admin.php">Administration Générale</a></li>
  </ul>  
 </div>
