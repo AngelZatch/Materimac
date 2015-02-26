@@ -1,10 +1,18 @@
 <?php
 require_once 'settings/connection.php';
 require_once 'functions/etudiants.php';
+require_once 'functions/f_reservations.php';
 
 function getNotValidNumber(){
     global $conn;
     $sql = "SELECT COUNT(*) FROM etudiant WHERE valide=0";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function getWaitingReservation(){
+    global $conn;
+    $sql = "SELECT COUNT(*) FROM emprunt WHERE etat_emprunt_id=1";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
@@ -23,14 +31,9 @@ $etudiantsNonVerifies = $dataGNVN['COUNT(*)'];
          <a href>Planning</a>
      </li>
      <li>
-        <a href>Réservations <span class="badge">4</span></a>
+        <a href="reservations.php">Réservations <span class="badge">4</span></a>
         <ul>
-             <li>En attente</li>
-             <li>Validées</li>
-             <li>En cours</li>
-             <li>En retard</li>
-             <li>Passées</li>
-             <li>Annulées</li>
+            <?php menuReservation();?>
          </ul>
      </li>
      <li><a href="liste-materiel.php">Inventaire</a>
