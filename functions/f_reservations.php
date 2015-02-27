@@ -14,14 +14,23 @@ function menuReservation(){
 
 function afficherReservation($data){
     global $conn;
-    $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id=".$data."";
-    $result = mysqli_query($sonn, $sql);
+    $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id='.$data.'";
+    $result = mysqli_query($conn, $sql);
     
     if(mysqli_num_rows($result) > 0){
         echo "<tbody>";
         while($row = mysqli_fetch_assoc($result)){
-            echo "<";
+            echo "<tr>
+                    <td class='col-sm-2'>".$row['date_debut']."</td>
+                    <td class='col-sm-2'>".$row['etudiant_id']."</td>
+                    <td class='col-sm-1'>".$row['reference']."</td>
+                    <td class='col-sm-1'>".$row['raison']."</td>
+                    <td class='col-sm-2'>".$row['date_debut']."</td>
+                    <td class='col-sm-2'>".$row['date_fin']."</td>
+                    <td class='col-sm-2'><button class='btn btn-default'>Consulter</button></td>
+                </tr>";
         }
+        echo "<tbody>";
     }
 }
 

@@ -73,7 +73,8 @@ function afficherNonValides(){
                     <td>
                         <button class='btn btn-success'><span class='glyphicon glyphicon-check'></span> Valider</button>
                         <a href='edit_etudiant.php?nom=".$row["identifiant"]."' class='btn btn-default'>Consulter</a>
-                    </td>";
+                    </td>
+                </tr>";
         }
         echo "</tbody>";    
     }

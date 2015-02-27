@@ -30,13 +30,16 @@ $data = $_GET['id'];
                    <table class="table table-striped table-hover">
                        <thead>
                            <tr>
-                               <th class="col-sm-3">Prénom</th>
+                               <th class="col-sm-2">Date de soumission</th>
                                <th class="col-sm-2">Nom</th>
-                               <th class="col-sm-2">Numéro d'étudiant</th>
-                               <th class="col-sm-2">Statut</th>
-                               <th class="col-sm-3">Actions</th>
+                               <th class="col-sm-1">Référence</th>
+                               <th class="col-sm-1">Type de projet</th>
+                               <th class="col-sm-2">Date de début</th>
+                               <th class="col-sm-2">Date de fin</th>
+                               <th class="col-sm-2">Actions</th>
                            </tr>
                        </thead>
+                       <?php afficherReservation($data);?>
                    </table>
                </div>
            </div>
