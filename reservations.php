@@ -20,9 +20,9 @@ $data = $_GET['id'];
                <h1 class="page-header">Réservations à venir</h1>
                <div class="menu-bar">
                     <ul class="nav nav-pills" id="promotions">
-                        <li role="presentation" class="active"><a href="#">Tous</a></li>
-                        <li role="presentation"><a href="#">Valides</a></li>
+                        <li role="presentation" class="active"><a href="#">Toutes</a></li>
                         <li role="presentation"><a href="#">En attente</a></li>
+                        <li role="presentation"><a href="#">Validées</a></li>
                     </ul>
                 </div>
                 <br><br>

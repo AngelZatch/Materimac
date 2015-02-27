@@ -27,7 +27,12 @@ function afficherReservation($data){
                     <td class='col-sm-1'>".$row['raison']."</td>
                     <td class='col-sm-2'>".$row['date_debut']."</td>
                     <td class='col-sm-2'>".$row['date_fin']."</td>
-                    <td class='col-sm-2'><button class='btn btn-default'>Consulter</button></td>
+                    <td class='col-sm-2'>
+                        <div class='btn-group'>
+                            <button class='btn btn-default'>Valider</button>
+                            <button class='btn btn-default'>Refuser</button>
+                        </div>
+                    </td>
                 </tr>";
         }
         echo "<tbody>";

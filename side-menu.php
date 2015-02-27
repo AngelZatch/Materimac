@@ -33,7 +33,7 @@ $reservationsEnAttente = $dataGWR['COUNT(*)'];
          <a href>Planning</a>
      </li>
      <li>
-        <a href="reservations.php">Réservations <span class="badge"><?php echo $reservationsEnAttente;?></span></a>
+        <a>Réservations <span class="badge"><?php echo $reservationsEnAttente;?></span></a>
         <ul>
             <?php menuReservation();?>
          </ul>
