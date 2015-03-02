@@ -152,5 +152,4 @@ function supprimerMateriel() {
     }
 }
 
-
 ?>
