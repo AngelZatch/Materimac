@@ -39,8 +39,8 @@ $data = $_GET['id'];
                                <th class="col-sm-2">Actions</th>
                            </tr>
                        </thead>
-                       <?php afficherReservation($data);?>
                    </table>
+                   <?php afficherReservation($data);?>
                </div>
            </div>
         </div>
