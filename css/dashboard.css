@@ -20,6 +20,12 @@ body{
     }
 }
 
+.main-option{
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #13176b;
+}
+
 .main{
     padding: 20px;
 }
@@ -34,7 +40,8 @@ body{
 }
 
 .badge{
-    background-color: #FA0032;
+    background-color: inherit;
+    color: #13176b;
     position: absolute;
     right: 0;
 }

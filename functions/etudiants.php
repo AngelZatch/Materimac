@@ -6,19 +6,22 @@ if(isset($_POST['submitChange'])){
 /* AFFICHER LES PROMOTIONS */
 function afficherPromotion(){
     global $conn;
-    $sql = "SELECT * FROM promotion";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, "SELECT * FROM promotion");
     
     if(mysqli_num_rows($result) > 0){
         echo "<ul>";
         while($row = mysqli_fetch_assoc($result)){
-            echo "<li><a href='liste_etudiants.php?annee=".$row["annee"]."'>IMAC " . $row["annee"] ."</a></li>";
+            echo "<li><a href='liste_etudiants.php?annee=".$row["annee"]."'>IMAC " . $row["annee"] ."</a><span class='badge'>";
+            //Get count badge
+            $resultCount = mysqli_query($conn, "SELECT * FROM etudiant WHERE promotion_id=$row[annee] AND valide=0");
+            if($row_cnt = mysqli_num_rows($resultCount) > 0) echo $row_cnt;
+            echo "</span></li>";
         }
         echo "</ul>";
     }
 }
 /*afficherPromotion();*/
-
+            
 /* AFFICHER TOUS LES ETUDIANTS */
 function afficherEtudiants($data) {
     global $conn;
