@@ -38,15 +38,20 @@ function afficherEtudiants($data) {
             if($row["valide"] == '1') echo "<td class='col-sm-2'><span class='label label-success'>Valide</span></td>";
             else echo "<td class='col-sm-2'><span class='label label-danger'>En attente de validation</span></td>";
             
-            echo "<div class='btn-group'>
-            <td class='col-sm-3'>
-                    <a href='edit_etudiant.php?nom=".$row["identifiant"]."'><button class='btn btn-default'><span class='glyphicon glyphicon-edit'></span> Modifier</button></a>";
+            echo "<td class='col-sm-3'>
+                <div class='btn-group'>
+                    <a href='edit_etudiant.php?nom=".$row["identifiant"]."'>
+                        <button type='button' class='btn btn-default'>
+                            <span class='glyphicon glyphicon-edit'></span> 
+                            Modifier
+                        </button>
+                    </a>";
             //Affichage des boutons de validation
-            if($row["valide"] == "1") echo "<button class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span> Invalider</button>";
-                else echo "<button class='btn btn-default'><span class='glyphicon glyphicon-check'></span> Valider</button>";
-                echo "</div>
-                    </td>
-                </tr>
+            if($row["valide"] == "1") echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span> Invalider</button>";
+            else echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-check'></span> Valider</button>";
+            echo "</div>
+                </td>
+            </tr>
             </form>";
         }
         echo "</tbody>";
