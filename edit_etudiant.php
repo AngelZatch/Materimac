@@ -1,5 +1,5 @@
 <?php
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 require_once 'functions/etudiants.php';
 
 $data = $_GET['nom'];
@@ -31,10 +31,12 @@ $annee = $row['promotion_id'];
                         ?>
                    </div>
                </div>
-               <button class="btn btn-default">
-                   <span class="glyphicon glyphicon-chevron-left"></span>
-                   Retour à la liste des étudiants
-               </button>
+               <a href="liste_etudiants.php?annee=<?php echo $annee;?>">
+                   <button class="btn btn-default">
+                       <span class="glyphicon glyphicon-chevron-left"></span>
+                       Retour à la liste des étudiants
+                   </button>
+               </a>
                <h2>Informations</h2>
                 <fieldset>
                     <form action="edit_etudiant.php" method="post">
