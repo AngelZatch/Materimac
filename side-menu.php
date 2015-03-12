@@ -34,7 +34,11 @@ $reservationsEnAttente = $dataGWR['COUNT(*)'];
      </li>
      <li>
         <a class="main-option">Réservations <span class="badge"><?php echo $reservationsEnAttente;?></span></a>
-        <ul><?php menuReservation();?></ul>
+        <ul>
+            <li><a href="reservations.php?id=1">A venir</a></li>
+            <li><a href="reservations.php?id=2">En cours</a></li>
+            <li><a href="reservations.php?id=3">Terminées</a></li>
+        </ul>
      </li>
      <li><a href="liste-materiel.php" class="main-option">Inventaire</a>
          <!--<ul>

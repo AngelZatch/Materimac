@@ -17,14 +17,44 @@ $data = $_GET['id'];
         <div class="row">
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-               <h1 class="page-header">Réservations à venir</h1>
-               <div class="menu-bar">
-                    <ul class="nav nav-pills" id="promotions">
-                        <li role="presentation" class="active"><a href="#">Toutes</a></li>
-                        <li role="presentation"><a href="#">En attente</a></li>
-                        <li role="presentation"><a href="#">Validées</a></li>
-                    </ul>
-                </div>
+               <?php 
+                    echo "<h1 class='page-header'>";
+                    switch($data){
+    
+                        case 1:
+                            echo "Réservations à venir</h1>
+                                <div class='menu-bar'>
+                                    <ul class='nav nav-pills' id='promotions'>
+                                        <li role='presentation' class='active'><a href='#'>Toutes</a></li>
+                                        <li role='presentation'><a href='#'>En attente</a></li>
+                                        <li role='presentation'><a href='#'>Validées</a></li>
+                                    </ul>
+                                </div>";
+                            break;
+    
+                        case 2:
+                            echo "Réservations en cours</h1>
+                                <div class='menu-bar'>
+                                    <ul class='nav nav-pills' id='promotions'>
+                                        <li role='presentation' class='active'><a href='#'>Toutes</a></li>
+                                        <li role='presentation'><a href='#'>En cours</a></li>
+                                        <li role='presentation'><a href='#'>En retard</a></li>
+                                    </ul>
+                                </div>";
+                            break;
+    
+                        case 3:
+                            echo "Réservations terminées</h1>
+                                <div class='menu-bar'>
+                                    <ul class='nav nav-pills' id='promotions'>
+                                        <li role='presentation' class='active'><a href='#'>Toutes</a></li>
+                                        <li role='presentation'><a href='#'>Terminées</a></li>
+                                        <li role='presentation'><a href='#'>Annulées</a></li>
+                                    </ul>
+                                </div>";
+                            break;
+                }?>
+               
                 <br><br>
                <div class="table-responsive">
                    <table class="table table-striped table-hover">
