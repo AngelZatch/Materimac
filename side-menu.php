@@ -3,13 +3,6 @@ require_once 'settings/connection.php';
 require_once 'functions/etudiants.php';
 require_once 'functions/f_reservations.php';
 
-/*function getNotValidNumber(){
-    global $conn;
-    $sql = "SELECT COUNT(*) FROM etudiant WHERE valide=0";
-    $result = mysqli_query($conn, $sql);
-    return $result;
-}*/
-
 function getWaitingReservation(){
     global $conn;
     $sql = "SELECT COUNT(*) FROM emprunt WHERE etat_emprunt_id=1";
@@ -17,8 +10,6 @@ function getWaitingReservation(){
     return $result;
 }
 
-/*$dataGNVN = mysqli_fetch_assoc(getNotValidNumber());
-$etudiantsNonVerifies = $dataGNVN['COUNT(*)'];*/
 $dataGWR = mysqli_fetch_assoc(getWaitingReservation());
 $reservationsEnAttente = $dataGWR['COUNT(*)'];
 ?>
@@ -47,7 +38,7 @@ $reservationsEnAttente = $dataGWR['COUNT(*)'];
          </ul>-->
      </li>
      <li><a class="main-option">Gestion des étudiants</a>
-         <ul><?php afficherPromotion(); ?></ul>
+         <?php afficherPromotion(); ?>
      </li>
      <!--<li><a href>Gestion des projets</a>
         <ul>

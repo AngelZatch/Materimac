@@ -25,7 +25,7 @@ $set_array = getSet();
           <div class="row">
               <?php include 'side-menu.php'; ?>
                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                  <a href="liste-materiel.php">
+                  <a href="materiel_liste.php">
                      <button class="btn btn-default">
                       <span class="glyphicon glyphicon-chevron-left"></span>
                       Retourner à l'inventaire

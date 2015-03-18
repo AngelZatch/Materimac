@@ -55,3 +55,28 @@ body{
     line-height: 20px;
     padding: 0 15px;
 }
+
+.panel-superdanger{
+    border-color: #e53935;
+}
+
+.super-option-container{
+    position: relative;
+}
+
+.admin-warning{
+    background-color: #E53935 !important;
+    font-weight: 800;
+    color: #fff !important;
+}
+
+.super-option{
+    font-weight: 600;
+    position: relative;
+    display: block;
+}
+
+.btn-superdanger{
+    position: absolute;
+    right: 0;
+}

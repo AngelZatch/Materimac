@@ -18,6 +18,25 @@ require_once 'functions/etudiants.php';
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
            <h1 class="page-header">Administration Générale</h1>
+                <div class="panel panel-superdanger">
+                    <div class="panel-heading admin-warning">Gestion globale</div>
+                    <div class="panel-body">
+                      <div class="super-option-container">
+                       <p class="super-option">Supprimer toutes les Attestations de Responsabilité Cilvile</p>   
+                       <button class="btn btn-superdanger">Supprimer les attestations</button>
+                       </div>
+                       <div class="super-option-container">
+                           <p class="super-option">Supprimer tout l'historique</p>
+                       <button class="btn btn-superdanger">Supprimer l'historique</button>
+                       </div>
+                       <div class="super-option-container">
+                           <p class="super-option">Geler tout l'inventaire</p>
+                       <button class="btn btn-superdanger">Geler</button>
+                       </div>
+                       
+                       
+                    </div>
+                </div>
            <h2>Gestion des Formations</h2>
            <div class="table-responsive">
                <table class="table table-striped">
@@ -82,11 +101,6 @@ require_once 'functions/etudiants.php';
                    </tr>
                </table>
            </div>
-           <h2>Gestion globale</h2>
-           <div class="alert alert-danger" role="alert"><strong>Attention !</strong> Ces actions sont définitives !</div>
-           <p>Supprimer toutes les Attestations de Responsabilité Cilvile</p>
-           <p>Supprimer tout l'historique</p>
-           <p>Geler tout l'inventaire</p>
            </div>
         </div>
     </div>
