@@ -2,6 +2,19 @@ body{
     padding-top: 50px;
 }
 
+nav{
+    background-color: #FFFFFF !important;
+    border-color: #9ccc65 !important;
+}
+
+.navbar-brand{
+    color: #9ccc65 !important;
+}
+
+.navbar-nav>li>a{
+    color: #9CCC65 !important;
+}
+
 .sidebar{
     display: none;
 }
@@ -20,10 +33,15 @@ body{
     }
 }
 
+.nav-sidebar>li>ul>li>a,
+.nav-sidebar>li>ul>ul>li>a{
+    color: #689F38 !important;
+}
+
 .main-option{
     text-transform: uppercase;
     font-weight: 700;
-    color: #13176b;
+    color: #33691E;
 }
 
 .main{

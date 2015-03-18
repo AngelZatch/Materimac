@@ -3,8 +3,8 @@
         <div class="navbar-header">
         
           <a class="navbar-brand"
-          <?php if($_SESSION['power'] == "1") echo 'href="dashboard.php">Matérimac - Gestionnaire</a>';
-                if($_SESSION['power'] == "2") echo 'href="etudiant_dashboard.php">Matérimac - Etudiant</a>';?>
+          <?php if($_SESSION['power'] == "1") echo 'href="dashboard.php">Kiwi - Gestionnaire</a>';
+                if($_SESSION['power'] == "2") echo 'href="etudiant_dashboard.php">Kiwi - Etudiant</a>';?>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
