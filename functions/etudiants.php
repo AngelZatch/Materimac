@@ -11,7 +11,7 @@ function afficherPromotion(){
     if(mysqli_num_rows($result) > 0){
         echo "<ul>";
         while($row = mysqli_fetch_assoc($result)){
-            echo "<li><a href='liste_etudiants.php?annee=".$row["annee"]."'>IMAC " . $row["annee"] ."</a><span class='badge'>";
+            echo "<li><a href='etudiant_liste.php?annee=".$row["annee"]."'>IMAC " . $row["annee"] ."</a><span class='badge'>";
             //Get count badge
             $resultCount = mysqli_query($conn, "SELECT * FROM etudiant WHERE promotion_id=$row[annee] AND valide=0");
             if($row_cnt = mysqli_num_rows($resultCount) > 0) echo $row_cnt;
@@ -32,7 +32,7 @@ function afficherEtudiants($data) {
         echo "<tbody>";
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
-            echo "<form action='edit_etudiant.php' method='post'>
+            echo "<form action='etudiant_edit.php' method='post'>
                     <tr>
                         <td class='col-sm-3'>" . $row["prenom"]. "</td>
                         <td class='col-sm-2'>" . $row["nom"]. "</td>
@@ -43,7 +43,7 @@ function afficherEtudiants($data) {
             
             echo "<td class='col-sm-3'>
                 <div class='btn-group'>
-                    <a href='edit_etudiant.php?nom=".$row["identifiant"]."'>
+                    <a href='etudiant_edit.php?nom=".$row["identifiant"]."'>
                         <button type='button' class='btn btn-default'>
                             <span class='glyphicon glyphicon-edit'></span> 
                             Modifier
@@ -80,7 +80,7 @@ function afficherNonValides(){
                     <td></td>
                     <td>
                         <button class='btn btn-success'><span class='glyphicon glyphicon-check'></span> Valider</button>
-                        <a href='edit_etudiant.php?nom=".$row["identifiant"]."' class='btn btn-default'>Consulter</a>
+                        <a href='etudiant_edit.php?nom=".$row["identifiant"]."' class='btn btn-default'>Consulter</a>
                     </td>
                 </tr>";
         }
@@ -131,7 +131,7 @@ function editEtudiant(){
     $annee = $_POST['annee'];
     $sql = "UPDATE etudiant SET prenom = '$prenom', nom = '$nom', numero_etudiant = '$num', promotion_id = '$annee' WHERE identifiant = '$id'";
     if(mysqli_query($conn, $sql)){
-        header('Location: liste_etudiants.php?annee='.$annee.'');
+        header('Location:etudiant_liste.php?annee='.$annee.'');
     } else {
         echo "Erreur dans l'édition des données : " . mysqli_error($conn);
     }

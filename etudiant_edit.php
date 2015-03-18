@@ -31,7 +31,7 @@ $annee = $row['promotion_id'];
                         ?>
                    </div>
                </div>
-               <a href="liste_etudiants.php?annee=<?php echo $annee;?>">
+               <a href="etudiant_liste.php?annee=<?php echo $annee;?>">
                    <button class="btn btn-default">
                        <span class="glyphicon glyphicon-chevron-left"></span>
                        Retour à la liste des étudiants

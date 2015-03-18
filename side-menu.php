@@ -40,7 +40,7 @@ $reservationsEnAttente = $dataGWR['COUNT(*)'];
             <li><a href="reservations.php?id=3">Terminées</a></li>
         </ul>
      </li>
-     <li><a href="liste-materiel.php" class="main-option">Inventaire</a>
+     <li><a href="materiel_liste.php" class="main-option">Inventaire</a>
          <!--<ul>
              <li><a href="materiel_ajout.php">Ajout de matériel</a></li>
              <li><a href="set_ajout.php">Ajout de set</a></li>
