@@ -1,16 +1,15 @@
 <?php
 require_once 'settings/connection.php';
-
 ?>
 
 
 <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
         <li>
-            <a href="">Panneau d'informations</a>
+            <a class="main-option" href="">Panneau d'informations</a>
         </li>
         <li>
-            <a href="">Mes réservations <span class="badge">2</span></a>
+            <a class="main-option" href="">Mes réservations</a>
             <ul>
                 <li>En attente</li>
                 <li>Validées <span class="badge">1</span></li>
@@ -21,7 +20,7 @@ require_once 'settings/connection.php';
             </ul>
         </li>
         <li>
-            <a href="">Mon compte</a>
+            <a class="main-option" href="">Mon compte</a>
         </li>
     </ul>
 </div>

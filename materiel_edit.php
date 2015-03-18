@@ -1,24 +1,25 @@
 <?php
-    require_once 'settings/db_connect.php' ;
-    include 'functions/materiel.php';
-    include 'functions/set.php';
-    include 'functions/categorie.php';
-    include 'functions/set_mat_common.php';
+session_start();
+require_once 'settings/db_connect.php';
+include 'functions/materiel.php';
+include 'functions/set.php';
+include 'functions/categorie.php';
+include 'functions/set_mat_common.php';
 
-    $data = $_GET['id'];
-    $materiel = mysqli_fetch_assoc(fetchMateriel($data));
-    $dispo_materiel = mysqli_fetch_assoc(fetchDispo($materiel['disponibilite_id']));
-    $etat_materiel = mysqli_fetch_assoc(fetchEtat($materiel['etat_id']));
-    if($materiel['set_id'] != 0) {
-        $set = mysqli_fetch_assoc(fetchSet($materiel['set_id']));
-    }
-    if($materiel['categorie_id'] != 0) {
-        $cat_materiel = mysqli_fetch_assoc(fetchCategorie($materiel['categorie_id']));
-    }
-    $dispo_array = getDispo();
-    $etat_array = getEtat();
-    $set_array = getSet();
-    $cat_array = getCategorie();    
+$data = $_GET['id'];
+$materiel = mysqli_fetch_assoc(fetchMateriel($data));
+$dispo_materiel = mysqli_fetch_assoc(fetchDispo($materiel['disponibilite_id']));
+$etat_materiel = mysqli_fetch_assoc(fetchEtat($materiel['etat_id']));
+if($materiel['set_id'] != 0) {
+    $set = mysqli_fetch_assoc(fetchSet($materiel['set_id']));
+}
+if($materiel['categorie_id'] != 0) {
+    $cat_materiel = mysqli_fetch_assoc(fetchCategorie($materiel['categorie_id']));
+}
+$dispo_array = getDispo();
+$etat_array = getEtat();
+$set_array = getSet();
+$cat_array = getCategorie();    
 ?>
 
 
@@ -35,7 +36,7 @@
       <div class="row">
           <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <a href="liste-materiel.php">
+                <a href="materiel_liste.php">
                     <button class="btn btn-default">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Retourner à l'inventaire

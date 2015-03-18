@@ -1,24 +1,25 @@
 <?php
-    require_once 'settings/db_connect.php' ;
-    include 'functions/materiel.php';
-    include 'functions/set.php';
-    include 'functions/recherche.php';
-    include 'functions/categorie.php';
-    include 'functions/set_mat_common.php';
+session_start();
+require_once 'settings/db_connect.php' ;
+include 'functions/materiel.php';
+include 'functions/set.php';
+include 'functions/recherche.php';
+include 'functions/categorie.php';
+include 'functions/set_mat_common.php';
 
-    $data = $_GET['id'];
-    $set = mysqli_fetch_assoc(fetchSet($data));
-    if(!empty($_GET['recherche'])) {
-        $search = $_GET['recherche'];
-        $search_materiel = rechercherMateriel($search);
-    }
+$data = $_GET['id'];
+$set = mysqli_fetch_assoc(fetchSet($data));
+if(!empty($_GET['recherche'])) {
+    $search = $_GET['recherche'];
+    $search_materiel = rechercherMateriel($search);
+}
 
-    $dispo_set = mysqli_fetch_assoc(fetchDispo($set['disponibilite_id']));
-    $cat_set = mysqli_fetch_assoc(fetchCategorie($set['categorie_id']));
+$dispo_set = mysqli_fetch_assoc(fetchDispo($set['disponibilite_id']));
+$cat_set = mysqli_fetch_assoc(fetchCategorie($set['categorie_id']));
 
-    $dispo_array = getDispo();
-    $cat_array = getCategorie();
-    $materiels = getSetMateriel($data);
+$dispo_array = getDispo();
+$cat_array = getCategorie();
+$materiels = getSetMateriel($data);
 ?>
 
 

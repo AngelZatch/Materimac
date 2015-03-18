@@ -1,11 +1,12 @@
 <?php
-    require_once 'settings/db_connect.php' ;
-    include 'functions/set.php';
-    include 'functions/categorie.php';
-    include 'functions/set_mat_common.php';
+session_start();
+require_once 'settings/db_connect.php' ;
+include 'functions/set.php';
+include 'functions/categorie.php';
+include 'functions/set_mat_common.php';
 
-    $dispo_array = getDispo();
-    $cat_array = getCategorie();
+$dispo_array = getDispo();
+$cat_array = getCategorie();
 ?>
 
 

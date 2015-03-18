@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'settings/connection.php';
 include 'functions/recherche.php';
 include 'functions/set.php';

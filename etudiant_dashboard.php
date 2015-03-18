@@ -1,3 +1,7 @@
+<?php
+session_start();
+require_once 'settings/db_connect.php';
+?>
 <html>
 <head>
     <meta charset="UTF-8">

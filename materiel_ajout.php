@@ -1,14 +1,15 @@
 <?php
-    require_once 'settings/db_connect.php' ;
-    include 'functions/materiel.php';
-    include 'functions/set.php';
-    include 'functions/categorie.php';
-    include 'functions/set_mat_common.php';
+session_start();
+require_once 'settings/db_connect.php' ;
+include 'functions/materiel.php';
+include 'functions/set.php';
+include 'functions/categorie.php';
+include 'functions/set_mat_common.php';
 
-    $dispo_array = getDispo();
-    $etat_array = getEtat();
-    $cat_array = getCategorie();
-    $set_array = getSet();
+$dispo_array = getDispo();
+$etat_array = getEtat();
+$cat_array = getCategorie();
+$set_array = getSet();
 ?>
 
 <html>
