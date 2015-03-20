@@ -1,0 +1,14 @@
+.panel-default{
+	padding: 0 !important;
+}
+
+td{
+	text-align: center;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	height: 39px !important;
+}
+
+#first-day{
+	font-weight: 700;
+}

@@ -25,7 +25,10 @@ if(isset($_POST['submit'])){
             $_SESSION['power'] = $row['user_type_id'];            
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['nom'] = $row['nom'];
-            $_SESSION['numero'] = $row['numero_etudiant'];
+			if($row['user_type_id'] == 1) $_SESSION['gestionnaire'] = $row['id'];
+				else $_SESSION['gestionnaire'] = null;
+			if($row['user_type_id'] == 2) $_SESSION['etudiant'] = $row['numero_etudiant'];
+				else $_SESSION['etudiant'] = null;
             
             if($_SESSION['power'] == "1") header("location:dashboard.php");
             if($_SESSION['power'] == "2") header("location:etudiant_dashboard.php");

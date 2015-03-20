@@ -2,6 +2,7 @@
 session_start();
 require_once 'settings/connection.php';
 require_once 'functions/etudiants.php';
+include 'functions/meetings_handler.php';
 
 ?>
 <html>
@@ -10,6 +11,7 @@ require_once 'functions/etudiants.php';
     <title>Liste des Etudiants</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/meetings.css">
 </head>
 <body>
     <?php include 'nav.php'; ?>
@@ -23,77 +25,58 @@ require_once 'functions/etudiants.php';
                    <button class="btn btn-default"><span class="glyphicon glyphicon-time"></span> Semaine courante</button>
                    <button class="btn btn-default">Semaine suivante <span class="glyphicon glyphicon-arrow-right"></span></button>
                </div><br><br>
-               <div class="col-sm-1">
-                  <li class="list-group-item"></li>
-                   <li class="list-group-item">10h30</li>
-                   <li class="list-group-item">10h35</li>
-                   <li class="list-group-item">10h40</li>
-                   <li class="list-group-item">15h45</li>
-                   <li class="list-group-item">15h50</li>
-                   <li class="list-group-item">15h55</li>
-                   <li class="list-group-item"></li>
+               
+               <!-- Tableau des horaires -->
+               <div class="panel panel-default col-sm-1">
+               	<div class="panel-heading">Horaires</div>
+					<table class="table table-bordered">
+              			<tbody>
+              			<?php $numHours = getHours($_SESSION['gestionnaire']);?>
+               			<tr><td><div class="btn-group"><button class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></button><button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button></div></td></tr>
+              		</tbody>
+               		</table>
                </div>
-               <div class="col-sm-2">
-                   <ul class="list-group">
-                       <li class="list-group-item">LUNDI 19</li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item">Andréas Pinbouen</li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                   </ul>
+               <!-- Jours -->
+			  <div class="panel panel-default col-sm-2">
+               	<div class="panel-heading" id="first-day"><?php echo (new DateTime('today'))->add(new DateInterval("P1D"))->format('l d');?></div>
+					<table class="table table-bordered">
+              			<tbody>
+              			<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
+              		</tbody>
+               		</table>
                </div>
-               <div class="col-sm-2">
-                   <ul class="list-group">
-                       <li class="list-group-item">MARDI 20</li>
-                       <li class="list-group-item">Robin Lasne</li>
-                       <li class="list-group-item">Mélissa Masquelier-Costa</li>
-                       <li class="list-group-item">Juliette Belin</li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                   </ul>
+				  <div class="panel panel-default col-sm-2">
+               	<div class="panel-heading"><?php echo (new DateTime('today'))->add(new DateInterval("P2D"))->format('l d');?></div>
+					<table class="table table-bordered">
+              			<tbody>
+						<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
+              		</tbody>
+               		</table>
                </div>
-               <div class="col-sm-2">
-                   <ul class="list-group">
-                       <li class="list-group-item">MERCREDI 21</li>
-                       <li class="list-group-item">Pauline Bocognano</li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                   </ul>
+			  <div class="panel panel-default col-sm-2">
+               	<div class="panel-heading"><?php echo (new DateTime('today'))->add(new DateInterval("P3D"))->format('l d');?></div>
+					<table class="table table-bordered">
+              			<tbody>
+						<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
+              		</tbody>
+               		</table>
                </div>
-               <div class="col-sm-2">
-                   <ul class="list-group">
-                       <li class="list-group-item">JEUDI 22</li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                   </ul>
+			  <div class="panel panel-default col-sm-2">
+               	<div class="panel-heading"><?php echo (new DateTime('today'))->add(new DateInterval("P4D"))->format('l d');?></div>
+					<table class="table table-bordered">
+              			<tbody>
+						<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
+              		</tbody>
+               		</table>
                </div>
-               <div class="col-sm-2">
-                   <ul class="list-group">
-                       <li class="list-group-item">VENDREDI 23</li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                       <li class="list-group-item"></li>
-                   </ul>
+			  <div class="panel panel-default col-sm-2">
+               	<div class="panel-heading"><?php echo (new DateTime('today'))->add(new DateInterval("P1D"))->format('l d');?></div>
+					<table class="table table-bordered">
+              			<tbody>
+						<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
+              		</tbody>
+               		</table>
                </div>
-           </div>
         </div>
     </div>
     
