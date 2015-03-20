@@ -60,11 +60,7 @@ body{
     border-color: #e53935;
 }
 
-.super-option-container{
-    position: relative;
-}
-
-.admin-warning{
+#admin-warning{
     background-color: #E53935 !important;
     font-weight: 800;
     color: #fff !important;
@@ -74,6 +70,12 @@ body{
     font-weight: 600;
     position: relative;
     display: block;
+	margin-bottom: 20px;
+	vertical-align: middle;
+}
+
+.so-last{
+	margin-bottom: 10px;
 }
 
 .btn-superdanger{

@@ -18,25 +18,6 @@ require_once 'functions/etudiants.php';
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
            <h1 class="page-header">Administration Générale</h1>
-                <div class="panel panel-superdanger">
-                    <div class="panel-heading admin-warning">Gestion globale</div>
-                    <div class="panel-body">
-                      <div class="super-option-container">
-                       <p class="super-option">Supprimer toutes les Attestations de Responsabilité Cilvile</p>   
-                       <button class="btn btn-superdanger">Supprimer les attestations</button>
-                       </div>
-                       <div class="super-option-container">
-                           <p class="super-option">Supprimer tout l'historique</p>
-                       <button class="btn btn-superdanger">Supprimer l'historique</button>
-                       </div>
-                       <div class="super-option-container">
-                           <p class="super-option">Geler tout l'inventaire</p>
-                       <button class="btn btn-superdanger">Geler</button>
-                       </div>
-                       
-                       
-                    </div>
-                </div>
            <h2>Gestion des Formations</h2>
            <div class="table-responsive">
                <table class="table table-striped">
@@ -101,6 +82,14 @@ require_once 'functions/etudiants.php';
                    </tr>
                </table>
            </div>
+			   <div class="panel panel-superdanger">
+                    <div class="panel-heading" id="admin-warning">Gestion globale</div>
+                    <div class="panel-body">
+                      	<p class="super-option">Supprimer toutes les Attestations de Responsabilité Cilvile<button class="btn btn-superdanger">Supprimer les attestations</button></p>
+                      	<p class="super-option">Supprimer tout l'historique<button class="btn btn-superdanger">Supprimer l'historique</button></p>
+                      	<p class="super-option so-last">Geler tout l'inventaire<button class="btn btn-superdanger">Geler</button></p>                       
+                    </div>
+                </div>
            </div>
         </div>
     </div>
