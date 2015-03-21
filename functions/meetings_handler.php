@@ -8,6 +8,7 @@ function construct($data){
 		echo "<table class='table table-bordered'><tbody>";
 		while($row = mysqli_fetch_assoc($result)){
 			echo "<tr><td>".$row['heure']."</td></tr>";
+			$hours[] = $row['heure'];
 		}
 		echo "<tr><td><div class='btn-group'><button class='btn btn-default'><span class='glyphicon glyphicon-edit'></span></button><button class='btn btn-default'><span class='glyphicon glyphicon-plus'></span></button></div></td></tr></tbody></table></div>";
 	}
@@ -18,9 +19,12 @@ function construct($data){
 	$dayOffset = 0;
 	$cumulatedOffset = 0;
 	$fridayOffset = true;
+	$joursReference = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi");
 	
 	for($i = 0; $i < $maxDays; $i++){
-		echo "<div class='panel panel-default col-sm-2'><div class='panel-heading'>";
+		echo "<div class='panel panel-default col-sm-2'><div class='panel-heading'";
+		if($i==0) echo " id='first-day'";
+		echo "'>";
 		/* On déclare la variable de jour*/
 		$caseDate = new DateTime('today');
 		
@@ -62,6 +66,12 @@ function construct($data){
 		/*On affiche ensuite la nouvelle valeur de la journée*/
 		echo $caseDate->add(new DateInterval("P".$dayOffset."D"))->format('l d');
 		
+		/*On stocke les valeurs dans un tableau pour y accéder au remplissage*/
+		$dates = array();
+		$dates[$i] = $caseDate->format('d/m');
+		$days = array();
+		$days[$i] = $caseDate->format('l');
+		
 		/*On reset l'offset "local"*/
 		$dayOffset = 0;
 		
@@ -69,7 +79,17 @@ function construct($data){
 		<table class='table table-bordered'>
 		<tbody>";
 		for($j = 0; $j < $numHours; $j++){
-			echo "<tr><td></td></tr>";
+			echo "<tr><td";
+			$resultDays = mysqli_query($conn, "SELECT * FROM disponibilite_gestionnaire WHERE gestionnaire_id = '$data' AND jour = '$joursReference[$i]'");
+			if(mysqli_num_rows($resultDays) > 0){
+				while($rowDays = mysqli_fetch_assoc($resultDays)){
+					if($days[$i] == "Thursday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
+					if($days[$i] == "Friday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
+				}
+			}
+			echo ">";
+			
+			echo "</td></tr>";
 		}
 		echo "</tbody></table></div>";
 	}
