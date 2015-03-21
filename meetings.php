@@ -29,54 +29,7 @@ include 'functions/meetings_handler.php';
                <!-- Tableau des horaires -->
                <div class="panel panel-default col-sm-1">
                	<div class="panel-heading">Horaires</div>
-					<table class="table table-bordered">
-              			<tbody>
-              			<?php $numHours = getHours($_SESSION['gestionnaire']);?>
-               			<tr><td><div class="btn-group"><button class="btn btn-default"><span class="glyphicon glyphicon-edit"></span></button><button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button></div></td></tr>
-              		</tbody>
-               		</table>
-               </div>
-               <!-- Jours -->
-			  <div class="panel panel-default col-sm-2">
-               	<div class="panel-heading" id="first-day"><?php echo (new DateTime('today'))->add(new DateInterval("P1D"))->format('l d');?></div>
-					<table class="table table-bordered">
-              			<tbody>
-              			<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
-              		</tbody>
-               		</table>
-               </div>
-				  <div class="panel panel-default col-sm-2">
-               	<div class="panel-heading"><?php echo (new DateTime('today'))->add(new DateInterval("P2D"))->format('l d');?></div>
-					<table class="table table-bordered">
-              			<tbody>
-						<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
-              		</tbody>
-               		</table>
-               </div>
-			  <div class="panel panel-default col-sm-2">
-               	<div class="panel-heading"><?php echo (new DateTime('today'))->add(new DateInterval("P3D"))->format('l d');?></div>
-					<table class="table table-bordered">
-              			<tbody>
-						<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
-              		</tbody>
-               		</table>
-               </div>
-			  <div class="panel panel-default col-sm-2">
-               	<div class="panel-heading"><?php echo (new DateTime('today'))->add(new DateInterval("P4D"))->format('l d');?></div>
-					<table class="table table-bordered">
-              			<tbody>
-						<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
-              		</tbody>
-               		</table>
-               </div>
-			  <div class="panel panel-default col-sm-2">
-               	<div class="panel-heading"><?php echo (new DateTime('today'))->add(new DateInterval("P1D"))->format('l d');?></div>
-					<table class="table table-bordered">
-              			<tbody>
-						<?php for($i = 0; $i < $numHours; $i++) echo "<tr><td></td></tr>";?>
-              		</tbody>
-               		</table>
-               </div>
+					<?php construct($_SESSION['gestionnaire']);?>
         </div>
     </div>
     
