@@ -83,6 +83,9 @@ function construct($data){
 			$resultDays = mysqli_query($conn, "SELECT * FROM disponibilite_gestionnaire WHERE gestionnaire_id = '$data' AND jour = '$joursReference[$i]'");
 			if(mysqli_num_rows($resultDays) > 0){
 				while($rowDays = mysqli_fetch_assoc($resultDays)){
+                    if($days[$i] == "Monday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
+                    if($days[$i] == "Tuesday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
+                    if($days[$i] == "Wednesday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
 					if($days[$i] == "Thursday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
 					if($days[$i] == "Friday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
 				}
