@@ -46,6 +46,6 @@ $cat_array = getCategorie();
         <label class="control-label" >Description <span class="mandatory">*</span></label>
         <textarea class="form-control" name="description"></textarea>                 
         <br>
-        <input type="submit" name="addSet" value="Ajouter" class="btn btn-primary">
+        <input type="submit" name="addSet" value="Ajouter" class="btn btn-custom btn-custom-validate">
    </div>            
 </form>

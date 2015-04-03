@@ -124,7 +124,7 @@ $categories2 = getCategorie();
                                                <form method="post" action="liste-materiel.php">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <div class="btn-group">
-                                                    <a href="materiel_edit.php?id='<?php echo $id?>'">
+                                                    <a href="materiel_edit.php?id='<?php echo $id?>'" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload">
                                                         <button type="button" class="btn btn-default">
                                                            <span class="glyphicon glyphicon-edit"></span>
                                                            Modifier 
