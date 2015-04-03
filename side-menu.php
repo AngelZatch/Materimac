@@ -21,7 +21,7 @@ $reservationsEnAttente = $dataGWR['COUNT(*)'];
          <a href="meetings.php" class="main-option">Rendez-vous du jour <span class="badge">3</span></a>
      </li>
      <li>
-         <a class="main-option" href>Planning</a>
+         <a class="main-option" href="planning.php">Planning</a>
      </li>
      <li>
         <a class="main-option">Réservations <span class="badge"><?php echo $reservationsEnAttente;?></span></a>
