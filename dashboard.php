@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 ?>
 <html>
 <head>
@@ -22,5 +25,6 @@ session_start();
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery.collapse.js"></script>
 </body>
 </html>

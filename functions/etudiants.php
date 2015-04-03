@@ -9,7 +9,7 @@ function afficherPromotion(){
     $result = mysqli_query($conn, "SELECT * FROM promotion");
     
     if(mysqli_num_rows($result) > 0){
-        echo "<ul>";
+        echo "<ul class='nav-list'>";
         while($row = mysqli_fetch_assoc($result)){
             echo "<li><a href='etudiant_liste.php?annee=".$row["annee"]."'>IMAC " . $row["annee"] ."</a><span class='badge'>";
             //Get count badge
