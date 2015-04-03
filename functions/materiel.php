@@ -27,7 +27,7 @@ function ajouterMateriel() {
 
         if (mysqli_num_rows($result2) > 0) {
             $id = mysqli_fetch_assoc($result2)['id'];
-            header('Location: materiel_edit.php?id='.$id.'');
+			header('Location: materiel_liste.php');
         } else {
             echo "0 results";
         } 

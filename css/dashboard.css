@@ -82,3 +82,36 @@ body{
     position: absolute;
     right: 0;
 }
+
+.lightbox-form{
+	padding: 15px;
+}
+
+.form-control{
+	height: 35px;
+}
+
+.btn-custom{
+	padding: 10px 55px;
+	text-transform: uppercase;
+}
+
+.btn-custom-validate{
+	background-color: #9CCC65;
+	border-color: #9ccc65;
+	color: white;
+}
+
+.btn-custom-validate:hover{
+	background-color: #8BC34A;
+	border-color: #9ccc65;
+	color: white;
+}
+
+.grouped{
+	padding: 6px;
+}
+
+.confirmAdd{
+	float: right;
+}
