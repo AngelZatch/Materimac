@@ -1,6 +1,10 @@
 <?php
 session_start();
 require_once 'settings/connection.php';
+
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 ?>
 <html>
 <head>

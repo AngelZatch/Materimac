@@ -134,18 +134,16 @@ function ajouterSetMateriel() {
     mysqli_query($conn, $sql);
 }
 
-
+/* SUPPRIMER UN MATERIEL */
 if(isset($_POST['deleteMateriel'])){
     supprimerMateriel();
 }
 
-/* SUPPRESSION */
 function supprimerMateriel() {
     global $conn;
     $id = $_POST['id'];
-    $sql = "DELETE FROM materiel WHERE id=$id";
 
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_query($conn, "DELETE FROM materiel WHERE id=$id")) {
         echo "Record deleted successfully";
     } else {
         echo "Error deleting record: " . mysqli_error($conn);

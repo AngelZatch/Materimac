@@ -2,6 +2,9 @@
 session_start();
 require_once 'settings/connection.php';
 require_once 'functions/etudiants.php';
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 ?>
 
 

@@ -22,7 +22,7 @@ $set_array = getSet();
 $cat_array = getCategorie();    
 ?>
 <div class="row">
-	<form action="materiel_liste.php" method="post">
+	<form action="materiel_liste.php" method="post" class="lightbox-form">
 	   <div class="form-group">
 			<input type="hidden" name="id" value="<?php echo $materiel['id'];?>">   
 			<label class="control-label">Nom du matériel <span class="mandatory">*</span></label>
@@ -133,7 +133,7 @@ $cat_array = getCategorie();
 			<label class="control-label">Notes</label>
 			<textarea class="form-control" name="note"><?php echo $materiel['note']; ?></textarea>
 			<br>
-			<input type="submit" name="updateMateriel" value="Valider" class="btn btn-primary">
+			<input type="submit" name="updateMateriel" value="Valider" class="btn btn-custom btn-custom-validate confirmAdd">
 	   </div>
 	</form>
 </div>

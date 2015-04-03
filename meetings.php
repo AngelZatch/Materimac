@@ -4,6 +4,9 @@ require_once 'settings/connection.php';
 require_once 'functions/etudiants.php';
 include 'functions/meetings_handler.php';
 
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 ?>
 <html>
 <head>

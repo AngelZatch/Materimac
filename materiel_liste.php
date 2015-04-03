@@ -8,6 +8,10 @@ include 'functions/set.php';
 include 'functions/set_mat_common.php';
 include 'functions/labels.php';
 
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
+
 $materiels1 = getMateriel();
 $materiels2 = getMateriel();
 $sets = getSet();
@@ -118,24 +122,19 @@ $categories2 = getCategorie();
                                            <td class="col-sm-3"><?php echo $reference; ?></td>
                                            <td class="col-sm-1"><?php echo $num_cn; ?></td>
                                            <td class="col-sm-1"><?php echo $etat; ?></td>
-                                           <td class="col-sm-1"><?php labelDispo($dispo) ?></td>
+                                           <td class="col-sm-1"><?php labelDispo($dispo); ?></td>
                                            <td class="col-sm-2"><?php echo $note; ?></td>
                                            <td class="col-sm-2">
-                                               <form method="post" action="liste-materiel.php">
-                                                <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                                <div class="btn-group">
-                                                    <a href="materiel_edit.php?id='<?php echo $id?>'" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload">
-                                                        <button type="button" class="btn btn-default">
-                                                           <span class="glyphicon glyphicon-edit"></span>
-                                                           Modifier 
-                                                        </button>
-                                                   </a>
-                                                   <button type="button" class="btn btn-default">
-                                                       <span class="glyphicon glyphicon-trash"></span>
-                                                       Supprimer
-                                                   </button>
-                                                </div>
-                                                </form>
+												<a href="materiel_edit.php?id='<?php echo $id?>'" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload">
+													<button type="button" class="btn btn-default">
+													   <span class="glyphicon glyphicon-edit"></span>
+													   Modifier 
+													</button>
+											   </a>
+											   <form action="materiel_liste.php" method="post">  
+													<input type="hidden" name="id" value="<?php echo $id; ?>">
+													<input type="submit" name="deleteMateriel" value="Supprimer" class="btn btn-default">
+											   </form>
                                            </td>
                                    </tr>
                                <?php
@@ -211,7 +210,7 @@ $categories2 = getCategorie();
                                                    <td class="col-sm-1"></td>
                                                    <td class="col-sm-2"><?php echo $note; ?></td>
                                                    <td class="col-sm-2">
-                                                       <form method="post" action="liste-materiel.php">
+                                                       <form method="post" action="materiel_liste.php">
                                                         <div class="btn-group">
                                                            <button type="button" class="btn btn-default">
                                                                <span class="glyphicon glyphicon-edit"></span>

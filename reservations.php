@@ -3,6 +3,10 @@ session_start();
 require_once 'settings/connection.php';
 require_once 'functions/f_reservations.php';
 
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
+
 $data = $_GET['id'];
 ?>
 <html>
