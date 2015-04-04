@@ -28,6 +28,9 @@ function construct($data){
 		/* On déclare la variable de jour*/
 		$caseDate = new DateTime('today');
 		
+		/* Localisation de la date en français */
+		setlocale(LC_ALL, 'fr_FR.utf8', 'fra');
+		
 		/* On récupère la valeur de la case précédente */
 		$caseDateString = (string)$caseDate->add(new DateInterval("P".$cumulatedOffset."D"))->format('l');
 		
@@ -64,7 +67,8 @@ function construct($data){
 		}
 		
 		/*On affiche ensuite la nouvelle valeur de la journée*/
-		echo $caseDate->add(new DateInterval("P".$dayOffset."D"))->format('l d');
+		//echo $caseDate->add(new DateInterval("P".$dayOffset."D"))->format('l d');
+		echo strftime("%A %d", strtotime($caseDate->add(new DateInterval("P".$dayOffset."D"))->format('l')));
 		
 		/*On stocke les valeurs dans un tableau pour y accéder au remplissage*/
 		$dates = array();
@@ -83,15 +87,12 @@ function construct($data){
 			$resultDays = mysqli_query($conn, "SELECT * FROM disponibilite_gestionnaire WHERE gestionnaire_id = '$data' AND jour = '$joursReference[$i]'");
 			if(mysqli_num_rows($resultDays) > 0){
 				while($rowDays = mysqli_fetch_assoc($resultDays)){
-                    if($days[$i] == "Monday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
-                    if($days[$i] == "Tuesday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
-                    if($days[$i] == "Wednesday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
-					if($days[$i] == "Thursday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
-					if($days[$i] == "Friday" && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";
+					for($k = 0; $k < $maxDays; $k++){	
+						if($days[$i] == $joursReference[$k] && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";	
+					}
 				}
 			}
 			echo ">";
-			
 			echo "</td></tr>";
 		}
 		echo "</tbody></table></div>";
