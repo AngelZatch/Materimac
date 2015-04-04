@@ -1,7 +1,7 @@
 <?php
 function construct($data){
 	global $conn;
-	$result = mysqli_query($conn, "SELECT * FROM disponibilite_gestionnaire WHERE gestionnaire_id = $data");
+	$result = mysqli_query($conn, "SELECT DISTINCT heure FROM disponibilite_gestionnaire WHERE gestionnaire_id = $data ORDER BY heure ASC");
 	
 	//CONSTRUCTION DES HORAIRES
 		if(mysqli_num_rows($result) > 0){
@@ -19,7 +19,10 @@ function construct($data){
 	$dayOffset = 0;
 	$cumulatedOffset = 0;
 	$fridayOffset = true;
-	$joursReference = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi");
+	$joursReference = array("lundi", "mardi", "mercredi", "jeudi", "vendredi");
+	
+	/* Localisation de la date en français */
+	setlocale(LC_ALL, 'fr_FR.utf8', 'fra');
 	
 	for($i = 0; $i < $maxDays; $i++){
 		echo "<div class='panel panel-default col-sm-2'><div class='panel-heading'";
@@ -27,9 +30,6 @@ function construct($data){
 		echo "'>";
 		/* On déclare la variable de jour*/
 		$caseDate = new DateTime('today');
-		
-		/* Localisation de la date en français */
-		setlocale(LC_ALL, 'fr_FR.utf8', 'fra');
 		
 		/* On récupère la valeur de la case précédente */
 		$caseDateString = (string)$caseDate->add(new DateInterval("P".$cumulatedOffset."D"))->format('l');
@@ -74,7 +74,7 @@ function construct($data){
 		$dates = array();
 		$dates[$i] = $caseDate->format('d/m');
 		$days = array();
-		$days[$i] = $caseDate->format('l');
+		$days[$i] = strftime("%A", strtotime($caseDate->format('l')));
 		
 		/*On reset l'offset "local"*/
 		$dayOffset = 0;
