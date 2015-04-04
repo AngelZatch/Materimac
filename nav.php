@@ -22,7 +22,7 @@
                 </ul>
             </li>
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['prenom'];?></a></li>
-            <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+            <li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
           </ul>
           <form class="navbar-form navbar-right" action="recherche_display.php" method="get">
             <input type="text" class="form-control" placeholder="Rechercher..." name="recherche">
