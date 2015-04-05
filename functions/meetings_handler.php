@@ -84,11 +84,13 @@ function construct($data){
 		<tbody>";
 		for($j = 0; $j < $numHours; $j++){
 			echo "<tr><td";
-			$resultDays = mysqli_query($conn, "SELECT * FROM disponibilite_gestionnaire WHERE gestionnaire_id = '$data' AND jour = '$joursReference[$i]'");
+			$resultDays = mysqli_query($conn, "SELECT heure FROM disponibilite_gestionnaire WHERE gestionnaire_id = '$data' AND jour = '$days[$i]'");
 			if(mysqli_num_rows($resultDays) > 0){
 				while($rowDays = mysqli_fetch_assoc($resultDays)){
-					for($k = 0; $k < $maxDays; $k++){	
-						if($days[$i] == $joursReference[$k] && $hours[$j] == $rowDays['heure']) echo " class='open-slot'";	
+					for($k = 0; $k < $maxDays; $k++){
+						if($days[$i] == $joursReference[$k] && $hours[$j] == $rowDays['heure']){
+                            echo " class='open-slot'";	   
+                        }
 					}
 				}
 			}
