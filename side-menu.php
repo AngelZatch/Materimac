@@ -31,6 +31,7 @@ $reservationsEnAttente = $dataGWR['COUNT(*)'];
 		<li><a href="#" class="main-option toggleable" data-collapse="accordion"><span class="glyphicon glyphicon-education"></span> Gestion des étudiants</a><?php afficherPromotion(); ?></li>
 		<li><a href="general-admin.php" class="main-option"><span class="glyphicon glyphicon-wrench"></span> Administration Générale</a></li>
 		<!--<li><a href="#" class="main-option"><span class="glyphicon glyphicon-envelope"></span> Rapporter un bug</a></li>-->
+		<li><a href="" class="main-option"><span class="glyphicon glyphicon-user"></span> Mon compte</a></li>
 		<li><a href="logout.php" class="main-option"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
 	</ul>  
 </div>
