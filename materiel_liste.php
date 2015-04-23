@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 include 'functions/etudiants.php';
 include 'functions/materiel.php';
 include 'functions/categorie.php';

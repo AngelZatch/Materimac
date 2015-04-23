@@ -1,5 +1,5 @@
 <?php
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 ?>
 
 

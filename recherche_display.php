@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 include 'functions/recherche.php';
 include 'functions/set.php';
 include 'functions/categorie.php';

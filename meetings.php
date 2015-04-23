@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 require_once 'functions/etudiants.php';
 include 'functions/meetings_handler.php';
 

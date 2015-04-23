@@ -1,5 +1,5 @@
 <?php
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 require_once 'functions/etudiants.php';
 require_once 'functions/f_reservations.php';
 
