@@ -3,8 +3,15 @@
         <div class="navbar-header">
         
           <a class="navbar-brand"
+<<<<<<< HEAD
           <?php if($_SESSION['power'] == "1") echo 'href="dashboard.php">Kiwi - Gestionnaire</a>';
                 if($_SESSION['power'] == "2") echo 'href="etudiant_dashboard.php">Kiwi - Etudiant</a>';?>
+=======
+          <?php if($_SESSION['power'] == "1") echo 'href="dashboard.php">Matérimac - Gestionnaire</a>';
+                if($_SESSION['power'] == "2") echo 'href="etudiant_dashboard.php">Matérimac - Etudiant</a>';
+			 	if($_SESSION['power'] == "3") echo 'href="local_dashboard.php">Matérimac - Local</a>'
+			 ?>
+>>>>>>> origin/master-test
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -22,7 +29,7 @@
                 </ul>
             </li>
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['prenom'];?></a></li>
-            <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+            <li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
           </ul>
           <form class="navbar-form navbar-right" action="recherche_display.php" method="get">
             <input type="text" class="form-control" placeholder="Rechercher..." name="recherche">

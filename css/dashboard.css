@@ -26,7 +26,7 @@ nav{
         left: 0;
         z-index: 1000;
         display: block;
-        padding: 20px;
+        padding: 20px 0;
         background-color: #f5f5f5;
         overflow-x: hidden;
         overflow-y: auto;
@@ -39,9 +39,18 @@ nav{
 }
 
 .main-option{
+<<<<<<< HEAD
     text-transform: uppercase;
     font-weight: 700;
     color: #33691E;
+=======
+    font-weight: 600;
+    color: #13176b;
+>>>>>>> origin/master-test
+}
+
+.nav-list{
+	list-style: none;
 }
 
 .main{
@@ -73,3 +82,64 @@ nav{
     line-height: 20px;
     padding: 0 15px;
 }
+
+.panel-superdanger{
+    border-color: #e53935;
+}
+
+#admin-warning{
+    background-color: #E53935 !important;
+    font-weight: 800;
+    color: #fff !important;
+}
+
+.super-option{
+    font-weight: 600;
+    position: relative;
+    display: block;
+	margin-bottom: 20px;
+	vertical-align: middle;
+}
+
+.so-last{
+	margin-bottom: 10px;
+}
+
+.btn-superdanger{
+    position: absolute;
+    right: 0;
+}
+
+.lightbox-form{
+	padding: 15px;
+}
+
+.form-control{
+	height: 35px;
+}
+
+.btn-custom{
+	padding: 10px 55px;
+	text-transform: uppercase;
+}
+
+.btn-custom-validate{
+	background-color: #9CCC65;
+	border-color: #9ccc65;
+	color: white;
+}
+
+.btn-custom-validate:hover{
+	background-color: #8BC34A;
+	border-color: #9ccc65;
+	color: white;
+}
+
+.grouped{
+	padding: 6px;
+}
+
+.confirmAdd{
+	float: right;
+}
+
