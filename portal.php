@@ -21,7 +21,7 @@ include 'login.php';
           <input type="text" name="id" class="form-control" placeholder="identifiant">
            <br>
           <label for="pwd" class="control-label">Mot de passe</label>
-          <input type="text" name="pwd" class="form-control" placeholder="mot de passe">
+          <input type="password" name="pwd" class="form-control" placeholder="mot de passe">
           <br>
           <button type="submit" name="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> Accéder à mon espace</button>
            <p><?php echo $error;?></p>
