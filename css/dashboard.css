@@ -81,13 +81,9 @@ nav{
 
 .badge{
     background-color: inherit;
-    color: #FFF;
+    color: inherit;
     position: absolute;
     right: 0;
-}
-
-.badge:hover{
-	color: #4828bb !important;
 }
 
 #promotions{

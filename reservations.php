@@ -24,7 +24,9 @@ $data = $_GET['id'];
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <?php 
-                    echo "<h1 class='page-header'>";
+                    echo "<h1 class='page-header'>";?>
+                    <span class="glyphicon glyphicon-eye-open"></span> 
+                    <?php
                     switch($data){
     
                         case 1:

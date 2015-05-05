@@ -18,7 +18,7 @@ if(!isset($_SESSION['power'])){
       <div class="row">
           <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-               <h1 class="page-header">Please look forward to it™</h1>
+               <h1 class="page-header"><span class="glyphicon glyphicon-dashboard"></span> Please look forward to it™</h1>
            </div>
       </div>
     </div>
