@@ -3,15 +3,10 @@
         <div class="navbar-header">
         
           <a class="navbar-brand"
-<<<<<<< HEAD
-          <?php if($_SESSION['power'] == "1") echo 'href="dashboard.php">Kiwi - Gestionnaire</a>';
-                if($_SESSION['power'] == "2") echo 'href="etudiant_dashboard.php">Kiwi - Etudiant</a>';?>
-=======
           <?php if($_SESSION['power'] == "1") echo 'href="dashboard.php">Matérimac - Gestionnaire</a>';
                 if($_SESSION['power'] == "2") echo 'href="etudiant_dashboard.php">Matérimac - Etudiant</a>';
 			 	if($_SESSION['power'] == "3") echo 'href="local_dashboard.php">Matérimac - Local</a>'
 			 ?>
->>>>>>> origin/master-test
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
