@@ -16,6 +16,7 @@ $annee = $row['promotion_id'];
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/admin-student.css">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 <body>
        <?php include 'nav.php'; ?>

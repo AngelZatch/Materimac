@@ -25,6 +25,7 @@ $categories2 = getCategorie();
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/ekko-lightbox.css">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 <body>
     <?php include 'nav.php'; ?>
@@ -32,7 +33,7 @@ $categories2 = getCategorie();
         <div class="row">
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-               <h1 class="page-header">Inventaire de Matériel</h1>
+               <h1 class="page-header"><span class="glyphicon glyphicon-list-alt"></span> Inventaire de Matériel</h1>
                <a href="materiel_ajout.php" data-title="Ajouter du matériel" data-toggle="lightbox" data-gallery="remoteload">
                    <button class="btn btn-primary">
                        <span class="glyphicon glyphicon-plus"></span>

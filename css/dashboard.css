@@ -1,18 +1,32 @@
+*{
+	font-family: 'globerthin_free';
+}
+
 body{
     padding-top: 50px;
 }
 
 nav{
-    background-color: #FFFFFF !important;
-    border-color: #9ccc65 !important;
+    background-color: #1d1d1d !important;
+	border-bottom: none !important;
 }
 
 .navbar-brand{
-    color: #9ccc65 !important;
+    color: #FFF !important;
+	font-size: 30px;
+	font-family: 'globersemibold_free';
 }
 
 .navbar-nav>li>a{
-    color: #9CCC65 !important;
+    color: #CCC !important;
+}
+
+.navbar-brand:hover{
+	color: #4828bb !important;
+}
+
+.navbar-nav>li>a:hover{
+	color: #FFF !important;
 }
 
 .sidebar{
@@ -27,7 +41,7 @@ nav{
         z-index: 1000;
         display: block;
         padding: 20px 0;
-        background-color: #f5f5f5;
+        background-color: #262626;
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -35,18 +49,16 @@ nav{
 
 .nav-sidebar>li>ul>li>a,
 .nav-sidebar>li>ul>ul>li>a{
-    color: #689F38 !important;
+    color: #FFF !important;
 }
 
 .main-option{
-<<<<<<< HEAD
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #33691E;
-=======
     font-weight: 600;
-    color: #13176b;
->>>>>>> origin/master-test
+    color: #FFF;
+}
+
+.main-option:hover{
+	color: #4828bb;
 }
 
 .nav-list{
@@ -64,13 +76,18 @@ nav{
 }
 .main .page-header{
     margin-top: 0;
+	font-family: 'globersemibold_free';
 }
 
 .badge{
     background-color: inherit;
-    color: #13176b;
+    color: #FFF;
     position: absolute;
     right: 0;
+}
+
+.badge:hover{
+	color: #4828bb !important;
 }
 
 #promotions{
@@ -118,21 +135,43 @@ nav{
 	height: 35px;
 }
 
+.btn-primary{
+	background-color: #4828bb !important;
+	border-color: #231166 !important;
+}
+
+.btn-primary:hover{
+	background-color: #231166 !important;
+}
+
 .btn-custom{
 	padding: 10px 55px;
 	text-transform: uppercase;
 }
 
 .btn-custom-validate{
-	background-color: #9CCC65;
-	border-color: #9ccc65;
+	background-color: #5A14D9;
+	border-color: #4828bb;
 	color: white;
 }
 
 .btn-custom-validate:hover{
-	background-color: #8BC34A;
-	border-color: #9ccc65;
+	background-color: #4828bb;
+	border-color: #4828bb;
 	color: white;
+}
+
+.btn-full{
+	width: 100%;	
+	background-color: #4828bb !important;
+	border-color: #231166 !important;
+	color: #fff;
+	font-size: 30px;
+}
+
+.btn-full:hover{
+	background-color: #231166 !important;
+	color: #fff;
 }
 
 .grouped{

@@ -21,6 +21,7 @@ $categories = getCategorie();
     <title>Résultats de la recherche</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 <body>
     <?php include 'nav.php'; ?>
