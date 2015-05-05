@@ -63,6 +63,7 @@ nav{
 
 .nav-list{
 	list-style: none;
+	color: #FFF;
 }
 
 .main{
@@ -94,6 +95,14 @@ nav{
     border-radius: 35px;
     line-height: 20px;
     padding: 0 15px;
+}
+
+.nav-pills > li.active > a{
+	background-color: #4828bb;
+}
+
+.nav-pills > li > a {
+	color: #4828bb;
 }
 
 .panel-superdanger{
@@ -177,4 +186,3 @@ nav{
 .confirmAdd{
 	float: right;
 }
-
