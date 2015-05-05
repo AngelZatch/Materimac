@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "materimac_test";
+$dbname = "materimac";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);

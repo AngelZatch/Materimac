@@ -9,7 +9,7 @@ function afficherPromotion(){
     $result = mysqli_query($conn, "SELECT * FROM promotion");
     
     if(mysqli_num_rows($result) > 0){
-        echo "<ul>";
+        echo "<ul class='nav-list'>";
         while($row = mysqli_fetch_assoc($result)){
             echo "<li><a href='etudiant_liste.php?annee=".$row["annee"]."'>IMAC " . $row["annee"] ."</a><span class='badge'>";
             //Get count badge
@@ -138,6 +138,29 @@ function editEtudiant(){
 }
 /*editEtudiant()*/
 
+/*AJOUT*/
+
+if(isset($_POST['addEtudiant'])){
+	ajouterEtudiant();
+}
+
+function ajouterEtudiant(){
+	global $conn;
+	$prenom = $_POST['prenom'];
+	$nom = $_POST['nom'];
+	$num = $_POST['numero_etudiant'];
+	$id = $_POST['identifiant'];
+	$annee = $_POST['annee'];
+	$promotion = $_POST['promotion'];
+	
+	$sql = "INSERT INTO etudiant (prenom, nom, numero_etudiant, identifiant, annee, mot_de_passe, promotion_id, valide, user_type)
+						VALUES ('$prenom', '$nom', '$num', '$id', '$annee', '$num', '$promotion', '0', '2')";
+	if(mysqli_query($conn, $sql)){
+		echo "Ajout effectué";
+	} else {
+		echo "Erreur : " . $sql . "<br>" . mysqli_error($conn);
+	}
+}
 
 /* SUPPRESSION */
 /*function supprimerMateriel($id) {

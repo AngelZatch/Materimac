@@ -1,8 +1,10 @@
 <?php
 session_start();
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 require_once 'functions/etudiants.php';
-
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 $data = $_GET['annee'];
 ?>
 <html>
@@ -26,7 +28,7 @@ $data = $_GET['annee'];
                         <li role="presentation"><a href="#">En attente</a></li>
                     </ul>
                    <div class="btn-toolbar">
-                        <a href="materiel_ajout.php">
+                        <a href="etudiant_ajout.php?annee=<?php echo $data;?>" data-title="Ajouter un étudiant" data-toggle="lightbox" data-gallery="remoteload">
                            <button class="btn btn-primary">
                                <span class="glyphicon glyphicon-plus"></span>
                                Ajouter un étudiant
@@ -56,5 +58,26 @@ $data = $_GET['annee'];
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/ekko-lightbox.min.js"></script>
+    <script>
+            $(document).ready(function ($) {
+                // delegate calls to data-toggle="lightbox"
+                $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+                    event.preventDefault();
+                    return $(this).ekkoLightbox({
+                        onShown: function() {
+                            if (window.console) {
+                                return console.log('Checking our the events huh?');
+                            }
+                        },
+						onNavigate: function(direction, itemIndex) {
+                            if (window.console) {
+                                return console.log('Navigating '+direction+'. Current item: '+itemIndex);
+                            }
+						}
+                    });
+                });
+            });
+    </script>
 </body>
 </html>

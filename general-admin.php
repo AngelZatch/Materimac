@@ -1,8 +1,11 @@
 <?php
 session_start();
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 require_once 'functions/etudiants.php';
 
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 ?>
 <html>
 <head>
@@ -82,11 +85,14 @@ require_once 'functions/etudiants.php';
                    </tr>
                </table>
            </div>
-           <h2>Gestion globale</h2>
-           <div class="alert alert-danger" role="alert"><strong>Attention !</strong> Ces actions sont définitives !</div>
-           <p>Supprimer toutes les Attestations de Responsabilité Cilvile</p>
-           <p>Supprimer tout l'historique</p>
-           <p>Geler tout l'inventaire</p>
+			   <div class="panel panel-superdanger">
+                    <div class="panel-heading" id="admin-warning">Gestion globale</div>
+                    <div class="panel-body">
+                      	<p class="super-option">Supprimer toutes les Attestations de Responsabilité Cilvile<button class="btn btn-superdanger">Supprimer les attestations</button></p>
+                      	<p class="super-option">Supprimer tout l'historique<button class="btn btn-superdanger">Supprimer l'historique</button></p>
+                      	<p class="super-option so-last">Geler tout l'inventaire<button class="btn btn-superdanger">Geler</button></p>                       
+                    </div>
+                </div>
            </div>
         </div>
     </div>

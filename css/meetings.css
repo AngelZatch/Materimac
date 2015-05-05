@@ -1,0 +1,22 @@
+.panel-default{
+	padding: 0 !important;
+}
+
+.panel-heading{
+	text-transform: capitalize;
+}
+
+td{
+	text-align: center;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	height: 39px !important;
+}
+
+#first-day{
+	font-weight: 700;
+}
+
+.open-slot{
+	background-color: #F1F8E9;
+}
