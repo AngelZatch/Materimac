@@ -29,12 +29,7 @@ $data = $_GET['annee'];
                         <li role="presentation"><a href="#">En attente</a></li>
                     </ul>
                    <div class="btn-toolbar">
-                        <a href="etudiant_ajout.php?annee=<?php echo $data;?>" data-title="Ajouter un étudiant" data-toggle="lightbox" data-gallery="remoteload">
-                           <button class="btn btn-primary">
-                               <span class="glyphicon glyphicon-plus"></span>
-                               Ajouter un étudiant
-                           </button>
-                        </a>
+                        <a href="etudiant_ajout.php?annee=<?php echo $data;?>" data-title="Ajouter un étudiant" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un étudiant</a>
                     </div>
                 </div>
                 <br><br>

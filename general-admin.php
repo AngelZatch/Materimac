@@ -22,43 +22,6 @@ if(!isset($_SESSION['power'])){
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
            <h1 class="page-header"><span class="glyphicon glyphicon-wrench"></span> Administration Générale</h1>
-           <h2>Gestion des Formations</h2>
-           <div class="table-responsive">
-               <table class="table table-striped">
-                   <thead>
-                       <tr>
-                           <th>Nom</th>
-                           <th>Acronyme</th>
-                           <th>Type</th>
-                           <th>Actions</th>
-                       </tr>
-                   </thead>
-                   <tr>
-                       <td>Image Multimédia Audiovisuel Communication</td>
-                       <td>IMAC</td>
-                       <td>Ingénieur</td>
-                       <td>Modifier</td>
-                   </tr>
-                  <tr>
-                       <td>Génie Civil</td>
-                       <td>GC</td>
-                       <td>Ingénieur</td>
-                       <td>Modifier</td>
-                   </tr>
-                  <tr>
-                       <td>Informatique et Réseaux</td>
-                       <td>IR</td>
-                       <td>Ingénieur</td>
-                       <td>Modifier</td>
-                   </tr>
-                  <tr>
-                       <td>Langues Etrangères Appliquées</td>
-                       <td>LEA</td>
-                       <td>Licence</td>
-                       <td>Modifier</td>
-                   </tr>
-               </table>
-           </div>
            <h2>Gestion des Promotions</h2>
           <div class="table-responsive">
                <table class="table table-striped">
@@ -71,18 +34,18 @@ if(!isset($_SESSION['power'])){
                    </thead>
                    <tr>
                        <td>IMAC</td>
-                       <td>2015</td>
-                       <td>Supprimer</td>
+                       <td>1</td>
+                       <td>Supprimer les étudiants</td>
                    </tr>
                   <tr>
                        <td>IMAC</td>
-                       <td>2016</td>
-                       <td>Supprimer</td>                       
+                       <td>2</td>
+                       <td>Supprimer les étudiants</td>                       
                    </tr>
                   <tr>
                        <td>IMAC</td>
-                       <td>2017</td>
-                       <td>Supprimer</td>
+                       <td>3</td>
+                       <td>Supprimer les étudiants</td>
                    </tr>
                </table>
            </div>

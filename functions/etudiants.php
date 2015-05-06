@@ -42,16 +42,14 @@ function afficherEtudiants($data) {
             else echo "<td class='col-sm-2'><span class='label label-danger'>En attente de validation</span></td>";
             
             echo "<td class='col-sm-3'>
-                <div class='btn-group'>
-                    <a href='etudiant_edit.php?nom=".$row["identifiant"]."'>
-                        <button type='button' class='btn btn-default'>
+                <div class='btn-group' role='group' aria-label='...'>
+                    <a href='etudiant_edit.php?nom=".$row["identifiant"]."' role='button' class='btn btn-default'>
                             <span class='glyphicon glyphicon-edit'></span> 
-                            Modifier
-                        </button>
                     </a>";
             //Affichage des boutons de validation
-            if($row["valide"] == "1") echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span> Invalider</button>";
-            else echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-check'></span> Valider</button>";
+            if($row["valide"] == "1") echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></button>";
+            else echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-check'></span></button>";
+            echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button>";
             echo "</div>
                 </td>
             </tr>

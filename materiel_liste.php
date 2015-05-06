@@ -34,18 +34,8 @@ $categories2 = getCategorie();
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <h1 class="page-header"><span class="glyphicon glyphicon-list-alt"></span> Inventaire de Matériel</h1>
-               <a href="materiel_ajout.php" data-title="Ajouter du matériel" data-toggle="lightbox" data-gallery="remoteload">
-                   <button class="btn btn-primary">
-                       <span class="glyphicon glyphicon-plus"></span>
-                       Ajouter du matériel
-                   </button>
-               </a>
-               <a href="set_ajout.php" data-title="Ajouter un set" data-toggle="lightbox" data-gallery="remoteload">
-                   <button class="btn btn-primary">
-                   <span class="glyphicon glyphicon-plus"></span>
-                   Ajouter un set
-                   </button>
-               </a>
+               <a href="materiel_ajout.php" data-title="Ajouter du matériel" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter du matériel</a>
+               <a href="set_ajout.php" data-title="Ajouter un set" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un set</a>
                <div class="row">
                    <div class="col-md-4">
                        <h2>Catégories</h2>
@@ -59,7 +49,7 @@ $categories2 = getCategorie();
                        <?php
                             }
                         ?>
-                        <a class="btn btn-default" href="categorie_display.php">Gérer les catégories</a>
+                        <a role="button" class="btn btn-default" href="categorie_display.php">Gérer les catégories</a>
                    </div>
                    <div class="col-md-4">
                        <h2>Disponibilité</h2>

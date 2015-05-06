@@ -1,5 +1,13 @@
-*{
+* {
+    font-family: 'open_sansregular';
+}
+
+h1, h2{
 	font-family: 'globerthin_free';
+}
+
+h3 {
+    font-family: 'globersemibold_free';
 }
 
 body{
@@ -19,6 +27,7 @@ nav{
 
 .navbar-nav>li>a{
     color: #CCC !important;
+    font-family: inherit;
 }
 
 .navbar-brand:hover{
@@ -54,6 +63,7 @@ nav{
 
 .main-option{
     font-weight: 600;
+    font-family: 'globersemibold_free';
     color: #FFF;
 }
 
