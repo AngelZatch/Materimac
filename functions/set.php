@@ -57,7 +57,7 @@
     /* SELECTION DE TOUS LES MATERIELS */
     function getSet() {
         global $conn;
-        $sql = "SELECT id, nom, disponibilite_id FROM set_materiel";
+        $sql = "SELECT id, nom, disponibilite_id, categorie_id FROM set_materiel";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {

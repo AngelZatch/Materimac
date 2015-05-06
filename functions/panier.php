@@ -1,13 +1,10 @@
 <?php
-   if(isset($_POST['addPanierMateriel'])){
-        ajouterMaterielPanier();
-    }
-
     /* Ajouter un matériel au panier */
     function ajouterMaterielPanier() {
         global $conn;
+        
         $id = $_POST['id'];
-        $sql = "INSERT INTO panier (id_etudiant, id_materiel) VALUES ('105832', '$id')";
+        $sql = "INSERT INTO panier (id_etudiant, id_materiel) VALUES ('103832', '$id')";
 
         if (mysqli_query($conn, $sql)) {
             echo "Successfully added to basket";
