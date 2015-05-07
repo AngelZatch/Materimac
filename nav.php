@@ -28,7 +28,7 @@
             		<li><a <?php if($_SESSION['power'] == "1") echo 'href="dashboard.php">';
                 if($_SESSION['power'] == "2") echo 'href="etudiant_dashboard.php">';
 			 	if($_SESSION['power'] == "3") echo 'href="local_dashboard.php">'?>Dashboard</a></li>
-            		<li><a href="">Mon compte</a></li>
+            		<li><a href="user_profile.php">Mon compte</a></li>
             	</ul>
             </li>
             <li><a href="logout.php"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>

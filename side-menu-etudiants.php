@@ -18,7 +18,7 @@ require_once 'settings/db_connect.php';
             </ul>
         </li>
         <li>
-            <a class="main-option" href=""><span class="glyphicon glyphicon-user"></span> Mon compte</a>
+            <a class="main-option" href="user_profile.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a>
         </li>
         <li><a href="logout.php" class="main-option"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
     </ul>
