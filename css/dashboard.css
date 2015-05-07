@@ -14,7 +14,7 @@ body{
     padding-top: 50px;
 }
 
-nav{
+nav.navbar-inverse{
     background-color: #1d1d1d !important;
 	border-bottom: none !important;
 }
@@ -36,6 +36,10 @@ nav{
 
 .navbar-nav>li>a:hover{
 	color: #FFF !important;
+}
+
+.navbar-sec>li>a:hover{
+	color: #4828bb !important;
 }
 
 .sidebar{
@@ -195,4 +199,7 @@ nav{
 
 .confirmAdd{
 	float: right;
+}
+.navbar-secondary {
+	background-color: white !important;
 }

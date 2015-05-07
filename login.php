@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
 				else $_SESSION['etudiant'] = null;
             
             if($_SESSION['power'] == "1") header("location:dashboard.php");
-            if($_SESSION['power'] == "2") header("location:etudiant_dashboard.php");
+            if($_SESSION['power'] == "2") header("location:home.php");
 			if($_SESSION['power'] == "3") header("location:local_dashboard.php");
         } else {
             $error = "Informations invalides";
