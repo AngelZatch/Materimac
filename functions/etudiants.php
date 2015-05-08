@@ -102,6 +102,15 @@ function fetchEtudiant($data){
 }
 /*fetchEtudiant($data);*/
 
+/* AFFICHER N'IMPORTE QUI */
+function fetchInfos($data, $power){
+    global $conn;
+	if($power == "1") $sql = "SELECT prenom, nom, identifiant, mot_de_passe FROM gestionnaire WHERE id = '$data'";
+	if($power == "2") $sql = "SELECT * FROM etudiant WHERE numero_etudiant = '$data'";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
 /* AFFICHER LES PROMOTIONS PENDANT L'EDITION D'UN ETUDIANT */
 function fetchPromotion($annee){
     global $conn;
