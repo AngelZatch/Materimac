@@ -12,11 +12,8 @@ if(!isset($_SESSION['power'])){
 	header('Location:portal.php');
 }
 
-$materiels1 = getMateriel();
-$materiels2 = getMateriel();
-$sets = getSet();
-$categories1 = getCategorie();
-$categories2 = getCategorie();
+    $categories = getCategorie();
+    $categories2 = getCategorie();
 ?>
 <html>
 <head>
@@ -37,129 +34,79 @@ $categories2 = getCategorie();
                <a href="materiel_ajout.php" data-title="Ajouter du matériel" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter du matériel</a>
                <a href="set_ajout.php" data-title="Ajouter un set" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un set</a>
                <div class="row">
-                   <div class="col-md-4">
-                       <h2>Catégories</h2>
-                       <?php 
-                            while($categorie = mysqli_fetch_assoc($categories1)) {
-                                $cat_nom = $categorie['nom'];
-                                $cat_id = $categorie['id'];
+                        <div class="col-md-4">
+                            <h2>Catégories</h2>
+                            <?php
+                                $list_cat = $categories;
+                                while($categorie = mysqli_fetch_assoc($list_cat)) {
+                                    $cat_nom = $categorie['nom'];
+                                    $cat_id = $categorie['id'];
+                            ?>
+                            <input type="checkbox" name="<?php echo $cat_id; ?>" id=""><?php echo $cat_nom; ?>
+                            <br>
+                            <?php
+                                }
+                            ?>
+                            <a class="btn btn-default" href="categorie_display.php">Gérer les catégories</a>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Disponibilité</h2>
+                            <input type="checkbox"> <span class="label label-success">Disponible</span><br>
+                            <input type="checkbox"> <span class="label label-warning">Prévu aujourd'hui</span><br>
+                            <input type="checkbox"> <span class="label label-danger">Indisponible</span><br>
+                            <input type="checkbox"> <span class="label label-info">Gelé</span>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Etat du matériel</h2>
+                            <input type="checkbox" name="" id="">Neuf
+                            <br>
+                            <input type="checkbox" name="" id="">Très bon état
+                            <br>
+                            <input type="checkbox" name="" id="">Bon état
+                            <br>
+                            <input type="checkbox" name="" id="">OK
+                            <br>
+                            <input type="checkbox" name="" id="">Mauvais état
+                            <br>
+                            <input type="checkbox" name="" id="">Cassé
+                            <br>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <?php
+                            $list_cat = $categories2;
+                            while($categorie = mysqli_fetch_assoc($list_cat)) {
                         ?>
-                                <input type="checkbox" name="<?php echo $cat_id; ?>" id=""><?php echo $cat_nom; ?>
-                                <br>
-                       <?php
-                            }
-                        ?>
-                        <a role="button" class="btn btn-default" href="categorie_display.php">Gérer les catégories</a>
-                   </div>
-                   <div class="col-md-4">
-                       <h2>Disponibilité</h2>
-                       <input type="checkbox"> <span class="label label-success">Disponible</span><br>
-                       <input type="checkbox"> <span class="label label-warning">Prévu aujourd'hui</span><br>
-                       <input type="checkbox"> <span class="label label-danger">Indisponible</span><br>
-                       <input type="checkbox"> <span class="label label-info">Gelé</span>
-                   </div>
-                   <div class="col-md-4">
-                       <h2>Etat du matériel</h2>
-                       <input type="checkbox" name="" id="">Neuf
-                       <br>
-                       <input type="checkbox" name="" id="">Très bon état
-                       <br>
-                       <input type="checkbox" name="" id="">Bon état
-                       <br>
-                       <input type="checkbox" name="" id="">OK
-                       <br>
-                       <input type="checkbox" name="" id="">Mauvais état
-                       <br>
-                       <input type="checkbox" name="" id="">Cassé
-                       <br>
-                   </div>
-               </div>
-               <div class="table-responsive">
-                  <?php
-                        while($categorie = mysqli_fetch_assoc($categories2)) {
-                   ?>
-                     <?php 
-                            if($categorie['nom'] != "Set vidéo") {
-                       ?>
-                         <div class="panel panel-default">
-                         <div class="panel-heading"><h3 class="panel-title"><?php echo $categorie['nom']; ?></h3></div>
-                           <table class="table table-striped table-hover">
-                               <thead>
-                                   <tr>
-                                       <th class="col-sm-2">Nom Produit</th>
-                                       <th class="col-sm-3">Référence</th>
-                                       <th class="col-sm-1">n°CN</th>
-                                       <th class="col-sm-1">Etat</th>
-                                       <th class="col-sm-1">Disponibilité</th>
-                                       <th class="col-sm-2">Notes</th>
-                                       <th class="col-sm-2">Actions</th>
-                                   </tr>
-                               </thead>
-                               <?php
-                                    while($materiel = mysqli_fetch_assoc($materiels1)) {
-                                        if($materiel['set_id'] == 0 && $materiel['categorie_id'] == $categorie['id']){ 
-                                            $id = $materiel['id'];
-                                            $nom = $materiel['nom'];
-                                            $reference = $materiel['reference'];
-                                            $num_cn = $materiel['numero_cn'];
-                                            $etat_materiel = mysqli_fetch_assoc(fetchEtat($materiel['etat_id']));
-                                            $etat = $etat_materiel['nom'];
-                                            $dispo_materiel = mysqli_fetch_assoc(fetchDispo($materiel['disponibilite_id']));
-                                            $dispo = $dispo_materiel['nom'];
-                                            $note = $materiel['note'];
-                               ?>
-                                      <tr>
-                                           <td class="col-sm-2"><?php echo $nom; ?></td>
-                                           <td class="col-sm-3"><?php echo $reference; ?></td>
-                                           <td class="col-sm-1"><?php echo $num_cn; ?></td>
-                                           <td class="col-sm-1"><?php echo $etat; ?></td>
-                                           <td class="col-sm-1"><?php labelDispo($dispo); ?></td>
-                                           <td class="col-sm-2"><?php echo $note; ?></td>
-                                           <td class="col-sm-2">
-												<a href="materiel_edit.php?id='<?php echo $id?>'" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload">
-													<button type="button" class="btn btn-default">
-													   <span class="glyphicon glyphicon-edit"></span>
-													   Modifier 
-													</button>
-											   </a>
-											   <form action="materiel_liste.php" method="post">  
-													<input type="hidden" name="id" value="<?php echo $id; ?>">
-													<input type="submit" name="deleteMateriel" value="Supprimer" class="btn btn-default">
-											   </form>
-                                           </td>
-                                   </tr>
-                               <?php
-                                       }
-                                    }
-                               ?>
-                           </table>
-                           </div>
-                    <?php
-                            } else {
-                    ?>
-                            <div class="panel panel-default">
-                                <div class="panel-heading"><h3 class="panel-title"><?php echo $categorie['nom']; ?></h3></div>
-                               <table class="table table-striped table-hover">
-                                   <thead>
-                                       <tr>
-                                           <th class="col-sm-2">Nom Produit</th>
-                                           <th class="col-sm-3">Référence</th>
-                                           <th class="col-sm-1">n°CN</th>
-                                           <th class="col-sm-1">Etat</th>
-                                           <th class="col-sm-1">Disponibilité</th>
-                                           <th class="col-sm-2">Notes</th>
-                                           <th class="col-sm-2">Actions</th>
-                                       </tr>
-                                   </thead>
-                                   <?php
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h3 class="panel-title"><?php echo $categorie['nom']; ?></h3></div>
+
+                            <table class="table table-striped table-hover">   
+                                <thead>
+                                    <tr>
+                                        <th class="col-sm-2">Nom Produit</th>
+                                        <th class="col-sm-3">Référence</th>
+                                        <th class="col-sm-1">n°CN</th>
+                                        <th class="col-sm-1">Disponibilités</th>
+                                        <th class="col-sm-1"></th>
+                                        <th class="col-sm-2">Notes</th>
+                                        <th class="col-sm-2">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="table table-striped">
+
+                                    <?php
+                                        $sets = getSet();
+                                        $materiels = getMateriel();
                                         while($set = mysqli_fetch_assoc($sets)) {
                                             $set_id = $set['id'];
                                             $set_nom = $set['nom'];
                                             $dispo_set = mysqli_fetch_assoc(fetchDispo($set['disponibilite_id']));
                                             $set_dispo = $dispo_set['nom'];
-                                    ?>
-                                            <tbody class="table table-striped">
-                                               <tr style="background-color:#e8e8e8;">
+                                            $set_cat_id = $set['categorie_id'];
+                                            if($set_cat_id == $categorie['id']) {
+                                                ?>
+                                                <tr style="background-color:#e8e8e8;">
                                                    <td class="col-sm-2"><a href="set_edit.php?id=<?php echo $set_id; ?>"><?php echo $set_nom; ?></a></td>
                                                    <td class="col-sm-3"></td>
                                                    <td class="col-sm-1"></td>
@@ -182,59 +129,93 @@ $categories2 = getCategorie();
                                                         </form>
                                                    </td>
                                                </tr>
-                       <?php
-                                            while($materiel = mysqli_fetch_assoc($materiels2)) {
-                                                if($materiel['set_id'] == $set_id){ 
-                                                    $id = $materiel['id'];
-                                                    $nom = $materiel['nom'];
-                                                    $reference = $materiel['reference'];
-                                                    $num_cn = $materiel['numero_cn'];
-                                                    $etat_materiel = mysqli_fetch_assoc(fetchEtat($materiel['etat_id']));
-                                                    $etat = $etat_materiel['nom'];
-                                                    $note = $materiel['note'];
-                                   ?>
-                                              <tr>
-                                                    <td class="col-sm-2"><?php echo "<a href='materiel_edit.php?id=" . $id . "'>" . $nom . "</a>"; ?></td>
-                                                   <td class="col-sm-3"><?php echo $reference; ?></td>
-                                                   <td class="col-sm-1"><?php echo $num_cn; ?></td>
-                                                   <td class="col-sm-1"><?php echo $etat; ?></td>
-                                                   <td class="col-sm-1"></td>
-                                                   <td class="col-sm-2"><?php echo $note; ?></td>
-                                                   <td class="col-sm-2">
-                                                       <form method="post" action="materiel_liste.php">
-                                                        <div class="btn-group">
-                                                           <button type="button" class="btn btn-default">
-                                                               <span class="glyphicon glyphicon-edit"></span>
-                                                               Modifier 
-                                                           </button>
-                                                           <button type="button" class="btn btn-default">
-                                                               <span class="glyphicon glyphicon-trash"></span>
-                                                               Supprimer
-                                                           </button>
-                                                        </div>
-                                                        </form>
-                                                   </td>
-                                               </tr>
-                                   <?php
-                                                }
+                                                <?php
+                                                while($materiel = mysqli_fetch_assoc($materiels)) {
+                                                    if($materiel['set_id'] == $set_id) {
+                                                        $id = $materiel['id'];
+                                                        $nom = $materiel['nom'];
+                                                        $reference = $materiel['reference'];
+                                                        $num_cn = $materiel['numero_cn'];
+                                                        $etat_materiel = mysqli_fetch_assoc(fetchEtat($materiel['etat_id']));
+                                                        $etat = $etat_materiel['nom'];
+                                                        $note = $materiel['note'];
                                     ?>
-                                   </tbody>
+                                    <tr>
+                                        <td class="col-sm-2"><?php echo "<a href='materiel_edit.php?id=" . $id . "'>" . $nom . "</a>"; ?></td>
+                                        <td class="col-sm-3"><?php echo $reference; ?></td>
+                                        <td class="col-sm-1"><?php echo $num_cn; ?></td>
+                                        <td class="col-sm-1"><?php echo $etat; ?></td>
+                                        <td class="col-sm-1"></td>
+                                        <td class="col-sm-2"><?php echo $note; ?></td>
+                                        <td class="col-sm-2">
+                                            <form method="post" action="liste-materiel.php">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default">
+                                                        <span class="glyphicon glyphicon-edit"></span>
+                                                        Modifier 
+                                                    </button>
+                                                    <button type="button" class="btn btn-default">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                        Supprimer
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                                    }
+                                                }
+                                            } else {
+                                                while($materiel = mysqli_fetch_assoc($materiels)) {
+                                                    if($materiel['categorie_id'] == $categorie['id']){ 
+                                                        $id = $materiel['id'];
+                                                        $nom = $materiel['nom'];
+                                                        $reference = $materiel['reference'];
+                                                        $num_cn = $materiel['numero_cn'];
+                                                        $etat_materiel = mysqli_fetch_assoc(fetchEtat($materiel['etat_id']));
+                                                        $etat = $etat_materiel['nom'];
+                                                        $dispo_materiel = mysqli_fetch_assoc(fetchDispo($materiel['disponibilite_id']));
+                                                        $dispo = $dispo_materiel['nom'];
+                                                        $note = $materiel['note'];
+                                    ?>
+                                    <tr>
+                                        <td class="col-sm-2"><?php echo $nom; ?></td>
+                                        <td class="col-sm-3"><?php echo $reference; ?></td>
+                                        <td class="col-sm-1"><?php echo $num_cn; ?></td>
+                                        <td class="col-sm-1"><?php echo $etat; ?></td>
+                                        <td class="col-sm-1"><?php labelDispo($dispo); ?></td>
+                                        <td class="col-sm-2"><?php echo $note; ?></td>
+                                        <td class="col-sm-2">
+                                            <a href="materiel_edit.php?id='<?php echo $id?>'" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload">
+                                                <button type="button" class="btn btn-default">
+                                                    <span class="glyphicon glyphicon-edit"></span>
+                                                    Modifier 
+                                                </button>
+                                            </a>
+                                            <form action="materiel_liste.php" method="post">  
+                                                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                                <input type="submit" name="deleteMateriel" value="Supprimer" class="btn btn-default">
+                                            </form>
+                                        </td>
+                                    </tr>
                                    <?php
+                                                    }
+                                                }
                                             }
                                         }
-                                   ?>
-                               </table>
-                               </div>
-                    <?php
+                                    ?>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <?php
                             }
-                        }
-                    ?>
-                    <!-- hidden elements -->
-                    <div id="cBoxOverlay" style="display:none;"></div>
-               </div>
-           </div>
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
     
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
