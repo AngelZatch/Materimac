@@ -186,15 +186,12 @@ if(!isset($_SESSION['power'])){
                                         <td class="col-sm-1"><?php labelDispo($dispo); ?></td>
                                         <td class="col-sm-2"><?php echo $note; ?></td>
                                         <td class="col-sm-2">
-                                            <a href="materiel_edit.php?id='<?php echo $id?>'" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload">
-                                                <button type="button" class="btn btn-default">
-                                                    <span class="glyphicon glyphicon-edit"></span>
-                                                    Modifier 
-                                                </button>
-                                            </a>
                                             <form action="materiel_liste.php" method="post">  
+										  		<div class="btn btn-group">
+													<a href="materiel_edit.php?id='<?php echo $id?>'" role="button" class="btn btn-default" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+<input type="submit" name="deleteMateriel" value="Supprimer" role="button" class="btn btn-default">
+												</div>
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                                <input type="submit" name="deleteMateriel" value="Supprimer" class="btn btn-default">
                                             </form>
                                         </td>
                                     </tr>
