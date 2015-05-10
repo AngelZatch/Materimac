@@ -224,15 +224,10 @@ if(!isset($_SESSION['power'])){
     <script>
             $(document).ready(function ($) {
                 // delegate calls to data-toggle="lightbox"
-                $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+                $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
                     event.preventDefault();
                     return $(this).ekkoLightbox({
-                        onShown: function() {
-                            if (window.console) {
-                                return console.log('Checking our the events huh?');
-                            }
-                        },
-						onNavigate: false,
+						onNavigate: false
                     });
                 });
             });
