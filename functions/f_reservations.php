@@ -1,5 +1,20 @@
 <?php
 
+if(isset($_POST['validerResa'])){
+	validerResa();
+}
+if(isset($_POST['annulerResa'])){
+	annulerResa();
+}
+
+function validerResa(){
+	echo "Réservation validée";
+}
+
+function annulerResa(){
+	echo "Réservation annulée";
+}
+
 function menuReservation(){
     global $conn;
     $sql = "SELECT * FROM etat_emprunt";
@@ -185,10 +200,10 @@ function afficherReservation($data){
                             <td class='col-sm-2'>".$row['date_fin']."</td>
                             <td class='col-sm-2'>";
             if($row['etat_emprunt_id'] < 3){
-            echo "<div class='btn-group'>";
-                    if($row['etat_emprunt_id'] == 1) echo"<button class='btn btn-default'>Valider</button>";
-                    echo "<button class='btn btn-default'>Refuser</button>
-                </div>";
+            echo "<form action=".$_SERVER['PHP_SELF']."?id=$data method='post'><div class='form-group'><div class='btn-group'>";
+                    if($row['etat_emprunt_id'] == 1) echo"<button type='submit' class='btn btn-default' name='validerResa'><span class='glyphicon glyphicon-ok'></span> Valider</button>";
+                    echo "<button type='submit' class='btn btn-default' name='annulerResa'><span class='glyphicon glyphicon-remove'></span> Refuser</button>
+                </div></div></form>";
             }
             echo "</td>
                         </tr>

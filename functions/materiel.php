@@ -107,7 +107,6 @@ function fetchMateriel($id) {
     
 }
 
-
 if(isset($_POST['removeSetMateriel'])){
     retirerSetMateriel();
 }
@@ -144,9 +143,9 @@ function supprimerMateriel() {
     $id = $_POST['id'];
 
     if (mysqli_query($conn, "DELETE FROM materiel WHERE id=$id")) {
-        echo "Record deleted successfully";
+        echo "Matériel supprimé";
     } else {
-        echo "Error deleting record: " . mysqli_error($conn);
+        echo "Erreur à la suppression : " . mysqli_error($conn);
     }
 }
 
