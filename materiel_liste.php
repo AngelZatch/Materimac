@@ -98,6 +98,7 @@ if(!isset($_SESSION['power'])){
                                     <?php
                                         $sets = getSet();
                                         $materiels = getMateriel();
+								// Affichage des sets
                                         while($set = mysqli_fetch_assoc($sets)) {
                                             $set_id = $set['id'];
                                             $set_nom = $set['nom'];
@@ -130,6 +131,7 @@ if(!isset($_SESSION['power'])){
                                                    </td>
                                                </tr>
                                                 <?php
+												// Affichage du matériel d'un set
                                                 while($materiel = mysqli_fetch_assoc($materiels)) {
                                                     if($materiel['set_id'] == $set_id) {
                                                         $id = $materiel['id'];
@@ -166,6 +168,7 @@ if(!isset($_SESSION['power'])){
                                                     }
                                                 }
                                             } else {
+												// Affichage du matériel hors set
                                                 while($materiel = mysqli_fetch_assoc($materiels)) {
                                                     if($materiel['categorie_id'] == $categorie['id']){ 
                                                         $id = $materiel['id'];
@@ -229,11 +232,7 @@ if(!isset($_SESSION['power'])){
                                 return console.log('Checking our the events huh?');
                             }
                         },
-						onNavigate: function(direction, itemIndex) {
-                            if (window.console) {
-                                return console.log('Navigating '+direction+'. Current item: '+itemIndex);
-                            }
-						}
+						onNavigate: false,
                     });
                 });
             });
