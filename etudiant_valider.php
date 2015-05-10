@@ -1,7 +1,10 @@
 <?php
 session_start();
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 require_once 'functions/etudiants.php';
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 ?>
 
 
@@ -11,6 +14,7 @@ require_once 'functions/etudiants.php';
     <title>Etudiants à valider</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 <body>
     <?php include 'nav.php'; ?>

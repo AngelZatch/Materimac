@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 include 'functions/recherche.php';
 include 'functions/set.php';
 include 'functions/categorie.php';
@@ -21,6 +21,7 @@ $categories = getCategorie();
     <title>Résultats de la recherche</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 <body>
     <?php include 'nav.php'; ?>

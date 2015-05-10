@@ -9,7 +9,7 @@ function afficherPromotion(){
     $result = mysqli_query($conn, "SELECT * FROM promotion");
     
     if(mysqli_num_rows($result) > 0){
-        echo "<ul>";
+        echo "<ul class='nav-list'>";
         while($row = mysqli_fetch_assoc($result)){
             echo "<li><a href='etudiant_liste.php?annee=".$row["annee"]."'>IMAC " . $row["annee"] ."</a><span class='badge'>";
             //Get count badge
@@ -42,16 +42,14 @@ function afficherEtudiants($data) {
             else echo "<td class='col-sm-2'><span class='label label-danger'>En attente de validation</span></td>";
             
             echo "<td class='col-sm-3'>
-                <div class='btn-group'>
-                    <a href='etudiant_edit.php?nom=".$row["identifiant"]."'>
-                        <button type='button' class='btn btn-default'>
+                <div class='btn-group' role='group' aria-label='...'>
+                    <a href='etudiant_edit.php?nom=".$row["identifiant"]."' role='button' class='btn btn-default'>
                             <span class='glyphicon glyphicon-edit'></span> 
-                            Modifier
-                        </button>
                     </a>";
             //Affichage des boutons de validation
-            if($row["valide"] == "1") echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span> Invalider</button>";
-            else echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-check'></span> Valider</button>";
+            if($row["valide"] == "1") echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></button>";
+            else echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-check'></span></button>";
+            echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button>";
             echo "</div>
                 </td>
             </tr>
@@ -104,6 +102,15 @@ function fetchEtudiant($data){
 }
 /*fetchEtudiant($data);*/
 
+/* AFFICHER N'IMPORTE QUI */
+function fetchInfos($data, $power){
+    global $conn;
+	if($power == "1") $sql = "SELECT prenom, nom, identifiant, mot_de_passe FROM gestionnaire WHERE id = '$data'";
+	if($power == "2") $sql = "SELECT * FROM etudiant WHERE numero_etudiant = '$data'";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
 /* AFFICHER LES PROMOTIONS PENDANT L'EDITION D'UN ETUDIANT */
 function fetchPromotion($annee){
     global $conn;
@@ -138,6 +145,29 @@ function editEtudiant(){
 }
 /*editEtudiant()*/
 
+/*AJOUT*/
+
+if(isset($_POST['addEtudiant'])){
+	ajouterEtudiant();
+}
+
+function ajouterEtudiant(){
+	global $conn;
+	$prenom = $_POST['prenom'];
+	$nom = $_POST['nom'];
+	$num = $_POST['numero_etudiant'];
+	$id = $_POST['identifiant'];
+	$annee = $_POST['annee'];
+	$promotion = $_POST['promotion'];
+	
+	$sql = "INSERT INTO etudiant (prenom, nom, numero_etudiant, identifiant, annee, mot_de_passe, promotion_id, valide, user_type)
+						VALUES ('$prenom', '$nom', '$num', '$id', '$annee', '$num', '$promotion', '0', '2')";
+	if(mysqli_query($conn, $sql)){
+		echo "Ajout effectué";
+	} else {
+		echo "Erreur : " . $sql . "<br>" . mysqli_error($conn);
+	}
+}
 
 /* SUPPRESSION */
 /*function supprimerMateriel($id) {

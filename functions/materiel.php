@@ -27,7 +27,7 @@ function ajouterMateriel() {
 
         if (mysqli_num_rows($result2) > 0) {
             $id = mysqli_fetch_assoc($result2)['id'];
-            header('Location: materiel_edit.php?id='.$id.'');
+			header('Location: materiel_liste.php');
         } else {
             echo "0 results";
         } 
@@ -134,18 +134,16 @@ function ajouterSetMateriel() {
     mysqli_query($conn, $sql);
 }
 
-
+/* SUPPRIMER UN MATERIEL */
 if(isset($_POST['deleteMateriel'])){
     supprimerMateriel();
 }
 
-/* SUPPRESSION */
 function supprimerMateriel() {
     global $conn;
     $id = $_POST['id'];
-    $sql = "DELETE FROM materiel WHERE id=$id";
 
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_query($conn, "DELETE FROM materiel WHERE id=$id")) {
         echo "Record deleted successfully";
     } else {
         echo "Error deleting record: " . mysqli_error($conn);

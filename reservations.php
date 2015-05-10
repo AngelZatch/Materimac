@@ -1,7 +1,11 @@
 <?php
 session_start();
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 require_once 'functions/f_reservations.php';
+
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 
 $data = $_GET['id'];
 ?>
@@ -11,6 +15,7 @@ $data = $_GET['id'];
     <title>Liste des Etudiants</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 <body>
     <?php include 'nav.php'; ?>
@@ -19,7 +24,9 @@ $data = $_GET['id'];
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                <?php 
-                    echo "<h1 class='page-header'>";
+                    echo "<h1 class='page-header'>";?>
+                    <span class="glyphicon glyphicon-eye-open"></span> 
+                    <?php
                     switch($data){
     
                         case 1:

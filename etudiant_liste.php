@@ -1,8 +1,10 @@
 <?php
 session_start();
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 require_once 'functions/etudiants.php';
-
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 $data = $_GET['annee'];
 ?>
 <html>
@@ -11,6 +13,7 @@ $data = $_GET['annee'];
     <title>Liste des Etudiants</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 <body>
     <?php include 'nav.php'; ?>
@@ -18,7 +21,7 @@ $data = $_GET['annee'];
         <div class="row">
             <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-               <h1 class="page-header">Promotion IMAC <?php echo $data;?></h1>
+               <h1 class="page-header"><span class="glyphicon glyphicon-education"></span> Promotion IMAC <?php echo $data;?></h1>
                <div class="menu-bar">
                     <ul class="nav nav-pills" id="promotions">
                         <li role="presentation" class="active"><a href="#">Tous</a></li>
@@ -26,12 +29,7 @@ $data = $_GET['annee'];
                         <li role="presentation"><a href="#">En attente</a></li>
                     </ul>
                    <div class="btn-toolbar">
-                        <a href="materiel_ajout.php">
-                           <button class="btn btn-primary">
-                               <span class="glyphicon glyphicon-plus"></span>
-                               Ajouter un étudiant
-                           </button>
-                        </a>
+                        <a href="etudiant_ajout.php?annee=<?php echo $data;?>" data-title="Ajouter un étudiant" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un étudiant</a>
                     </div>
                 </div>
                 <br><br>
@@ -56,5 +54,26 @@ $data = $_GET['annee'];
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/ekko-lightbox.min.js"></script>
+    <script>
+            $(document).ready(function ($) {
+                // delegate calls to data-toggle="lightbox"
+                $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+                    event.preventDefault();
+                    return $(this).ekkoLightbox({
+                        onShown: function() {
+                            if (window.console) {
+                                return console.log('Checking our the events huh?');
+                            }
+                        },
+						onNavigate: function(direction, itemIndex) {
+                            if (window.console) {
+                                return console.log('Navigating '+direction+'. Current item: '+itemIndex);
+                            }
+						}
+                    });
+                });
+            });
+    </script>
 </body>
 </html>

@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once 'settings/db_connect.php';
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 ?>
 <html>
 <head>
@@ -8,6 +11,7 @@ require_once 'settings/db_connect.php';
     <title>Gestion de matériel IMAC</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/fonts.css">
 </head>
 <body>
     <?php include 'nav.php'; ?>

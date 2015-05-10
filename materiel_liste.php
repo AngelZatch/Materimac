@@ -1,43 +1,40 @@
 <?php
-    session_start();
-    require_once 'settings/connection.php';
-    include 'functions/etudiants.php';
-    include 'functions/materiel.php';
-    include 'functions/categorie.php';
-    include 'functions/set.php';
-    include 'functions/set_mat_common.php';
-    include 'functions/labels.php';
+
+session_start();
+require_once 'settings/db_connect.php';
+include 'functions/etudiants.php';
+include 'functions/materiel.php';
+include 'functions/categorie.php';
+include 'functions/set.php';
+include 'functions/set_mat_common.php';
+include 'functions/labels.php';
+
+if(!isset($_SESSION['power'])){
+	header('Location:portal.php');
+}
 
     $categories = getCategorie();
     $categories2 = getCategorie();
 ?>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Liste du Matériel</title>
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="css/dashboard.css">
-    </head>
-    <body>
-        <?php include 'nav.php'; ?>
-        <div class="container-fluid">
-            <div class="row">
-                <?php include 'side-menu.php'; ?>
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    <h1 class="page-header">Inventaire de Matériel</h1>
-                    <a href="materiel_ajout.php">
-                        <button class="btn btn-primary">
-                            <span class="glyphicon glyphicon-plus"></span>
-                            Ajouter du matériel
-                        </button>
-                    </a>
-                    <a href="set_ajout.php">
-                        <button class="btn btn-primary">
-                            <span class="glyphicon glyphicon-plus"></span>
-                            Ajouter un set
-                        </button>
-                    </a>
-                    <div class="row">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste du Matériel</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/ekko-lightbox.css">
+    <link rel="stylesheet" href="css/fonts.css">
+</head>
+<body>
+    <?php include 'nav.php'; ?>
+    <div class="container-fluid">
+        <div class="row">
+            <?php include 'side-menu.php'; ?>
+           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+               <h1 class="page-header"><span class="glyphicon glyphicon-list-alt"></span> Inventaire de Matériel</h1>
+               <a href="materiel_ajout.php" data-title="Ajouter du matériel" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter du matériel</a>
+               <a href="set_ajout.php" data-title="Ajouter un set" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter un set</a>
+               <div class="row">
                         <div class="col-md-4">
                             <h2>Catégories</h2>
                             <?php
@@ -102,6 +99,7 @@
                                     <?php
                                         $sets = getSet();
                                         $materiels = getMateriel();
+								// Affichage des sets
                                         while($set = mysqli_fetch_assoc($sets)) {
                                             $set_id = $set['id'];
                                             $set_nom = $set['nom'];
@@ -134,6 +132,7 @@
                                                    </td>
                                                </tr>
                                                 <?php
+												// Affichage du matériel d'un set
                                                 while($materiel = mysqli_fetch_assoc($materiels)) {
                                                     if($materiel['set_id'] == $set_id) {
                                                         $id = $materiel['id'];
@@ -170,6 +169,7 @@
                                                     }
                                                 }
                                             } else {
+												// Affichage du matériel hors set
                                                 while($materiel = mysqli_fetch_assoc($materiels)) {
                                                     if($materiel['categorie_id'] == $categorie['id']){ 
                                                         $id = $materiel['id'];
@@ -190,15 +190,12 @@
                                         <td class="col-sm-1"><?php labelDispo($dispo); ?></td>
                                         <td class="col-sm-2"><?php echo $note; ?></td>
                                         <td class="col-sm-2">
-                                            <a href="materiel_edit.php?id='<?php echo $id?>'" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload">
-                                                <button type="button" class="btn btn-default">
-                                                    <span class="glyphicon glyphicon-edit"></span>
-                                                    Modifier 
-                                                </button>
-                                            </a>
                                             <form action="materiel_liste.php" method="post">  
+										  		<div class="btn btn-group">
+													<a href="materiel_edit.php?id='<?php echo $id?>'" role="button" class="btn btn-default" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+<input type="submit" name="deleteMateriel" value="Supprimer" role="button" class="btn btn-default">
+												</div>
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                                <input type="submit" name="deleteMateriel" value="Supprimer" class="btn btn-default">
                                             </form>
                                         </td>
                                     </tr>
@@ -220,9 +217,20 @@
                 </div>
             </div>
         </div>
-
-        <script src="js/jquery-1.11.2.min.js"></script>
-        <script src="js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-    </body>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/ekko-lightbox.min.js"></script>
+    <script>
+            $(document).ready(function ($) {
+                // delegate calls to data-toggle="lightbox"
+                $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+                    event.preventDefault();
+                    return $(this).ekkoLightbox({
+						onNavigate: false
+                    });
+                });
+            });
+    </script>
+</body>
 </html>

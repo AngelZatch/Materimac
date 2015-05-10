@@ -1,16 +1,14 @@
 <?php
-require_once 'settings/connection.php';
+require_once 'settings/db_connect.php';
 ?>
 
 
-<div class="col-sm-3 col-md-2 sidebar">
+<div class="col-sm-2 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
-        <li>
-            <a class="main-option" href="">Panneau d'informations</a>
+        <li><a class="main-option" href="etudiant_dashboard.php"><span class="glyphicon glyphicon-dashboard"></span> Panneau principal</a>
         </li>
-        <li>
-            <a class="main-option" href="">Mes réservations</a>
-            <ul>
+        <li><a class="main-option" href=""><span class="glyphicon glyphicon-time"></span> Mes réservations</a>
+            <ul class="nav-list">
                 <li>En attente</li>
                 <li>Validées <span class="badge">1</span></li>
                 <li>En cours <span class="badge">1</span></li>
@@ -20,7 +18,8 @@ require_once 'settings/connection.php';
             </ul>
         </li>
         <li>
-            <a class="main-option" href="">Mon compte</a>
+            <a class="main-option" href="user_profile.php"><span class="glyphicon glyphicon-user"></span> Mon compte</a>
         </li>
+        <li><a href="logout.php" class="main-option"><span class="glyphicon glyphicon-off"></span> Déconnexion</a></li>
     </ul>
 </div>
