@@ -12,6 +12,29 @@ function menuReservation(){
     }
 }
 
+function afficherRDV(){
+	global $conn;
+	$date = (string)(new DateTime('today'))->format('Y-m-d').' 00:00:00';
+	$dateTomorrow = (string)(new DateTime('tomorrow'))->format('Y-m-d').' 00:00:00';
+	$result = mysqli_query($conn, "SELECT reference, date_debut, date_fin, etudiant_id, etat_emprunt_id FROM emprunt WHERE (date_debut > '$date' AND date_debut < '$dateTomorrow') OR (date_fin > '$date' AND date_fin < '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4'");
+	if(mysqli_num_rows($result) > 0){
+		echo "<table class='table table-striped table-hover'><tbody class='table table-striped'>";
+		while($row = mysqli_fetch_assoc($result)){
+			if($row['etat_emprunt_id'] == '2') {
+				$daterdv = date_create($row['date_debut']);
+				$formatrdv = date_format($daterdv, 'H:i:s');
+			} else {
+				$daterdv = date_create($row['date_fin']);
+				$formatrdv = date_format($daterdv, 'H:i:s');
+			}
+			echo "<tr><td>Réservation ".$row['reference']." à ".$formatrdv." avec ".$row['etudiant_id']."</td></tr>";
+		}
+		echo "</tbody></table>";
+	} else {
+		echo "<p>Aucun rendez-vous aujourd'hui</p>";
+	}
+}
+
 function afficherEmpruntsProches(){
 	global $conn;
 	$date = (string)(new DateTime('today'))->format('Y-m-d').' 00:00:00';
@@ -101,6 +124,14 @@ function afficherReservation($data){
         
         case 3:
             $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id='5' OR etat_emprunt_id='6'";
+            break;
+		
+		case 4:
+            $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id='1'";
+            break;
+		
+		case 5:
+            $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id='5'";
             break;
         
         default:
@@ -192,7 +223,32 @@ function afficherReservation($data){
             
             echo "</div></div>";
         }
-    }
+    } else {
+		switch($data){
+			case 1:
+				echo "<p>Aucune réservation en attente</p>";
+				break;
+
+			case 2:
+				echo "<p>Aucune réservation en cours</p>";
+				break;
+
+			case 3:
+				echo "<p>Aucune réservation terminée</p>";
+				break;
+
+			case 4:
+				echo "<p>Aucune réservation en attente</p>";
+				break;
+			
+			case 5:
+				echo "<p>Aucune réservation en retard</p>";
+				break;
+
+			default:
+				break;
+    	}
+	}
 }
 
 ?>

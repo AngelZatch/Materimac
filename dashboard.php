@@ -18,7 +18,13 @@ if(!isset($_SESSION['power'])){
       <div class="row">
           <?php include 'side-menu.php'; ?>
            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-               <h1 class="page-header"><span class="glyphicon glyphicon-dashboard"></span> Please look forward to it™</h1>
+               <h1 class="page-header"><span class="glyphicon glyphicon-dashboard"></span> Panneau principal</h1>
+               <h2>Rendez-vous du jour</h2>
+               <?php afficherRDV();?>
+               <h2>Réservations à valider</h2>
+               <?php afficherReservation(4);?>
+               <h2>Réservations en retard</h2>
+               <?php afficherReservation(5);?>
            </div>
       </div>
     </div>
