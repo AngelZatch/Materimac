@@ -75,7 +75,6 @@ $materielTous = getMateriel();
                         <img class="home_disp" src="ressources/images/<?php echo $image['adresse']; ?>" alt="">
                         <button class="btn btn-default"><a href="materiel_affichage.php?id=<?php echo $mat_id; ?>">Détails</a></button>
                         <button class="btn btn-primary" value="<?php echo $mat_id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
-                        </div>
                     </div>
            		</div>
            	</div>
