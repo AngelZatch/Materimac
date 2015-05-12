@@ -10,7 +10,9 @@ function construct($data){
 			echo "<tr><td>".$row['heure']."</td></tr>";
 			$hours[] = $row['heure'];
 		}
-		echo "<tr><td><div class='btn-group'><button class='btn btn-default'><span class='glyphicon glyphicon-edit'></span></button><button class='btn btn-default'><span class='glyphicon glyphicon-plus'></span></button></div></td></tr></tbody></table></div>";
+		echo "<tr><td><div class='btn-group'>
+		<a href='meetings_add_hour.php' data-title='Ajouter une disponibilité' data-toggle='lightbox' data-gallery='remote-load' role='button' class='btn btn-default'><span class='glyphicon glyphicon-plus'></span></a>
+			</div></td></tr></tbody></table></div>";
 	}
 	
 	// CONSTRUCTION DES JOURS
@@ -102,5 +104,20 @@ function construct($data){
 	
 }
 
-//echo ;
+if(isset($_POST['addDispo'])){
+	ajouterDispo($_SESSION['gestionnaire']);
+}
+
+function ajouterDispo($data){
+	global $conn;
+	$heure = $_POST['heure'];
+	$jour = $_POST['jour'];
+	$sql = "INSERT INTO disponibilite_gestionnaire (gestionnaire_id, heure, jour) VALUES('$data','$heure','$jour')";
+	if(mysqli_query($conn, $sql)){
+		echo "Ajout effectué avec succès";
+		header('Location:meetings.php');
+	} else {
+		echo "Erreur : ".mysqli_error($sql);
+	}
+}
 ?>
