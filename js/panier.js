@@ -4,8 +4,8 @@ function afficherPanier() {
         if(data['nbItem'] == 0) {
             panier += "<li style='margin-left:5px;'>Le panier est vide.</li>";
         } else {
-            panier += '<li>Du <input type="text" value="02/02/2015" style="width:80%;"></input></li>';
-            panier += '<li>Au <input type="text" value="04/02/2015" style="width:80%;"></li>';
+            panier += '<li>Du <input type="text" value="" style="width:80%;"></input></li>';
+            panier += '<li>Au <input type="text" value="" style="width:80%;"></li>';
             panier += '<li class="divider"></li>';
             panier += '<li>Matériels dans le panier</li>';
             for (var id in data['set']) {
