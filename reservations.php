@@ -61,23 +61,9 @@ $data = $_GET['id'];
                                     </ul>
                                 </div>";
                             break;
-                }?>
-               
+                }?>        
                 <br><br>
                <div class="table-responsive">
-                   <table class="table table-striped table-hover">
-                       <thead>
-                           <tr>
-                               <th class="col-sm-2">Date de soumission</th>
-                               <th class="col-sm-2">Nom</th>
-                               <th class="col-sm-1">Référence</th>
-                               <th class="col-sm-1">Type de projet</th>
-                               <th class="col-sm-2">Date de début</th>
-                               <th class="col-sm-2">Date de fin</th>
-                               <th class="col-sm-2">Actions</th>
-                           </tr>
-                       </thead>
-                   </table>
                    <?php afficherReservation($data);?>
                </div>
            </div>

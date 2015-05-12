@@ -4,18 +4,51 @@ include 'functions/materiel.php';
 include 'functions/set.php';
 
 if(isset($_POST['validerResa'])){
-	validerResa();
+	validerResa($_POST["id"]);
 }
 if(isset($_POST['annulerResa'])){
-	annulerResa();
+	annulerResa($_POST["id"]);
 }
 
-function validerResa(){
-	echo "Réservation validée";
+if(isset($_POST['sortirResa'])){
+	sortirResa($_POST["reference_reservation"]);
 }
 
-function annulerResa(){
-	echo "Réservation annulée";
+if(isset($_POST['entrerResa'])){
+	entrerResa($_POST["reference_reservation"]);
+}
+
+function validerResa($data){
+	global $conn;
+	$sql = "UPDATE emprunt SET etat_emprunt_id='2' WHERE reference=$data";
+	mysqli_query($conn, $sql);
+}
+
+function annulerResa($data){
+	global $conn;
+	$sql = "UPDATE emprunt SET etat_emprunt_id='6' WHERE reference=$data";
+	mysqli_query($conn, $sql);
+}
+
+function sortirResa($data){
+	global $conn;
+	$sql = "UPDATE emprunt SET etat_emprunt_id='3' WHERE reference=$data";
+	mysqli_query($conn, $sql);
+	/* On met tous le matériel sorti en indisponible */
+	$fetchListItems = mysqli_query($conn, "SELECT materiel_id FROM detail_emprunt WHERE reference_id=$data");
+	while($listItems = mysqli_fetch_assoc($fetchListItems)){
+		mysqli_query($conn, "UPDATE materiel SET disponibilite_id='3' WHERE id='$listItems[materiel_id]'");
+	}
+}
+
+function entrerResa($data){
+	global $conn;
+	$sql = "UPDATE emprunt SET etat_emprunt_id='5' WHERE reference=$data";
+	mysqli_query($conn, $sql);
+	$fetchListItems = mysqli_query($conn, "SELECT materiel_id FROM detail_emprunt WHERE reference_id=$data");
+	while($listItems = mysqli_fetch_assoc($fetchListItems)){
+		mysqli_query($conn, "UPDATE materiel SET disponibilite_id='1' WHERE id='$listItems[materiel_id]'");
+	}
 }
 
 function menuReservation(){
@@ -56,7 +89,8 @@ function afficherRDV(){
 function afficherEmpruntsProches(){
 	global $conn;
 	$date = (string)(new DateTime('today'))->format('Y-m-d').' 00:00:00';
-	$result = mysqli_query($conn, "SELECT * FROM emprunt WHERE date_debut > '$date'");
+	$dateTomorrow = (string)(new DateTime('tomorrow'))->format('Y-m-d').' 00:00:00';
+	$result = mysqli_query($conn, "SELECT * FROM emprunt WHERE ((date_debut > '$date' AND date_debut < '$dateTomorrow') OR (date_fin > '$date' AND date_fin < '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4') OR (date_fin < '$date' AND etat_emprunt_id='4')");
 	if(mysqli_num_rows($result) > 0){
 		echo "<h2>Réservations du jour : ".mysqli_num_rows($result)."</h2>";
 		while($row = mysqli_fetch_assoc($result)){
@@ -64,16 +98,20 @@ function afficherEmpruntsProches(){
 			if($row['etat_emprunt_id'] == "2") {echo "panel-success'>";} 
 			if($row['etat_emprunt_id'] == "3") {echo "panel-default'>";}
 			if($row['etat_emprunt_id'] == "4") {echo "panel-danger'>";}
+			$dateSub = date_format(date_create($row['date_debut']), 'd/m/Y');
+			$dateDebut = date_format(date_create($row['date_debut']), 'd/m/Y H:i:s');
+			$dateFin = date_format(date_create($row['date_fin']), 'd/m/Y H:i:s');
+			$etudiant = mysqli_fetch_assoc(mysqli_query($conn, "SELECT prenom, nom FROM etudiant WHERE numero_etudiant='$row[etudiant_id]'"));
 			echo "<div class='panel-heading'>
-                    <table>
+					<div class='container-fluid'><div class='row'>
+                    <table class='col-md-12'>
                         <tr>
-                            <td class='col-sm-1'><p>Emprunt n°".$row['reference']."</p></td>
-							<td class='col-sm-2'><p>Réservation par ".$row['etudiant_id']."</p></td>
-                            <td class='col-sm-2'><p>Du ".$row['date_debut']."</p></td>
-                            <td class='col-sm-2'><p>Au ".$row['date_fin']."</p></td>
+							<td class='col-md-4'>Réservation n°<span class='emphasis-text'>".$row['reference']."</span><br>Soumise le <span class='emphasis-text'>".$dateSub."</span></td>
+                            <td class='col-md-3'>Par <span class='emphasis-text'>".$etudiant['prenom']." ".$etudiant['nom']."</span></td>
+                            <td class='col-md-3'>Du <span class='emphasis-text'>".$dateDebut."</span><br>Au <span class='emphasis-text'>".$dateFin."</span></td>
                         </tr>
                         </table>
-                    </div>
+                    </div></div></div>
                     <div class='panel-body'>";
 				//CONTENU DE LA RESERVATION
             echo "<div class='container-fluid'>
@@ -130,7 +168,7 @@ function afficherEmpruntsProches(){
                         echo "</tr>";
                 }
             }
-			echo "</tbody></table>";
+			echo "</tbody></table></div>";
             
             // Liste des étudiants
             echo "</div>
@@ -149,18 +187,22 @@ function afficherEmpruntsProches(){
             echo "</div>";
             
             // Motif de l'emprunt & Enseignant
-            echo " <div class='col-md-4'>
-                        <h4>Motif de l'emprunt</h4>";
+            echo "<div class='col-md-4'>
+                        <h4>Raison de l'emprunt</h4>";
             echo "<p>".$row['raison']."</p>";
             echo "<h4>Enseignant</h4>";
             if(!empty($row['enseignant'])) {
                 echo "<p>".$row['raison']."</p>";
-            } else echo "Pas d'enseignant renseigné.";
+            } else echo "Pas d'enseignant renseigné.</div>";
             echo "</div>
                     </div>
                 </div>";
-            
-            echo "</div></div>";
+			echo "<div class='col-md-12'>
+					<form action='local_dashboard.php' method='post'>";
+			if($row['etat_emprunt_id'] == '2') echo "<button type='submit' class='btn btn-custom btn-custom-validate confirmAdd' name='sortirResa'><span class='glyphicon glyphicon-ok'></span>  Valider la sortie d'inventaire</button>";
+			else echo "<button type='submit' class='btn btn-custom btn-custom-validate confirmAdd' name='entrerResa'><span class='glyphicon glyphicon-ok'></span>  Valider la rentrée en inventaire</button>";
+			echo "<input type='hidden' name='reference_reservation' value=".$row['reference']."></form>";
+            echo "</div></div></div></div></div>";
 		}
 	} else {
 		echo "<h2>Aucune réservation ce jour</h2>";
@@ -187,7 +229,7 @@ function afficherReservation($data){
             break;
 		
 		case 5:
-            $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id='5'";
+            $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id='4'";
             break;
         
         default:
@@ -229,27 +271,30 @@ function afficherReservation($data){
                 default:
                     break;
             }
+			
+			$dateSub = date_format(date_create($row['date_debut']), 'd/m/Y');
+			$dateDebut = date_format(date_create($row['date_debut']), 'd/m/Y H:i:s');
+			$dateFin = date_format(date_create($row['date_fin']), 'd/m/Y H:i:s');
             
             echo "<div class='panel-heading'>
-                    <table>
+			<div class='container-fluid'><div class='row'>
+                    <table class='col-md-12'>
                         <tr>
-                            <td class='col-sm-2'>".$row['date_debut']."</td>
-                            <td class='col-sm-2'>".$row_etudiant['prenom']." ".$row_etudiant['nom']."</td>
-                            <td class='col-sm-1'>".$row['reference']."</td>
-                            <td class='col-sm-1'>".$row['raison']."</td>
-                            <td class='col-sm-2'>".$row['date_debut']."</td>
-                            <td class='col-sm-2'>".$row['date_fin']."</td>
-                            <td class='col-sm-2'>";
+							<td class='col-md-4'>Réservation n°<span class='emphasis-text'>".$row['reference']."</span><br>Soumise le <span class='emphasis-text'>".$dateSub."</span></td>
+                            <td class='col-md-3'>Par <span class='emphasis-text'>".$row_etudiant['prenom']." ".$row_etudiant['nom']."</span></td>
+                            <td class='col-md-3'>Du <span class='emphasis-text'>".$dateDebut."</span><br>Au <span class='emphasis-text'>".$dateFin."</span></td>
+                            <td class='col-md-2'>";
             if($row['etat_emprunt_id'] < 3){
             echo "<form action=".$_SERVER['PHP_SELF']."?id=$data method='post'><div class='form-group'><div class='btn-group'>";
                     if($row['etat_emprunt_id'] == 1) echo"<button type='submit' class='btn btn-default' name='validerResa'><span class='glyphicon glyphicon-ok'></span> Valider</button>";
                     echo "<button type='submit' class='btn btn-default' name='annulerResa'><span class='glyphicon glyphicon-remove'></span> Refuser</button>
+					<input type='hidden' name='id' value=".$row['reference'].">
                 </div></div></form>";
             }
             echo "</td>
                         </tr>
                         </table>
-                    </div>
+                    </div></div></div>
                     <div class='panel-body'>";
             
             //CONTENU DE LA RESERVATION
@@ -292,7 +337,7 @@ function afficherReservation($data){
             echo "</div>";
             
             // Motif de l'emprunt & Enseignant
-            echo " <div class='col-md-4'>
+            echo "<div class='col-md-4'>
                         <h4>Motif de l'emprunt</h4>";
             echo "<p>".$row['raison']."</p>";
             echo "<h4>Enseignant</h4>";
