@@ -46,7 +46,9 @@ function griserBouton() {
                     if($("#mat_"+i).val() == data['materiel'][id]['id']) {
                         $("#mat_"+i).prop('disabled', true);
                     }
-                    i++;
+                    if($("#mat").val() == data['materiel'][id]['id']) {
+                        $("#mat").prop('disabled', true);
+                    }
                 }
             });
         }
