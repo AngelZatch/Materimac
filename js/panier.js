@@ -37,6 +37,7 @@ function afficherPanierResa() {
                 if($("#mat_"+i).val() == data['materiel'][id]['id']) {
                     $("#mat_"+i).prop('disabled', true);
                 }
+                i++;
             }
         }
         $("#panier-resa").html(panier);
