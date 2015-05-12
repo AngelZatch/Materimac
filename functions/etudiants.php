@@ -32,8 +32,8 @@ function afficherEtudiants($data) {
         echo "<tbody>";
         // output data of each row
         while($row = mysqli_fetch_assoc($result)) {
-            echo "<form action='etudiant_edit.php' method='post'>
-                    <tr>
+            echo "<tr>
+					
                         <td class='col-sm-3'>" . $row["prenom"]. "</td>
                         <td class='col-sm-2'>" . $row["nom"]. "</td>
                         <td class='col-sm-2'>" . $row["numero_etudiant"]. "</td>";
@@ -42,18 +42,14 @@ function afficherEtudiants($data) {
             else echo "<td class='col-sm-2'><span class='label label-danger'>En attente de validation</span></td>";
             
             echo "<td class='col-sm-3'>
-                <div class='btn-group' role='group' aria-label='...'>
-                    <a href='etudiant_edit.php?nom=".$row["identifiant"]."' role='button' class='btn btn-default'>
-                            <span class='glyphicon glyphicon-edit'></span> 
-                    </a>";
-            //Affichage des boutons de validation
-            if($row["valide"] == "1") echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></button>";
-            else echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-check'></span></button>";
-            echo "<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-trash'></span></button>";
-            echo "</div>
-                </td>
-            </tr>
-            </form>";
+				<form action=".$_SERVER['PHP_SELF']."?annee=$data method='post'><div class='btn-group' role='group'>
+			<a href='etudiant_edit.php?nom=".$row["identifiant"]."' role='button' class='btn btn-default'><span class='glyphicon glyphicon-edit'></span> Modifier</a>";
+            if($row["valide"] == "0") echo "<button type='submit' class='btn btn-default' name='validerEtudiant'><span class='glyphicon glyphicon-ok'></span> Valider</button>";
+            else echo "<button type='submit' class='btn btn-default' name='invaliderEtudiant'><span class='glyphicon glyphicon-remove'></span> Invalider</button>";
+            echo "<button type='submit' class='btn btn-default' name='supprimerEtudiant'><span class='glyphicon glyphicon-trash'></span> Supprimer</button>";
+            echo "</div><input type='hidden' name='id' value=".$row["numero_etudiant"]."></form>
+				</td>
+			</tr>";
         }
         echo "</tbody>";
     } else {
@@ -61,37 +57,6 @@ function afficherEtudiants($data) {
     } 
 }
 /*afficherEtudiants();*/
-
-/* AFFICHER ETUDIANTS NON VALIDES */
-function afficherNonValides(){
-    global $conn;
-    $sql = "SELECT prenom, nom, numero_etudiant, identifiant FROM etudiant WHERE valide='0'";
-    $result = mysqli_query($conn, $sql);
-    
-    if(mysqli_num_rows($result) > 0){
-        echo "<tbody>";
-        while($row = mysqli_fetch_assoc($result)){
-            echo "<tr>
-                    <td>" . $row["prenom"] . "</td>
-                    <td>" . $row["nom"] . "</td>
-                    <td>" . $row["numero_etudiant"] . "</td>
-                    <td></td>
-                    <td>
-                        <button class='btn btn-success'><span class='glyphicon glyphicon-check'></span> Valider</button>
-                        <a href='etudiant_edit.php?nom=".$row["identifiant"]."' class='btn btn-default'>Consulter</a>
-                    </td>
-                </tr>";
-        }
-        echo "</tbody>";    
-    }
-}
-/*afficherNonValides();*/
-
-/* VALIDER ETUDIANT */
-/*function vailderEtudiant(){
-    global $conn;
-    $sql = "UPDATE valide FROM etudiant WHERE id="
-}*/
 
 /* AFFICHER UN SINGLETON */
 function fetchEtudiant($data){
@@ -144,6 +109,26 @@ function editEtudiant(){
     }
 }
 /*editEtudiant()*/
+
+if(isset($_POST['validerEtudiant'])){
+	validerEtudiant($_POST["id"]);
+}
+
+function validerEtudiant($data){
+	global $conn;
+	$sql = "UPDATE etudiant SET valide='1' WHERE numero_etudiant=$data";
+	mysqli_query($conn, $sql);
+}
+
+if(isset($_POST['invaliderEtudiant'])){
+	invaliderEtudiant($_POST["id"]);
+}
+
+function invaliderEtudiant($data){
+	global $conn;
+	$sql = "UPDATE etudiant SET valide='0' WHERE numero_etudiant=$data";
+	mysqli_query($conn, $sql);
+}
 
 /*AJOUT*/
 

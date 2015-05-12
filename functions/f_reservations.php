@@ -1,5 +1,20 @@
 <?php
 
+if(isset($_POST['validerResa'])){
+	validerResa();
+}
+if(isset($_POST['annulerResa'])){
+	annulerResa();
+}
+
+function validerResa(){
+	echo "Réservation validée";
+}
+
+function annulerResa(){
+	echo "Réservation annulée";
+}
+
 function menuReservation(){
     global $conn;
     $sql = "SELECT * FROM etat_emprunt";
@@ -10,6 +25,29 @@ function menuReservation(){
             echo "<li><a href='reservations.php?id=".$row['id']."'>".$row['nom']."</a></li>";
         }
     }
+}
+
+function afficherRDV(){
+	global $conn;
+	$date = (string)(new DateTime('today'))->format('Y-m-d').' 00:00:00';
+	$dateTomorrow = (string)(new DateTime('tomorrow'))->format('Y-m-d').' 00:00:00';
+	$result = mysqli_query($conn, "SELECT reference, date_debut, date_fin, etudiant_id, etat_emprunt_id FROM emprunt WHERE (date_debut > '$date' AND date_debut < '$dateTomorrow') OR (date_fin > '$date' AND date_fin < '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4'");
+	if(mysqli_num_rows($result) > 0){
+		echo "<table class='table table-striped table-hover'><tbody class='table table-striped'>";
+		while($row = mysqli_fetch_assoc($result)){
+			if($row['etat_emprunt_id'] == '2') {
+				$daterdv = date_create($row['date_debut']);
+				$formatrdv = date_format($daterdv, 'H:i:s');
+			} else {
+				$daterdv = date_create($row['date_fin']);
+				$formatrdv = date_format($daterdv, 'H:i:s');
+			}
+			echo "<tr><td>Réservation ".$row['reference']." à ".$formatrdv." avec ".$row['etudiant_id']."</td></tr>";
+		}
+		echo "</tbody></table>";
+	} else {
+		echo "<p>Aucun rendez-vous aujourd'hui</p>";
+	}
 }
 
 function afficherEmpruntsProches(){
@@ -102,6 +140,14 @@ function afficherReservation($data){
         case 3:
             $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id='5' OR etat_emprunt_id='6'";
             break;
+		
+		case 4:
+            $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id='1'";
+            break;
+		
+		case 5:
+            $sql = "SELECT * FROM emprunt WHERE etat_emprunt_id='5'";
+            break;
         
         default:
             break;
@@ -154,10 +200,10 @@ function afficherReservation($data){
                             <td class='col-sm-2'>".$row['date_fin']."</td>
                             <td class='col-sm-2'>";
             if($row['etat_emprunt_id'] < 3){
-            echo "<div class='btn-group'>";
-                    if($row['etat_emprunt_id'] == 1) echo"<button class='btn btn-default'>Valider</button>";
-                    echo "<button class='btn btn-default'>Refuser</button>
-                </div>";
+            echo "<form action=".$_SERVER['PHP_SELF']."?id=$data method='post'><div class='form-group'><div class='btn-group'>";
+                    if($row['etat_emprunt_id'] == 1) echo"<button type='submit' class='btn btn-default' name='validerResa'><span class='glyphicon glyphicon-ok'></span> Valider</button>";
+                    echo "<button type='submit' class='btn btn-default' name='annulerResa'><span class='glyphicon glyphicon-remove'></span> Refuser</button>
+                </div></div></form>";
             }
             echo "</td>
                         </tr>
@@ -192,7 +238,32 @@ function afficherReservation($data){
             
             echo "</div></div>";
         }
-    }
+    } else {
+		switch($data){
+			case 1:
+				echo "<p>Aucune réservation en attente</p>";
+				break;
+
+			case 2:
+				echo "<p>Aucune réservation en cours</p>";
+				break;
+
+			case 3:
+				echo "<p>Aucune réservation terminée</p>";
+				break;
+
+			case 4:
+				echo "<p>Aucune réservation en attente</p>";
+				break;
+			
+			case 5:
+				echo "<p>Aucune réservation en retard</p>";
+				break;
+
+			default:
+				break;
+    	}
+	}
 }
 
 ?>

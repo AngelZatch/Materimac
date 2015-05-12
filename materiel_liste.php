@@ -85,7 +85,7 @@ if(!isset($_SESSION['power'])){
                                 <thead>
                                     <tr>
                                         <th class="col-sm-2">Nom Produit</th>
-                                        <th class="col-sm-3">Référence</th>
+                                        <th class="col-sm-2">Référence</th>
                                         <th class="col-sm-1">n°CN</th>
                                         <th class="col-sm-1">Disponibilités</th>
                                         <th class="col-sm-1"></th>
@@ -110,7 +110,7 @@ if(!isset($_SESSION['power'])){
                                                 ?>
                                                 <tr style="background-color:#e8e8e8;">
                                                    <td class="col-sm-2"><a href="set_edit.php?id=<?php echo $set_id; ?>"><?php echo $set_nom; ?></a></td>
-                                                   <td class="col-sm-3"></td>
+                                                   <td class="col-sm-2"></td>
                                                    <td class="col-sm-1"></td>
                                                    <td class="col-sm-1"></td>
                                                    <td class="col-sm-1"><?php labelDispo($set_dispo) ?></td>
@@ -145,7 +145,7 @@ if(!isset($_SESSION['power'])){
                                     ?>
                                     <tr>
                                         <td class="col-sm-2"><?php echo "<a href='materiel_edit.php?id=" . $id . "'>" . $nom . "</a>"; ?></td>
-                                        <td class="col-sm-3"><?php echo $reference; ?></td>
+                                        <td class="col-sm-2"><?php echo $reference; ?></td>
                                         <td class="col-sm-1"><?php echo $num_cn; ?></td>
                                         <td class="col-sm-1"><?php echo $etat; ?></td>
                                         <td class="col-sm-1"></td>
@@ -184,7 +184,7 @@ if(!isset($_SESSION['power'])){
                                     ?>
                                     <tr>
                                         <td class="col-sm-2"><?php echo $nom; ?></td>
-                                        <td class="col-sm-3"><?php echo $reference; ?></td>
+                                        <td class="col-sm-2"><?php echo $reference; ?></td>
                                         <td class="col-sm-1"><?php echo $num_cn; ?></td>
                                         <td class="col-sm-1"><?php echo $etat; ?></td>
                                         <td class="col-sm-1"><?php labelDispo($dispo); ?></td>
@@ -193,7 +193,7 @@ if(!isset($_SESSION['power'])){
                                             <form action="materiel_liste.php" method="post">  
 										  		<div class="btn btn-group">
 													<a href="materiel_edit.php?id='<?php echo $id?>'" role="button" class="btn btn-default" data-title="Modifier un matériel" data-toggle="lightbox" data-gallery="remoteload"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
-<input type="submit" name="deleteMateriel" value="Supprimer" role="button" class="btn btn-default">
+													<button type="submit" name="deleteMateriel" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Supprimer</button>
 												</div>
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                             </form>
