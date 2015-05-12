@@ -59,27 +59,31 @@ $materielTous = getMateriel();
            		</div>
            	</div>
            </nav>
-           <!--Display du matériel-->
+                      <!--Display du matériel-->
            <?php
+            $i = 0;
 			while($materielListe = mysqli_fetch_assoc($materielTous)) {
 				$mat_nom = $materielListe['nom'];
 				$mat_description = $materielListe['reference'];
                 $mat_id = $materielListe['id'];
                 $image = mysqli_fetch_assoc(fetchImage($mat_id));
-			?>
-			<div class="row">
-				<div class="col-md-3">
-           			<div class="thumbnail">
-           				<img class="home_disp" src="ressources/images/<?php echo $image['adresse']; ?>" alt="">
-						<div class="caption">
-							<h3><a href="materiel_affichage.php?id=<?php echo $mat_id; ?>"><?php echo $mat_nom; ?></a></h3>
-							<button class="btn btn-default"><a href="materiel_affichage.php?id=<?php echo $mat_id; ?>">Détails</a></button>
-							<button class="btn btn-primary" value="<?php echo $mat_id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
-						</div>
-					</div>
+                if($i == 0) { ?> <div class="row"> <?php } ?>
+			<div class="col-md-3">
+           	    <div class="thumbnail">
+                    <div class="caption">
+                        <h3><a href="materiel_affichage.php?id=<?php echo $mat_id; ?>"><?php echo $mat_nom; ?></a></h3>
+                        <img class="home_disp" src="ressources/images/<?php echo $image['adresse']; ?>" alt="">
+                        <div class="row">
+                            <div class="col-md-5"><button style="margin-left:30px;" class="btn btn-default"><a href="materiel_affichage.php?id=<?php echo $mat_id; ?>">Détails</a></button></div>
+                            <div class="col-md-7"><button class="btn btn-primary" value="<?php echo $mat_id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button></div>
+                        </div>
+                    </div>
            		</div>
            	</div>
-			<?php
+               <?php
+                $i++;
+                if($i == 4) $i = 0;
+                if($i == 0) { ?> </div> <?php }
 			}
 			   ?>
            </div>
