@@ -45,13 +45,14 @@ $materielTous = getMateriel();
 			while($materielListe = mysqli_fetch_assoc($materielTous)) {
 				$mat_nom = $materielListe['nom'];
 				$mat_description = $materielListe['reference'];
+                $mat_id = $materielListe['id'];
 			?>
 			<div class="col-md-3">
            	<div class="thumbnail">
            		<div class="caption">
            			<h3><?php echo $mat_nom; ?></h3>
            			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti iusto placeat quasi, labore, voluptatem eligendi possimus perspiciatis ullam non. Commodi quibusdam debitis ipsum error sequi nulla. Commodi debitis, nihil. Quo.</p>
-           			<button class="btn btn-primary" value="<?php echo $id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
+           			<button class="btn btn-primary" value="<?php echo $mat_id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
            		</div>
            		</div>
            	</div>
