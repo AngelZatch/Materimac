@@ -37,10 +37,24 @@ function afficherPanierResa() {
     });
 }
 
+function griserBouton() {
+    $.getJSON('functions/panier/afficher_panier.php', function(data) {
+        if(data['nbItem'] != 0) {
+            var i = 1;
+            for(var id in data['materiel']) {
+                if($("#mat_"+i).val() == data['materiel'][id]['id']) {
+                    $("#mat_"+i).prop('disabled', true);
+                }
+            }
+        }
+    });
+}
+
 // actualisation des membres connectés
 var reloadTime = 1000;
 window.setInterval(afficherPanier, reloadTime);
 window.setInterval(afficherPanierResa, reloadTime);
+window.setInterval(griserBouton, 1);
 
 
 function ajouterMateriel(item) {

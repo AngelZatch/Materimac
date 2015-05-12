@@ -61,7 +61,7 @@ $materielTous = getMateriel();
            </nav>
                       <!--Display du matériel-->
            <?php
-            $i = 0;
+            $i = 0;$j = 1;
 			while($materielListe = mysqli_fetch_assoc($materielTous)) {
 				$mat_nom = $materielListe['nom'];
 				$mat_description = $materielListe['reference'];
@@ -74,7 +74,7 @@ $materielTous = getMateriel();
                         <h3><a href="materiel_affichage.php?id=<?php echo $mat_id; ?>"><?php echo $mat_nom; ?></a></h3>
                         <img class="home_disp" src="ressources/images/<?php echo $image['adresse']; ?>" alt="">
                         <button class="btn btn-default"><a href="materiel_affichage.php?id=<?php echo $mat_id; ?>">Détails</a></button>
-                        <button class="btn btn-primary" value="<?php echo $mat_id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
+                        <button class="btn btn-primary ajout-panier" id="mat_<?php echo $j; $j++; ?>" value="<?php echo $mat_id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
                     </div>
            		</div>
            	</div>
