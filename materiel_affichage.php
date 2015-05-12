@@ -6,7 +6,7 @@ include 'functions/set.php';
 include 'functions/categorie.php';
 include 'functions/set_mat_common.php';
 
-$data = $_GET['id'];
+/*$data = $_GET['id'];
 $materiel = mysqli_fetch_assoc(fetchMateriel($data));
 $dispo_materiel = mysqli_fetch_assoc(fetchDispo($materiel['disponibilite_id']));
 $etat_materiel = mysqli_fetch_assoc(fetchEtat($materiel['etat_id']));
@@ -19,7 +19,7 @@ if($materiel['categorie_id'] != 0) {
 $dispo_array = getDispo();
 $etat_array = getEtat();
 $set_array = getSet();
-$cat_array = getCategorie();    
+$cat_array = getCategorie();  */  
 ?>
 
 ?>

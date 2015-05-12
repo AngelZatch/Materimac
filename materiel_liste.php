@@ -3,9 +3,7 @@
 session_start();
 require_once 'settings/db_connect.php';
 include 'functions/etudiants.php';
-include 'functions/materiel.php';
 include 'functions/categorie.php';
-include 'functions/set.php';
 include 'functions/set_mat_common.php';
 include 'functions/labels.php';
 
