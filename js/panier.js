@@ -7,25 +7,40 @@ function afficherPanier() {
             panier += '<li>Du <input type="text" value="02/02/2015" style="width:80%;"></input></li>';
             panier += '<li>Au <input type="text" value="04/02/2015" style="width:80%;"></li>';
             panier += '<li class="divider"></li>';
+            panier += '<li>Matériels dans le panier</li>';
             for (var id in data['set']) {
-                panier += "<div class='panier_content'>";
-                panier += data['set'][id]['nom'];
-                panier += "<button value='" + data['set'][id]['id']+ "' onclick='supprimerSet(this)'>X</button>"
-                panier += "</div>";
+                panier += '<li>' + data['set'][id]['nom'] + '<button class="btn btn-default" style="margin-left:5px;" value="' + data['set'][id]['id']+ '" onclick="supprimerSet(this)">Retirer</button></li>';
             }
             for (var id in data['materiel']) {
                 panier += '<li>' + data['materiel'][id]['nom'] + '<button class="btn btn-default" style="margin-left:5px;" value="' + data['materiel'][id]['id']+ '" onclick="supprimerMateriel(this)">Retirer</button></li>';
             }
-            panier += '<a href="recapitulatif_etudiant.php" data-title="Valider la réservation" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-success">Valider la réservation ></a>';
+            panier += '<a href="recapitulatif_etudiant.php" data-title="Valider la réservation" data-toggle="lightbox" data-gallery="remoteload" role="button" class="btn btn-success" onclick="afficherPanierResa();">Valider la réservation ></a>';
         }
         $("#panier").html(panier);
+    });
+}
 
+function afficherPanierResa() {
+    $.getJSON('functions/panier/afficher_panier.php', function(data) {
+        var panier = '';
+        if(data['nbItem'] == 0) {
+            panier += "<li style='margin-left:5px;'>Le panier est vide.</li>";
+        } else {
+            for (var id in data['set']) {
+                panier += '<li class="row"><span class="col-md-6">' + data['set'][id]['nom'] + '</span><span class="col-md-6"><button class="btn btn-default" style="margin-left:5px;" value="' + data['set'][id]['id']+ '" onclick="supprimerSet(this)">Retirer</button></span></li>';
+            }
+            for (var id in data['materiel']) {
+                panier += '<li class="row"><span class="col-md-6">' + data['materiel'][id]['nom'] + '</span><span class="col-md-6"><button class="btn btn-default" style="margin-left:5px;" value="' + data['materiel'][id]['id']+ '" onclick="supprimerMateriel(this)">Retirer</button></span></li>';
+            }
+        }
+        $("#panier-resa").html(panier);
     });
 }
 
 // actualisation des membres connectés
 var reloadTime = 1000;
 window.setInterval(afficherPanier, reloadTime);
+window.setInterval(afficherPanierResa, reloadTime);
 
 
 function ajouterMateriel(item) {

@@ -1,0 +1,29 @@
+img.mat_disp {
+    max-width: 80%;
+    max-height: auto;
+    margin: 20px auto;
+    display: block;
+}
+
+img.home_disp {
+    max-width: 80%;
+    max-height: auto;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+span.label-etudiant {
+    font-size: 12pt;
+    float: right;
+    min-height: 25px;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+div.caption a {
+    color: #4828bb !important;
+}
+
+div.caption button>a:hover {
+    text-decoration: none;
+}

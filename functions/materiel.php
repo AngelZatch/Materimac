@@ -104,7 +104,19 @@ function fetchMateriel($id) {
     } else {
         echo "0 results";
     }
+}
+
+/* SELECTION DE L'IMAGE D'UN MATERIEL */
+function fetchImage($id) {
+    global $conn;
+    $sql = "SELECT adresse FROM images WHERE materiel_id = $id";
+    $result = mysqli_query($conn, $sql);
     
+    if(mysqli_num_rows($result) > 0) {
+        return $result;
+    } else {
+        echo "0 results";
+    }
 }
 
 if(isset($_POST['removeSetMateriel'])){

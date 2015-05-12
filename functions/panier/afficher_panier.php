@@ -1,8 +1,8 @@
 <?php
     session_start();
     require_once '../../settings/db_connect.php';
-    include '../materiel.php';
-    include '../set.php';
+    require_once '../materiel.php';
+    require_once '../set.php';
     global $conn;
     $id_etudiant = $_SESSION['id'];
 

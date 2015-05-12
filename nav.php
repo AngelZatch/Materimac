@@ -18,7 +18,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onclick="afficherPanier()"><span class="glyphicon glyphicon-shopping-cart"></span> Mon panier</a>
-                        <ul id="panier" class="dropdown-menu" role="menu"></ul>
+                        <ul id="panier" class="dropdown-menu panier-menu" role="menu"></ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['prenom'];?></a>
                         <ul class="dropdown-menu" role="menu">

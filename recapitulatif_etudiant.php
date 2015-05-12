@@ -3,6 +3,10 @@
     require_once 'settings/db_connect.php';
 ?>
 <form action="#" method="post" class="lightbox-form">
+   <div class="form-group">
+        <label class="control-label">Matériels à emprunter</label>
+        <ul id="panier-resa"></ul>
+    </div>
     <div class="form-group">
         <label class="control-label">Nom de l'emprunteur :</label>
         <?php echo $_SESSION['prenom'].' '.$_SESSION['nom']; ?><br>

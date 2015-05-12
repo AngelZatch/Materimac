@@ -1,7 +1,7 @@
 <?php
 
-include 'functions/materiel.php';
-include 'functions/set.php';
+require_once 'functions/materiel.php';
+require_once 'functions/set.php';
 
 if(isset($_POST['validerResa'])){
 	validerResa($_POST["id"]);

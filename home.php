@@ -18,6 +18,7 @@ $materielTous = getMateriel();
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/materiel.css">
 </head>
 <body>
    <?php include 'nav.php'; ?>
@@ -29,6 +30,7 @@ $materielTous = getMateriel();
            	<div class="container-fluid">
            		<div class="collapse navbar-collapse">
            			<ul class="nav navbar-nav navbar-sec">
+           			    <li><a class="navbar-sec-selected" href="#">Tous</a></li>
            				<?php
 							while($categorieListe = mysqli_fetch_assoc($categorieMenu)) {
 								$cat_nom = $categorieListe['nom'];
@@ -46,13 +48,17 @@ $materielTous = getMateriel();
 				$mat_nom = $materielListe['nom'];
 				$mat_description = $materielListe['reference'];
                 $mat_id = $materielListe['id'];
+                $image = mysqli_fetch_assoc(fetchImage($mat_id));
 			?>
 			<div class="col-md-3">
            	<div class="thumbnail">
            		<div class="caption">
            			<h3><a href="materiel_affichage.php?id=<?php echo $mat_id; ?>"><?php echo $mat_nom; ?></a></h3>
-           			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti iusto placeat quasi, labore, voluptatem eligendi possimus perspiciatis ullam non. Commodi quibusdam debitis ipsum error sequi nulla. Commodi debitis, nihil. Quo.</p>
-           			<button class="btn btn-primary" value="<?php echo $mat_id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
+           			<img class="home_disp" src="ressources/images/<?php echo $image['adresse']; ?>" alt="">
+           			<div class="row">
+                        <div class="col-md-5"><button style="margin-left:25px;" class="btn btn-default"><a href="materiel_affichage.php?id=<?php echo $mat_id; ?>">Voir les détails</a></button></div>
+           			    <div class="col-md-7"><button style="margin-left:10px;" class="btn btn-primary" value="<?php echo $mat_id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button></div>
+           			</div>
            		</div>
            		</div>
            	</div>
