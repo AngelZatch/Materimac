@@ -41,7 +41,6 @@ function griserBouton() {
     $.getJSON('functions/panier/afficher_panier.php', function(data) {
         if(data['nbItem'] != 0) {
             $('.ajout-panier').prop('disabled', false);
-            var i = 1;
             $('.ajout-panier').each(function(i,j) {
                 for (var id in data['materiel']) {
                     if($("#mat_"+i).val() == data['materiel'][id]['id']) {
