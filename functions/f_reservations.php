@@ -67,7 +67,7 @@ function afficherRDV(){
 	global $conn;
 	$date = (string)(new DateTime('today'))->format('Y-m-d').' 00:00:00';
 	$dateTomorrow = (string)(new DateTime('tomorrow'))->format('Y-m-d').' 00:00:00';
-	$result = mysqli_query($conn, "SELECT reference, date_debut, date_fin, etudiant_id, etat_emprunt_id FROM emprunt WHERE (date_debut > '$date' AND date_debut < '$dateTomorrow') OR (date_fin > '$date' AND date_fin < '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4'");
+	$result = mysqli_query($conn, "SELECT reference, date_debut, date_fin, etudiant_id, etat_emprunt_id FROM emprunt WHERE (date_debut >= '$date' AND date_debut <= '$dateTomorrow') OR (date_fin >= '$date' AND date_fin <= '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4'");
 	if(mysqli_num_rows($result) > 0){
 		echo "<table class='table table-striped table-hover'><tbody class='table table-striped'>";
 		while($row = mysqli_fetch_assoc($result)){
@@ -90,7 +90,7 @@ function afficherEmpruntsProches(){
 	global $conn;
 	$date = (string)(new DateTime('today'))->format('Y-m-d').' 00:00:00';
 	$dateTomorrow = (string)(new DateTime('tomorrow'))->format('Y-m-d').' 00:00:00';
-	$result = mysqli_query($conn, "SELECT * FROM emprunt WHERE ((date_debut > '$date' AND date_debut < '$dateTomorrow') OR (date_fin > '$date' AND date_fin < '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4') OR (date_fin < '$date' AND etat_emprunt_id='4')");
+	$result = mysqli_query($conn, "SELECT * FROM emprunt WHERE ((date_debut >= '$date' AND date_debut <= '$dateTomorrow') OR (date_fin >= '$date' AND date_fin <= '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4') OR (date_fin <= '$date' AND etat_emprunt_id='4')");
 	if(mysqli_num_rows($result) > 0){
 		echo "<h2>Réservations du jour : ".mysqli_num_rows($result)."</h2>";
 		while($row = mysqli_fetch_assoc($result)){
