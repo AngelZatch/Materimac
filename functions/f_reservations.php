@@ -20,19 +20,19 @@ if(isset($_POST['entrerResa'])){
 
 function validerResa($data){
 	global $conn;
-	$sql = "UPDATE emprunt SET etat_emprunt_id='2' WHERE reference=$data";
+	$sql = "UPDATE emprunt SET etat_emprunt_id='2' WHERE reference='$data'";
 	mysqli_query($conn, $sql);
 }
 
 function annulerResa($data){
 	global $conn;
-	$sql = "UPDATE emprunt SET etat_emprunt_id='6' WHERE reference=$data";
+	$sql = "UPDATE emprunt SET etat_emprunt_id='6' WHERE reference='$data'";
 	mysqli_query($conn, $sql);
 }
 
 function sortirResa($data){
 	global $conn;
-	$sql = "UPDATE emprunt SET etat_emprunt_id='3' WHERE reference=$data";
+	$sql = "UPDATE emprunt SET etat_emprunt_id='3' WHERE reference='$data'";
 	mysqli_query($conn, $sql);
 	/* On met tous le matériel sorti en indisponible */
 	$fetchListItems = mysqli_query($conn, "SELECT materiel_id FROM detail_emprunt WHERE reference_id=$data");
@@ -43,7 +43,7 @@ function sortirResa($data){
 
 function entrerResa($data){
 	global $conn;
-	$sql = "UPDATE emprunt SET etat_emprunt_id='5' WHERE reference=$data";
+	$sql = "UPDATE emprunt SET etat_emprunt_id='5' WHERE reference='$data'";
 	mysqli_query($conn, $sql);
 	$fetchListItems = mysqli_query($conn, "SELECT materiel_id FROM detail_emprunt WHERE reference_id=$data");
 	while($listItems = mysqli_fetch_assoc($fetchListItems)){

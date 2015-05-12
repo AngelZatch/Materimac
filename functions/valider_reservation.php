@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST['validerResa'])) {
+    if(isset($_POST['validerDemande'])) {
         validerReservation();        
     }
 

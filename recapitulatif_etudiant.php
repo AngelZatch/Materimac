@@ -44,5 +44,5 @@
         <label class="control-label">Motif :</label>
         <textarea name="motif" id="motif" class="form-control" cols="30" rows="10"></textarea>
     </div>
-    <input type="submit" name="validerResa" value="Valider" class="btn btn-custom btn-custom-validate confirmAdd">
+    <input type="submit" name="validerDemande" value="Valider" class="btn btn-custom btn-custom-validate confirmAdd">
 </form>
