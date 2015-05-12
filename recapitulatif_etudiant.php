@@ -19,14 +19,25 @@
     </div>
     <div class="form-group form-inline">
        <div class="row">
-            <label class="control-label col-sm-4">Ajouter un étudiant :</label>
-            <input class="form-control col-sm-8" type="text" id="nom_etudiant"><br>
+            <label class="control-label col-sm-12">Ajouter un étudiant :</label>
+        </div>
+        <div class="row">
+            <input class="form-control col-sm-6" style="margin: 10px 50px 10px 20px;" type="text" name="nom_etudiant1">
+            <input class="form-control col-sm-6" style="margin-top: 10px;"  type="text" name="nom_etudiant2">
+        </div>
+        <div class="row">
+            <input class="form-control col-sm-6" style="margin: 10px 50px 10px 20px;"  type="text" name="nom_etudiant3">
+            <input class="form-control col-sm-6" style="margin-top: 10px;" type="text" name="nom_etudiant4">
+        </div>
+        <div class="row">
+            <input class="form-control col-sm-6" style="margin: 10px 50px 10px 20px;"  type="text" name="nom_etudiant5">
+            <input class="form-control col-sm-6" style="margin-top: 10px;" type="text" name="nom_etudiant6">
         </div>
     </div>
     <div class="form-group form-inline">
        <div class="row">
-            <label class="control-label col-sm-4">Enseignant :</label>
-            <input class="form-control col-sm-8" type="text" id="enseignant" name="enseignant"><br>
+            <label class="control-label col-sm-3" style="padding-top:7px;">Enseignant :</label>
+            <input class="form-control col-sm-9" type="text" name="enseignant"><br>
         </div>
     </div>
     <div class="form-group">
