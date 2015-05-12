@@ -222,15 +222,15 @@ if(!isset($_SESSION['power'])){
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/ekko-lightbox.min.js"></script>
     <script>
-            $(document).ready(function ($) {
-                // delegate calls to data-toggle="lightbox"
-                $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-                    event.preventDefault();
-                    return $(this).ekkoLightbox({
-						onNavigate: false
-                    });
+        $(document).ready(function ($) {
+            // delegate calls to data-toggle="lightbox"
+            $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+                event.preventDefault();
+                return $(this).ekkoLightbox({
+                    onNavigate: false
                 });
             });
+        });
     </script>
 </body>
 </html>

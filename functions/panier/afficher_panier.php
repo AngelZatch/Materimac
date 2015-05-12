@@ -4,13 +4,13 @@
     include '../materiel.php';
     include '../set.php';
     global $conn;
-    $id_etudiant = '103832';
+    $id_etudiant = $_SESSION['id'];
 
     // On récupère les items associé à l'id étudiant
-    $sql = "SELECT id_materiel FROM panier WHERE id_etudiant = $id_etudiant AND  id_set = '0'";
+    $sql = "SELECT id_materiel FROM panier WHERE id_etudiant = '$id_etudiant' AND  id_set = '0'";
     $materiels = mysqli_query($conn, $sql);
     
-    $sql2 = "SELECT id_set FROM panier WHERE id_etudiant = $id_etudiant AND  id_materiel = '0'";
+    $sql2 = "SELECT id_set FROM panier WHERE id_etudiant = '$id_etudiant' AND  id_materiel = '0'";
     $sets = mysqli_query($conn, $sql2);
 
     $count = mysqli_num_rows($materiels) + mysqli_num_rows($sets);

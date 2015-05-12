@@ -25,6 +25,7 @@ if(isset($_POST['submit'])){
             $_SESSION['power'] = $row['user_type_id'];            
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['nom'] = $row['nom'];
+            $_SESSION['id'] = $_POST['id'];
 			if($row['user_type_id'] == 1) $_SESSION['gestionnaire'] = $row['id'];
 				else $_SESSION['gestionnaire'] = null;
 			if($row['user_type_id'] == 2) $_SESSION['etudiant'] = $row['numero_etudiant'];

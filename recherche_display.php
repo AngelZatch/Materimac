@@ -64,6 +64,7 @@ $categories = getCategorie();
                                            <td class="col-sm-1"><?php echo $dispo; ?></td>
                                            <td class="col-sm-2"><?php echo $note; ?></td>
                                            <td class="col-sm-2">
+                                               <button class="btn btn-default" value="<?php echo $id; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
                                                <form method="post" action="liste-materiel.php">
                                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                                                 <input type="submit" value="Supprimer" name="deleteMateriel" class="btn btn-default">
@@ -81,5 +82,17 @@ $categories = getCategorie();
     <script src="js/jquery-1.11.2.min.js"></script>
     <script src="js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/ekko-lightbox.min.js"></script>
+    <script>
+        $(document).ready(function ($) {
+            // delegate calls to data-toggle="lightbox"
+            $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+                event.preventDefault();
+                return $(this).ekkoLightbox({
+                    onNavigate: false
+                });
+            });
+        });
+    </script>
 </body>
 </html>
