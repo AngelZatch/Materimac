@@ -32,15 +32,24 @@ function afficherPanierResa() {
             for (var id in data['materiel']) {
                 panier += '<li class="row"><span class="col-md-6">' + data['materiel'][id]['nom'] + '</span><span class="col-md-6"><button class="btn btn-default" style="margin-left:5px;" value="' + data['materiel'][id]['id']+ '" onclick="supprimerMateriel(this)">Retirer</button></span></li>';
             }
-            var i = 1;
-            for(var id in data['materiel']) {
-                if($("#mat_"+i).val() == data['materiel'][id]['id']) {
-                    $("#mat_"+i).prop('disabled', true);
-                }
-                i++;
-            }
         }
         $("#panier-resa").html(panier);
+    });
+}
+
+function griserBouton() {
+    $.getJSON('functions/panier/afficher_panier.php', function(data) {
+        if(data['nbItem'] != 0) {
+            $('.ajout-panier').prop('disabled', false);
+            $('.ajout-panier').each(function(i,j) {
+                for (var id in data['materiel']) {
+                    if($("#mat_"+i).val() == data['materiel'][id]['id']) {
+                        $("#mat_"+i).prop('disabled', true);
+                    }
+                    i++;
+                }
+            });
+        }
     });
 }
 
@@ -48,6 +57,7 @@ function afficherPanierResa() {
 var reloadTime = 1000;
 window.setInterval(afficherPanier, reloadTime);
 window.setInterval(afficherPanierResa, reloadTime);
+window.setInterval(griserBouton, reloadTime);
 
 
 function ajouterMateriel(item) {
