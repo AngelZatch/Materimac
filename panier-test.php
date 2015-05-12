@@ -11,6 +11,7 @@
     $sets = getSet();
     $panier_items = getPanier();
     if(isset($_SESSION['id'])) {echo $_SESSION['id'];} else echo "No session";
+    $objDateTime = new DateTime('NOW');
 ?>
 
 

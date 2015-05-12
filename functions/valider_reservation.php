@@ -8,6 +8,8 @@
         $etudiant_id = $_SESSION['id'];
         $date_debut = $_POST['dateDebut'];
         $date_fin = $_POST['dateFin'];
+        $date_soumission_DT = new DateTime('NOW');
+        $date_soumission = date_format($date_soumission_DT,'Y-m-d H:i:s');
         $enseignant = $_POST['enseignant'];
         $raison = $_POST['motif'];
         $reference = genererReference();
@@ -15,7 +17,7 @@
         $etudiants_post = array($_POST['nom_etudiant1'],$_POST['nom_etudiant2'],$_POST['nom_etudiant3'],$_POST['nom_etudiant4'],$_POST['nom_etudiant5'],$_POST['nom_etudiant6']);
         
         // On crée la nouvelle réservation
-        $sql1 = "INSERT INTO emprunt (reference, date_debut, date_fin, nom_enseignant, raison, etudiant_id, etat_emprunt_id) VALUES ('$reference', '$date_debut', '$date_fin', '$enseignant', '$raison', '$etudiant_id', '1')";
+        $sql1 = "INSERT INTO emprunt (reference, date_debut, date_fin, date_soumission, nom_enseignant, raison, etudiant_id, etat_emprunt_id) VALUES ('$reference', '$date_debut', '$date_fin', '$date_soumission', '$enseignant', '$raison', '$etudiant_id', '1')";
         mysqli_query($conn, $sql1);
         
         // On ajoute les items du panier à la réservation

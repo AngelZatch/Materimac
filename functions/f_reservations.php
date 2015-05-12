@@ -1,5 +1,8 @@
 <?php
 
+include 'functions/materiel.php';
+include 'functions/set.php';
+
 if(isset($_POST['validerResa'])){
 	validerResa();
 }
@@ -91,7 +94,7 @@ function afficherEmpruntsProches(){
 					</thead>
 
 					<tbody class='table table-striped'>";
-			$result_contenu = mysqli_query($conn, "SELECT * FROM detail_emprunt JOIN materiel ON (materiel_id=materiel.id) WHERE reference_id='$row[reference]'");
+            /*$result_contenu = mysqli_query($conn, "SELECT * FROM detail_emprunt JOIN materiel ON (materiel_id=materiel.id) WHERE reference='$row[reference]'");
             while($row_listeMateriel = mysqli_fetch_assoc($result_contenu)){
                 echo "<tr>
 						<td class='col-sm-2'>".$row_listeMateriel['nom']."</td>
@@ -102,20 +105,58 @@ function afficherEmpruntsProches(){
 				if($row['etat_emprunt_id'] == '2') {echo "<button class='btn btn-primary'>Sortir de l'inventaire</button></td>";}
 				else {echo "<button class='btn btn-primary'>Entrer dans l'inventaire</button></td>";};
 					echo "</tr>";   
+            }*/
+            $result_contenu = mysqli_query($conn, "SELECT * FROM detail_emprunt WHERE reference='$row[reference]'");
+            while($row_listeMateriel = mysqli_fetch_assoc($result_contenu)){
+                if(!empty($row_listeMateriel['materiel_id'])) {
+                    $materiel = fetchMateriel($row_listeMateriel['materiel_id']);
+                    echo "<tr>
+                            <td class='col-sm-2'>".$materiel['nom']."</td>
+                            <td class='col-sm-3'>".$materiel['reference']."</td>
+                            <td class='col-sm-1'>".$materiel['numero_cn']."</td>
+                            <td class='col-sm-2'>".$materiel['note']."</td>
+                            <td class='col-sm-2'>";
+                    if($row['etat_emprunt_id'] == '2') {echo "<button class='btn btn-primary'>Sortir de l'inventaire</button></td>";}
+                    else {echo "<button class='btn btn-primary'>Entrer dans l'inventaire</button></td>";};
+                        echo "</tr>";
+                }
+                if(!empty($row_listeMateriel['set_id'])) {
+                    $set = fetchMateriel($row_listeMateriel['set_id']);
+                    echo "<tr>
+                            <td class='col-sm-2'>".$set['nom']."</td>
+                            <td class='col-sm-2'>";
+                    if($row['etat_emprunt_id'] == '2') {echo "<button class='btn btn-primary'>Sortir de l'inventaire</button></td>";}
+                    else {echo "<button class='btn btn-primary'>Entrer dans l'inventaire</button></td>";};
+                        echo "</tr>";
+                }
             }
 			echo "</tbody></table>";
             
             // Liste des étudiants
             echo "</div>
-                    <div class='col-md-12'>
-                    <h4>Liste des étudiants</h4>
-                    </div>";
+                    <div class='col-md-4'>
+                    <h4>Liste des étudiants</h4>";
+            $result_etudiant = mysqli_query($conn, "SELECT * FROM groupe_etudiant WHERE reference='$row[reference]'");
+            while($row_listeEtudiant = mysqli_fetch_assoc($result_etudiant)) {
+                if(!empty($row_listeEtudiant['etudiant_id'])){
+                /***** à décommenter quand l'ajout d'étudiant au projet sera fait par fonction de recherche
+                    $etudiant = mysqli_fetch_assoc(fetchEtudiant($row_listeEtudiant['etudiant_id']));
+                    echo "<li><a href=etudiant_edit.php?nom=".$etudiant['identifiant'].">".$etudiant['prenom']." ".$etudiant['nom']."</a></li>";
+                *****/
+                     echo "<li>".$row_listeEtudiant['etudiant_id']."</li>";
+                }
+            }
+            echo "</div>";
             
-            // Type de projet & Enseignant
-            echo " <div class='col-md-12'>
-                        <h4>Raison de l'emprunt</h4>
-						<p>".$row['raison']."</p>
-                    </div>
+            // Motif de l'emprunt & Enseignant
+            echo " <div class='col-md-4'>
+                        <h4>Motif de l'emprunt</h4>";
+            echo "<p>".$row['raison']."</p>";
+            echo "<h4>Enseignant</h4>";
+            if(!empty($row['enseignant'])) {
+                echo "<p>".$row['raison']."</p>";
+            } else echo "Pas d'enseignant renseigné.";
+            echo "</div>
                     </div>
                 </div>";
             
@@ -157,7 +198,7 @@ function afficherReservation($data){
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_assoc($result)){
             //Get etudiant
-            $result_etudiant = mysqli_query($conn, "SELECT nom, prenom FROM etudiant WHERE numero_etudiant='$row[etudiant_id]'");
+            $result_etudiant = mysqli_query($conn, "SELECT nom, prenom FROM etudiant WHERE identifiant='$row[etudiant_id]'");
             $row_etudiant = mysqli_fetch_assoc($result_etudiant);
             
             switch($row['etat_emprunt_id']){
@@ -218,21 +259,47 @@ function afficherReservation($data){
             
             // Liste du matériel
             echo "<h4>Liste du matériel</h4>";
-            $result_contenu = mysqli_query($conn, "SELECT * FROM detail_emprunt JOIN materiel ON (materiel_id=materiel.id) WHERE reference_id='$row[reference]'");
+            /*$result_contenu = mysqli_query($conn, "SELECT * FROM detail_emprunt JOIN materiel ON (materiel_id=materiel.id) WHERE reference='$row[reference]'");
             while($row_listeMateriel = mysqli_fetch_assoc($result_contenu)){
                 echo "<li><a href=materiel_edit.php?id=".$row_listeMateriel['id'].">".$row_listeMateriel['nom']."</a></li>";   
+            }*/
+            $result_contenu = mysqli_query($conn, "SELECT * FROM detail_emprunt WHERE reference='$row[reference]'");
+            while($row_listeMateriel = mysqli_fetch_assoc($result_contenu)){
+                if(!empty($row_listeMateriel['materiel_id'])) {
+                    $materiel = mysqli_fetch_assoc(fetchMateriel($row_listeMateriel['materiel_id']));
+                    echo "<li><a href=materiel_edit.php?id=".$materiel['id'].">".$materiel['nom']."</a></li>";
+                }
+                if(!empty($row_listeMateriel['set_id'])) {
+                    $set = mysqli_fetch_assoc(fetchSet($row_listeMateriel['set_id']));
+                    echo "<li><a href=set_edit.php?id=".$set['id'].">".$set['nom']."</a></li>";
+                }
             }
             
             // Liste des étudiants
             echo "</div>
                     <div class='col-md-4'>
-                    <h4>Liste des étudiants</h4>
-                    </div>";
+                    <h4>Liste des étudiants</h4>";
+            $result_etudiant = mysqli_query($conn, "SELECT * FROM groupe_etudiant WHERE reference='$row[reference]'");
+            while($row_listeEtudiant = mysqli_fetch_assoc($result_etudiant)) {
+                if(!empty($row_listeEtudiant['etudiant_id'])){
+                /***** à décommenter quand l'ajout d'étudiant au projet sera fait par fonction de recherche
+                    $etudiant = mysqli_fetch_assoc(fetchEtudiant($row_listeEtudiant['etudiant_id']));
+                    echo "<li><a href=etudiant_edit.php?nom=".$etudiant['identifiant'].">".$etudiant['prenom']." ".$etudiant['nom']."</a></li>";
+                *****/
+                     echo "<li>".$row_listeEtudiant['etudiant_id']."</li>";
+                }
+            }
+            echo "</div>";
             
-            // Type de projet & Enseignant
+            // Motif de l'emprunt & Enseignant
             echo " <div class='col-md-4'>
-                        <h4>Type de projet</h4>
-                    </div>
+                        <h4>Motif de l'emprunt</h4>";
+            echo "<p>".$row['raison']."</p>";
+            echo "<h4>Enseignant</h4>";
+            if(!empty($row['enseignant'])) {
+                echo "<p>".$row['raison']."</p>";
+            } else echo "Pas d'enseignant renseigné.";
+            echo "</div>
                     </div>
                 </div>";
             
