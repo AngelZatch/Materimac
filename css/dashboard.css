@@ -203,3 +203,7 @@ nav.navbar-inverse{
 .navbar-secondary {
 	background-color: white !important;
 }
+
+.emphasis-text{
+	font-weight: 700;
+}

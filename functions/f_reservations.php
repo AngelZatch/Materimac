@@ -1,18 +1,22 @@
 <?php
 
 if(isset($_POST['validerResa'])){
-	validerResa();
+	validerResa($_POST["id"]);
 }
 if(isset($_POST['annulerResa'])){
-	annulerResa();
+	annulerResa($_POST["id"]);
 }
 
-function validerResa(){
-	echo "Réservation validée";
+function validerResa($data){
+	global $conn;
+	$sql = "UPDATE emprunt SET etat_emprunt_id='2' WHERE reference=$data";
+	mysqli_query($conn, $sql);
 }
 
-function annulerResa(){
-	echo "Réservation annulée";
+function annulerResa($data){
+	global $conn;
+	$sql = "UPDATE emprunt SET etat_emprunt_id='6' WHERE reference=$data";
+	mysqli_query($conn, $sql);
 }
 
 function menuReservation(){
@@ -53,7 +57,8 @@ function afficherRDV(){
 function afficherEmpruntsProches(){
 	global $conn;
 	$date = (string)(new DateTime('today'))->format('Y-m-d').' 00:00:00';
-	$result = mysqli_query($conn, "SELECT * FROM emprunt WHERE date_debut > '$date'");
+	$dateTomorrow = (string)(new DateTime('tomorrow'))->format('Y-m-d').' 00:00:00';
+	$result = mysqli_query($conn, "SELECT * FROM emprunt WHERE (date_debut > '$date' AND date_debut < '$dateTomorrow') OR (date_fin > '$date' AND date_fin < '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4'");
 	if(mysqli_num_rows($result) > 0){
 		echo "<h2>Réservations du jour : ".mysqli_num_rows($result)."</h2>";
 		while($row = mysqli_fetch_assoc($result)){
@@ -188,27 +193,30 @@ function afficherReservation($data){
                 default:
                     break;
             }
+			
+			$dateSub = date_format(date_create($row['date_debut']), 'd/m/Y');
+			$dateDebut = date_format(date_create($row['date_debut']), 'd/m/Y H:i:s');
+			$dateFin = date_format(date_create($row['date_fin']), 'd/m/Y H:i:s');
             
             echo "<div class='panel-heading'>
-                    <table>
+			<div class='container-fluid'><div class='row'>
+                    <table class='col-md-12'>
                         <tr>
-                            <td class='col-sm-2'>".$row['date_debut']."</td>
-                            <td class='col-sm-2'>".$row_etudiant['prenom']." ".$row_etudiant['nom']."</td>
-                            <td class='col-sm-1'>".$row['reference']."</td>
-                            <td class='col-sm-1'>".$row['raison']."</td>
-                            <td class='col-sm-2'>".$row['date_debut']."</td>
-                            <td class='col-sm-2'>".$row['date_fin']."</td>
-                            <td class='col-sm-2'>";
+							<td class='col-md-4'>Réservation n°<span class='emphasis-text'>".$row['reference']."</span><br>Soumise le <span class='emphasis-text'>".$dateSub."</span></td>
+                            <td class='col-md-3'>Par <span class='emphasis-text'>".$row_etudiant['prenom']." ".$row_etudiant['nom']."</span></td>
+                            <td class='col-md-3'>Du <span class='emphasis-text'>".$dateDebut."</span><br>Au <span class='emphasis-text'>".$dateFin."</span></td>
+                            <td class='col-md-2'>";
             if($row['etat_emprunt_id'] < 3){
             echo "<form action=".$_SERVER['PHP_SELF']."?id=$data method='post'><div class='form-group'><div class='btn-group'>";
                     if($row['etat_emprunt_id'] == 1) echo"<button type='submit' class='btn btn-default' name='validerResa'><span class='glyphicon glyphicon-ok'></span> Valider</button>";
                     echo "<button type='submit' class='btn btn-default' name='annulerResa'><span class='glyphicon glyphicon-remove'></span> Refuser</button>
+					<input type='hidden' name='id' value=".$row['reference'].">
                 </div></div></form>";
             }
             echo "</td>
                         </tr>
                         </table>
-                    </div>
+                    </div></div></div>
                     <div class='panel-body'>";
             
             //CONTENU DE LA RESERVATION
@@ -231,8 +239,7 @@ function afficherReservation($data){
             
             // Type de projet & Enseignant
             echo " <div class='col-md-4'>
-                        <h4>Type de projet</h4>
-                    </div>
+                        <h4>Type de projet</h4>".$row['raison']."</div>
                     </div>
                 </div>";
             
