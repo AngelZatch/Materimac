@@ -54,7 +54,7 @@ function griserBouton() {
 var reloadTime = 1000;
 window.setInterval(afficherPanier, reloadTime);
 window.setInterval(afficherPanierResa, reloadTime);
-window.setInterval(griserBouton, 1);
+window.setInterval(griserBouton, reloadTime);
 
 
 function ajouterMateriel(item) {
