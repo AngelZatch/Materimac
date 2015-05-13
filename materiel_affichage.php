@@ -58,7 +58,11 @@ if($materiel['categorie_id'] != 0) {
                             </p>
                             <br>
                             <h3>Fiche de renseignement</h3>
-                            <button class="btn btn-default" disabled value="" onclick="">Voir la fiche</button>
+                            <?php
+                                    } else { ?>
+                                        <button class="btn btn-default" disabled value="" onclick="">Voir la fiche</button>
+                                    <?php }
+                                ?>
                         </div>
                     </div>
                 </div>
