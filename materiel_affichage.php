@@ -59,6 +59,8 @@ if($materiel['categorie_id'] != 0) {
                             <br>
                             <h3>Fiche de renseignement</h3>
                             <?php
+                                    if(!empty($materiel['fiche_technique'])) {
+                                        echo "<a href='ressources/fiches/".$materiel['fiche_technique']."'><button class='btn btn-default' value='' onclick=''>Voir la fiche</button></a>";
                                     } else { ?>
                                         <button class="btn btn-default" disabled value="" onclick="">Voir la fiche</button>
                                     <?php }
