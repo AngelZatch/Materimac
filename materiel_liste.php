@@ -201,8 +201,8 @@ if(!isset($_SESSION['power'])){
                                         <td class="col-sm-2"><?php echo $nom; ?></td>
                                         <td class="col-sm-2"><?php echo $reference; ?></td>
                                         <td class="col-sm-1"><?php echo $num_cn; ?></td>
-                                        <td class="col-sm-1"><?php echo $etat; ?></td>
                                         <td class="col-sm-1"><?php labelDispo($dispo); ?></td>
+                                        <td class="col-sm-1"><?php //echo $etat; ?></td>
                                         <td class="col-sm-2"><?php echo $note; ?></td>
                                         <td class="col-sm-2">
                                             <form action="materiel_liste.php" method="post">  
