@@ -14,11 +14,21 @@
     <div class="row">
        <div class="form-group col-sm-6">
            <label class="control-label">Date de début :</label>
-           <input class="form-control" type="date" name="dateDebut">
+           <input class="form-control" type="date" name="dateDebut" onchange="getMeetings(this);">
         </div>
         <div class="form-group col-sm-6">
             <label class="control-label">Date de fin :</label>
             <input class="form-control" type="date" name="dateFin">
+        </div>
+    </div>
+	<div class="row">
+       <div id="rdvSortie" display="none;" class="form-group col-sm-6">
+           <label class="control-label">Heure de sortie :</label>
+           <input id="heureSortie" class="form-control" type="text" name="dateDebut">
+        </div>
+        <div id="rdvEntree" style="display:none;" class="form-group col-sm-6">
+            <label class="control-label">Heure d'entrée :</label>
+            <input class="form-control" type="text" name="dateFin">
         </div>
     </div>
     <div class="form-group form-inline">
@@ -50,3 +60,21 @@
     </div>
     <input type="submit" name="validerDemande" value="Valider" class="btn btn-custom btn-custom-validate confirmAdd">
 </form>
+
+
+<script>
+function getMeetings(date) {
+	alert(date.value);
+	$.ajax({
+       type: "POST",
+       url: "functions/getMeetingsHour.php",
+       data: "date="+item.value
+	});
+	$.getJSON('functions/getMeetingsHour.php', function(data) {
+		$("#rdvSortie").attr("display","inline-block");
+		var text = data['coucou'];
+		$("#heureSortie").html(text);
+	}
+	
+}
+</script>
