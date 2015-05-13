@@ -78,7 +78,8 @@ function afficherRDV(){
 				$daterdv = date_create($row['date_fin']);
 				$formatrdv = date_format($daterdv, 'H:i:s');
 			}
-			echo "<tr><td>Réservation ".$row['reference']." à ".$formatrdv." avec ".$row['etudiant_id']."</td></tr>";
+            $etudiant = mysqli_fetch_assoc(mysqli_query($conn, "SELECT prenom, nom FROM etudiant WHERE identifiant='$row[etudiant_id]'"));
+			echo "<tr><td>Réservation ".$row['reference']." à ".$formatrdv." avec ".$etudiant['prenom']." ".$etudiant['nom']."</td></tr>";
 		}
 		echo "</tbody></table>";
 	} else {
