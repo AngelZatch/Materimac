@@ -42,7 +42,7 @@ if($materiel['categorie_id'] != 0) {
                             <img class="mat_disp" src="ressources/images/<?php echo $image['adresse']; ?>" alt="">
                         </div>
                         <div class="col-md-7">
-                           <button class="btn btn-primary confirmAdd" value="<?php echo $data; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
+                           <button class="btn btn-primary confirmAdd ajout-panier" id="mat" value="<?php echo $data; ?>" onclick="ajouterMateriel(this)">Ajouter au panier</button>
                            <br>
                            <br>
                            <br>

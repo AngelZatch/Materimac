@@ -4,9 +4,9 @@ function afficherPanier() {
         if(data['nbItem'] == 0) {
             panier += "<li style='margin-left:5px;'>Le panier est vide.</li>";
         } else {
-            panier += '<li>Du <input type="text" value="02/02/2015" style="width:80%;"></input></li>';
-            panier += '<li>Au <input type="text" value="04/02/2015" style="width:80%;"></li>';
-            panier += '<li class="divider"></li>';
+            /*panier += '<li>Du <input type="text" value="" style="width:80%;"></input></li>';
+            panier += '<li>Au <input type="text" value="" style="width:80%;"></li>';
+            panier += '<li class="divider"></li>';*/
             panier += '<li>Matériels dans le panier</li>';
             for (var id in data['set']) {
                 panier += '<li>' + data['set'][id]['nom'] + '<button class="btn btn-default" style="margin-left:5px;" value="' + data['set'][id]['id']+ '" onclick="supprimerSet(this)">Retirer</button></li>';
@@ -37,10 +37,29 @@ function afficherPanierResa() {
     });
 }
 
+function griserBouton() {
+    $.getJSON('functions/panier/afficher_panier.php', function(data) {
+        if(data['nbItem'] != 0) {
+            $('.ajout-panier').prop('disabled', false);
+            $('.ajout-panier').each(function(i,j) {
+                for (var id in data['materiel']) {
+                    if($("#mat_"+i).val() == data['materiel'][id]['id']) {
+                        $("#mat_"+i).prop('disabled', true);
+                    }
+                    if($("#mat").val() == data['materiel'][id]['id']) {
+                        $("#mat").prop('disabled', true);
+                    }
+                }
+            });
+        }
+    });
+}
+
 // actualisation des membres connectés
 var reloadTime = 1000;
 window.setInterval(afficherPanier, reloadTime);
 window.setInterval(afficherPanierResa, reloadTime);
+window.setInterval(griserBouton, reloadTime);
 
 
 function ajouterMateriel(item) {
