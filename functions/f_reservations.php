@@ -90,7 +90,7 @@ function afficherEmpruntsProches(){
 	global $conn;
 	$date = (string)(new DateTime('today'))->format('Y-m-d').' 00:00:00';
 	$dateTomorrow = (string)(new DateTime('tomorrow'))->format('Y-m-d').' 00:00:00';
-	$result = mysqli_query($conn, "SELECT * FROM emprunt WHERE ((date_debut >= '$date' AND date_debut <= '$dateTomorrow') OR (date_fin >= '$date' AND date_fin <= '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4') OR (date_fin <= '$date' AND etat_emprunt_id='4')");
+	$result = mysqli_query($conn, "SELECT * FROM emprunt WHERE ((date_debut > '$date' AND date_debut < '$dateTomorrow') OR (date_fin >= '$date' AND date_fin <= '$dateTomorrow') AND etat_emprunt_id >='2' AND etat_emprunt_id<='4') OR (date_fin <= '$date' AND etat_emprunt_id='4')");
 	if(mysqli_num_rows($result) > 0){
 		echo "<h2>Réservations du jour : ".mysqli_num_rows($result)."</h2>";
 		while($row = mysqli_fetch_assoc($result)){
@@ -101,7 +101,7 @@ function afficherEmpruntsProches(){
 			$dateSub = date_format(date_create($row['date_debut']), 'd/m/Y');
 			$dateDebut = date_format(date_create($row['date_debut']), 'd/m/Y H:i:s');
 			$dateFin = date_format(date_create($row['date_fin']), 'd/m/Y H:i:s');
-			$etudiant = mysqli_fetch_assoc(mysqli_query($conn, "SELECT prenom, nom FROM etudiant WHERE numero_etudiant='$row[etudiant_id]'"));
+			$etudiant = mysqli_fetch_assoc(mysqli_query($conn, "SELECT prenom, nom FROM etudiant WHERE identifiant='$row[etudiant_id]'"));
 			echo "<div class='panel-heading'>
 					<div class='container-fluid'><div class='row'>
                     <table class='col-md-12'>
@@ -111,12 +111,13 @@ function afficherEmpruntsProches(){
                             <td class='col-md-3'>Du <span class='emphasis-text'>".$dateDebut."</span><br>Au <span class='emphasis-text'>".$dateFin."</span></td>
                         </tr>
                         </table>
-                    </div></div></div>
-                    <div class='panel-body'>";
-				//CONTENU DE LA RESERVATION
-            echo "<div class='container-fluid'>
-                    <div class='row'>
-                        <div class='col-md-12'>";
+                    </div></div></div>";
+                    
+            //CONTENU DE LA RESERVATION
+            echo "<div class='panel-body'>
+                    <div class='container-fluid'>
+                        <div class='row'>
+                            <div class='col-md-12'>";
             
             // Liste du matériel
             echo "<h4>Liste du matériel</h4>";
@@ -147,7 +148,7 @@ function afficherEmpruntsProches(){
             $result_contenu = mysqli_query($conn, "SELECT * FROM detail_emprunt WHERE reference='$row[reference]'");
             while($row_listeMateriel = mysqli_fetch_assoc($result_contenu)){
                 if(!empty($row_listeMateriel['materiel_id'])) {
-                    $materiel = fetchMateriel($row_listeMateriel['materiel_id']);
+                    $materiel = mysqli_fetch_assoc(fetchMateriel($row_listeMateriel['materiel_id']));
                     echo "<tr>
                             <td class='col-sm-2'>".$materiel['nom']."</td>
                             <td class='col-sm-3'>".$materiel['reference']."</td>
@@ -171,8 +172,7 @@ function afficherEmpruntsProches(){
 			echo "</tbody></table></div>";
             
             // Liste des étudiants
-            echo "</div>
-                    <div class='col-md-4'>
+            echo "<div class='col-md-4'>
                     <h4>Liste des étudiants</h4>";
             $result_etudiant = mysqli_query($conn, "SELECT * FROM groupe_etudiant WHERE reference='$row[reference]'");
             while($row_listeEtudiant = mysqli_fetch_assoc($result_etudiant)) {
@@ -194,9 +194,7 @@ function afficherEmpruntsProches(){
             if(!empty($row['enseignant'])) {
                 echo "<p>".$row['raison']."</p>";
             } else echo "Pas d'enseignant renseigné.</div>";
-            echo "</div>
-                    </div>
-                </div>";
+            echo "</div></div>";
 			echo "<div class='col-md-12'>
 					<form action='local_dashboard.php' method='post'>";
 			if($row['etat_emprunt_id'] == '2') echo "<button type='submit' class='btn btn-custom btn-custom-validate confirmAdd' name='sortirResa'><span class='glyphicon glyphicon-ok'></span>  Valider la sortie d'inventaire</button>";
