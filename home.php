@@ -19,7 +19,6 @@ $materielTous = getMateriel();
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/materiel.css">
-    <link rel="stylesheet" href="bootstrap/datepicker/css/datepicker.css">
     <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
@@ -92,7 +91,6 @@ $materielTous = getMateriel();
         <script src="js/jquery-1.11.2.min.js"></script>
         <script src="js/jquery-ui-1.11.2/jquery-ui.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="bootstrap/datepicker/js/bootstrap-datepicker.js"></script>
         <script src="js/ekko-lightbox.min.js"></script>
         <script>
             $(document).ready(function ($) {
