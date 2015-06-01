@@ -227,3 +227,7 @@ ul.dropdown-menu.panier-menu>li.divider {
 ul#panier-resa {
     list-style-type: none;
 }
+
+.log-option {
+    text-align: center;
+}
